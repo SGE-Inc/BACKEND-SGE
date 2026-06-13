@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  ALUNO
+  PROFESSOR
+  ADMIN
+}
+
+enum UserStatus {
+  PENDENTE
+  ATIVO
+  INATIVO
+  TRANSFERIDO
+}
+
+model User {
+  id               String     @id @default(uuid())
+  nome             String
+  email            String?    @unique
+  telefone         String?
+  numeroUtilizador String?    @unique
+  senhaHash        String
+  role             Role
+  status           UserStatus @default(ATIVO)
+  avatar           String?
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+
+  admin     Admin?
+  professor Professor?
+
+  @@map("users")
+}
+
+model Admin {
+  id     String @id @default(uuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
+
+  @@map("admins")
+}
+
+model Professor {
+  id       String  @id @default(uuid())
+  userId   String  @unique
+  user     User    @relation(fields: [userId], references: [id])
+  cargo    String
+  contacto String?
+
+  @@map("professores")
+}
