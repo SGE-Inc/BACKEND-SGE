@@ -2,6 +2,7 @@ import { Router } from "express";
 import { ProfessorAdminController } from "../controllers/professor-admin.controller.js";
 import { validate } from "../middlewares/validation.js";
 import { authenticate, authorize } from "../middlewares/auth.js";
+import { asyncHandler } from "../middlewares/async-handler.js";
 import { createProfessorSchema, updateProfessorSchema } from "../schemas/professor.schema.js";
 
 const router = Router();
@@ -41,7 +42,7 @@ router.use(authorize("ADMIN"));
  *       409:
  *         description: Email já registado
  */
-router.post("/", validate(createProfessorSchema), controller.create.bind(controller));
+router.post("/", validate(createProfessorSchema), asyncHandler(controller.create));
 
 /**
  * @openapi
@@ -66,7 +67,7 @@ router.post("/", validate(createProfessorSchema), controller.create.bind(control
  *       403:
  *         description: Sem permissão de administrador
  */
-router.get("/", controller.list.bind(controller));
+router.get("/", asyncHandler(controller.list));
 
 /**
  * @openapi
@@ -99,7 +100,7 @@ router.get("/", controller.list.bind(controller));
  *       404:
  *         description: Professor não encontrado
  */
-router.get("/:id", controller.getById.bind(controller));
+router.get("/:id", asyncHandler(controller.getById));
 
 /**
  * @openapi
@@ -142,7 +143,7 @@ router.get("/:id", controller.getById.bind(controller));
  *       409:
  *         description: Email já está em uso
  */
-router.put("/:id", validate(updateProfessorSchema), controller.update.bind(controller));
+router.put("/:id", validate(updateProfessorSchema), asyncHandler(controller.update));
 
 /**
  * @openapi
@@ -179,7 +180,7 @@ router.put("/:id", validate(updateProfessorSchema), controller.update.bind(contr
  *       404:
  *         description: Professor não encontrado
  */
-router.delete("/:id", controller.delete.bind(controller));
+router.delete("/:id", asyncHandler(controller.delete));
 
 /**
  * @openapi
@@ -212,6 +213,6 @@ router.delete("/:id", controller.delete.bind(controller));
  *       404:
  *         description: Professor não encontrado
  */
-router.patch("/:id/status", controller.toggleStatus.bind(controller));
+router.patch("/:id/status", asyncHandler(controller.toggleStatus));
 
 export default router;

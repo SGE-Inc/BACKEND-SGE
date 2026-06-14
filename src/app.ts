@@ -23,8 +23,6 @@ if (env.NODE_ENV !== "test") {
   app.use(morgan("dev"));
 }
 
-app.use("/uploads", express.static(env.UPLOAD_DIR));
-
 app.use("/api", routes);
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 

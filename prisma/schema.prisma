@@ -35,6 +35,7 @@ model User {
 
   admin    Admin?
   professor Professor?
+  aluno    Aluno?
 
   @@map("users")
 }
@@ -43,6 +44,10 @@ model Admin {
   id     String @id @default(uuid())
   userId String @unique
   user   User   @relation(fields: [userId], references: [id])
+
+  instituicoes   Instituicao[]
+  anosLectivos   AnoLectivo[]
+  configuracoes  Configuracao[]
 
   @@map("admins")
 }
@@ -54,5 +59,142 @@ model Professor {
   cargo    String
   contacto String?
 
+  disciplinas ProfessorDisciplina[]
+
   @@map("professores")
+}
+
+model Aluno {
+  id               String   @id @default(uuid())
+  userId           String   @unique
+  user             User     @relation(fields: [userId], references: [id])
+  dataNascimento   DateTime
+  tipoIdentificacao String
+  numeroIdentificacao String
+  numeroProcesso   String   @unique
+  turmaId          String?
+  turma            Turma?   @relation(fields: [turmaId], references: [id])
+  curso            String?
+  classe           String?
+  turno            String?
+  genero           String?
+  estadoCivil      String?
+  nomePai          String?
+  nomeMae          String?
+  naturalidade     String?
+  provincia        String?
+  municipio        String?
+  comuna           String?
+  encarregadoNome  String?
+  encarregadoParentesco String?
+  encarregadoGenero String?
+  encarregadoDataNascimento DateTime?
+  encarregadoTelefone String?
+  encarregadoEmail String?
+
+  @@map("alunos")
+}
+
+model Curso {
+  id    String @id @default(uuid())
+  nome  String
+  sigla String
+
+  turmas       Turma[]
+  disciplinas  Disciplina[]
+
+  @@map("cursos")
+}
+
+model Turma {
+  id         String   @id @default(uuid())
+  nome       String
+  cursoId    String
+  classe     String
+  vagas      Int
+  turno      String
+  anoLectivo String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  curso        Curso                    @relation(fields: [cursoId], references: [id])
+  alunos       Aluno[]
+  professores  ProfessorDisciplina[]
+
+  @@unique([nome, cursoId])
+  @@map("turmas")
+}
+
+model Disciplina {
+  id           String  @id @default(uuid())
+  nome         String
+  sigla        String
+  cursoId      String
+  classe       String
+  cargaHoraria Int
+  cor          String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  curso       Curso                    @relation(fields: [cursoId], references: [id])
+  professores ProfessorDisciplina[]
+
+  @@unique([nome, cursoId, classe])
+  @@map("disciplinas")
+}
+
+model ProfessorDisciplina {
+  professorId  String
+  disciplinaId String
+  turmaId      String
+
+  professor  Professor  @relation(fields: [professorId], references: [id])
+  disciplina Disciplina @relation(fields: [disciplinaId], references: [id])
+  turma      Turma      @relation(fields: [turmaId], references: [id])
+
+  @@id([professorId, disciplinaId, turmaId])
+  @@map("professor_disciplinas")
+}
+
+model Instituicao {
+  id        String   @id @default(uuid())
+  nome      String
+  sigla     String
+  endereco  String?
+  telefone  String?
+  email     String?
+  website   String?
+  diretor   String?
+  logotipo  String?
+  adminId   String
+  admin     Admin    @relation(fields: [adminId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("instituicoes")
+}
+
+model AnoLectivo {
+  id         String   @id @default(uuid())
+  ano        String   @unique
+  dataInicio DateTime
+  dataFim    DateTime
+  activo     Boolean  @default(false)
+  adminId    String
+  admin      Admin    @relation(fields: [adminId], references: [id])
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("anos_lectivos")
+}
+
+model Configuracao {
+  id        String   @id @default(uuid())
+  chave     String   @unique
+  valor     String
+  adminId   String
+  admin     Admin    @relation(fields: [adminId], references: [id])
+  updatedAt DateTime @updatedAt
+
+  @@map("configuracoes")
 }

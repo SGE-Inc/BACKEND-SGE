@@ -146,6 +146,103 @@ exports.Prisma.ProfessorScalarFieldEnum = {
   contacto: 'contacto'
 };
 
+exports.Prisma.AlunoScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  dataNascimento: 'dataNascimento',
+  tipoIdentificacao: 'tipoIdentificacao',
+  numeroIdentificacao: 'numeroIdentificacao',
+  numeroProcesso: 'numeroProcesso',
+  turmaId: 'turmaId',
+  curso: 'curso',
+  classe: 'classe',
+  turno: 'turno',
+  genero: 'genero',
+  estadoCivil: 'estadoCivil',
+  nomePai: 'nomePai',
+  nomeMae: 'nomeMae',
+  naturalidade: 'naturalidade',
+  provincia: 'provincia',
+  municipio: 'municipio',
+  comuna: 'comuna',
+  encarregadoNome: 'encarregadoNome',
+  encarregadoParentesco: 'encarregadoParentesco',
+  encarregadoGenero: 'encarregadoGenero',
+  encarregadoDataNascimento: 'encarregadoDataNascimento',
+  encarregadoTelefone: 'encarregadoTelefone',
+  encarregadoEmail: 'encarregadoEmail'
+};
+
+exports.Prisma.CursoScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  sigla: 'sigla'
+};
+
+exports.Prisma.TurmaScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  cursoId: 'cursoId',
+  classe: 'classe',
+  vagas: 'vagas',
+  turno: 'turno',
+  anoLectivo: 'anoLectivo',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.DisciplinaScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  sigla: 'sigla',
+  cursoId: 'cursoId',
+  classe: 'classe',
+  cargaHoraria: 'cargaHoraria',
+  cor: 'cor',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ProfessorDisciplinaScalarFieldEnum = {
+  professorId: 'professorId',
+  disciplinaId: 'disciplinaId',
+  turmaId: 'turmaId'
+};
+
+exports.Prisma.InstituicaoScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  sigla: 'sigla',
+  endereco: 'endereco',
+  telefone: 'telefone',
+  email: 'email',
+  website: 'website',
+  diretor: 'diretor',
+  logotipo: 'logotipo',
+  adminId: 'adminId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AnoLectivoScalarFieldEnum = {
+  id: 'id',
+  ano: 'ano',
+  dataInicio: 'dataInicio',
+  dataFim: 'dataFim',
+  activo: 'activo',
+  adminId: 'adminId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ConfiguracaoScalarFieldEnum = {
+  id: 'id',
+  chave: 'chave',
+  valor: 'valor',
+  adminId: 'adminId',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -176,7 +273,15 @@ exports.UserStatus = exports.$Enums.UserStatus = {
 exports.Prisma.ModelName = {
   User: 'User',
   Admin: 'Admin',
-  Professor: 'Professor'
+  Professor: 'Professor',
+  Aluno: 'Aluno',
+  Curso: 'Curso',
+  Turma: 'Turma',
+  Disciplina: 'Disciplina',
+  ProfessorDisciplina: 'ProfessorDisciplina',
+  Instituicao: 'Instituicao',
+  AnoLectivo: 'AnoLectivo',
+  Configuracao: 'Configuracao'
 };
 
 /**

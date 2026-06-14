@@ -1,15 +1,25 @@
 import bcrypt from "bcryptjs";
-import { prisma } from "../models/prisma.js";
+import { prisma } from "../lib/prisma.js";
 import { createError } from "../middlewares/error-handler.js";
+import type { ProfessorResponse } from "../types/index.js";
+
+export interface CreateProfessorData {
+  nome: string;
+  email: string;
+  senha: string;
+  cargo: string;
+  contacto?: string;
+}
+
+export interface UpdateProfessorData {
+  nome?: string;
+  email?: string;
+  cargo?: string;
+  contacto?: string;
+}
 
 export class ProfessorAdminService {
-  async create(data: {
-    nome: string;
-    email: string;
-    senha: string;
-    cargo: string;
-    contacto?: string;
-  }) {
+  async create(data: CreateProfessorData): Promise<ProfessorResponse> {
     const existing = await prisma.user.findUnique({
       where: { email: data.email },
     });
@@ -46,7 +56,7 @@ export class ProfessorAdminService {
     };
   }
 
-  async list() {
+  async list(): Promise<ProfessorResponse[]> {
     const professors = await prisma.professor.findMany({
       include: { user: true },
       orderBy: { user: { nome: "asc" } },
@@ -62,7 +72,7 @@ export class ProfessorAdminService {
     }));
   }
 
-  async getById(id: string) {
+  async getById(id: string): Promise<ProfessorResponse> {
     const professor = await prisma.professor.findUnique({
       where: { id },
       include: { user: true },
@@ -82,15 +92,7 @@ export class ProfessorAdminService {
     };
   }
 
-  async update(
-    id: string,
-    data: {
-      nome?: string;
-      email?: string;
-      cargo?: string;
-      contacto?: string;
-    },
-  ) {
+  async update(id: string, data: UpdateProfessorData): Promise<ProfessorResponse> {
     const professor = await prisma.professor.findUnique({
       where: { id },
       include: { user: true },
@@ -134,7 +136,7 @@ export class ProfessorAdminService {
     };
   }
 
-  async delete(id: string) {
+  async delete(id: string): Promise<{ message: string }> {
     const professor = await prisma.professor.findUnique({
       where: { id },
     });
@@ -150,7 +152,7 @@ export class ProfessorAdminService {
     return { message: "Professor removido com sucesso" };
   }
 
-  async toggleStatus(id: string) {
+  async toggleStatus(id: string): Promise<ProfessorResponse> {
     const professor = await prisma.professor.findUnique({
       where: { id },
       include: { user: true },

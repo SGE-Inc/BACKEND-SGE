@@ -2,22 +2,8 @@ import type { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import { env } from "../config/env.js";
 import { createError } from "./error-handler.js";
+import type { JwtPayload } from "../types/index.js";
 import type { Role } from "@generated/prisma/index.js";
-
-export interface JwtPayload {
-  sub: string;
-  role: Role;
-  iat: number;
-  exp: number;
-}
-
-declare global {
-  namespace Express {
-    interface Request {
-      user?: JwtPayload;
-    }
-  }
-}
 
 function extractBearerToken(req: Request): string | null {
   const header = req.headers.authorization;

@@ -4,57 +4,33 @@ import { ProfessorAdminService } from "../services/professor-admin.service.js";
 const professorAdminService = new ProfessorAdminService();
 
 export class ProfessorAdminController {
-  async create(req: Request, res: Response, next: NextFunction) {
-    try {
-      const result = await professorAdminService.create(req.body);
-      res.status(201).json(result);
-    } catch (err) {
-      next(err);
-    }
-  }
+  create = async (req: Request, res: Response, _next: NextFunction): Promise<void> => {
+    const result = await professorAdminService.create(req.body);
+    res.status(201).json(result);
+  };
 
-  async list(_req: Request, res: Response, next: NextFunction) {
-    try {
-      const result = await professorAdminService.list();
-      res.json(result);
-    } catch (err) {
-      next(err);
-    }
-  }
+  list = async (_req: Request, res: Response, _next: NextFunction): Promise<void> => {
+    const result = await professorAdminService.list();
+    res.json(result);
+  };
 
-  async getById(req: Request, res: Response, next: NextFunction) {
-    try {
-      const result = await professorAdminService.getById(req.params.id as string);
-      res.json(result);
-    } catch (err) {
-      next(err);
-    }
-  }
+  getById = async (req: Request, res: Response, _next: NextFunction): Promise<void> => {
+    const result = await professorAdminService.getById(req.params.id);
+    res.json(result);
+  };
 
-  async update(req: Request, res: Response, next: NextFunction) {
-    try {
-      const result = await professorAdminService.update(req.params.id as string, req.body);
-      res.json(result);
-    } catch (err) {
-      next(err);
-    }
-  }
+  update = async (req: Request, res: Response, _next: NextFunction): Promise<void> => {
+    const result = await professorAdminService.update(req.params.id, req.body);
+    res.json(result);
+  };
 
-  async delete(req: Request, res: Response, next: NextFunction) {
-    try {
-      const result = await professorAdminService.delete(req.params.id as string);
-      res.json(result);
-    } catch (err) {
-      next(err);
-    }
-  }
+  delete = async (req: Request, res: Response, _next: NextFunction): Promise<void> => {
+    const result = await professorAdminService.delete(req.params.id);
+    res.json(result);
+  };
 
-  async toggleStatus(req: Request, res: Response, next: NextFunction) {
-    try {
-      const result = await professorAdminService.toggleStatus(req.params.id as string);
-      res.json(result);
-    } catch (err) {
-      next(err);
-    }
-  }
+  toggleStatus = async (req: Request, res: Response, _next: NextFunction): Promise<void> => {
+    const result = await professorAdminService.toggleStatus(req.params.id);
+    res.json(result);
+  };
 }

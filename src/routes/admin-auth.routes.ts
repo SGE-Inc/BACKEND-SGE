@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { AdminAuthController } from "../controllers/admin-auth.controller.js";
 import { validate } from "../middlewares/validation.js";
+import { asyncHandler } from "../middlewares/async-handler.js";
 import { adminRegisterSchema, adminLoginSchema } from "../schemas/admin-auth.schema.js";
 
 const router = Router();
@@ -31,7 +32,7 @@ const controller = new AdminAuthController();
  *       409:
  *         description: Email já registado
  */
-router.post("/register", validate(adminRegisterSchema), controller.register.bind(controller));
+router.post("/register", validate(adminRegisterSchema), asyncHandler(controller.register));
 
 /**
  * @openapi
@@ -67,7 +68,7 @@ router.post("/register", validate(adminRegisterSchema), controller.register.bind
  *       401:
  *         description: Credenciais inválidas
  */
-router.post("/login", validate(adminLoginSchema), controller.login.bind(controller));
+router.post("/login", validate(adminLoginSchema), asyncHandler(controller.login));
 
 /**
  * @openapi
@@ -88,6 +89,6 @@ router.post("/login", validate(adminLoginSchema), controller.login.bind(controll
  *                   type: string
  *                   example: Sessão terminada com sucesso
  */
-router.post("/logout", controller.logout.bind(controller));
+router.post("/logout", asyncHandler(controller.logout));
 
 export default router;

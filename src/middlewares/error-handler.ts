@@ -1,9 +1,5 @@
 import type { Request, Response, NextFunction } from "express";
-
-export interface AppError extends Error {
-  statusCode?: number;
-  details?: unknown;
-}
+import type { AppError } from "../types/index.js";
 
 export function errorHandler(
   err: AppError,

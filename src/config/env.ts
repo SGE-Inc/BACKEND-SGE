@@ -1,6 +1,3 @@
-import { config } from "dotenv";
-config();
-
 export const env = {
   NODE_ENV: process.env.NODE_ENV ?? "development",
   PORT: parseInt(process.env.PORT ?? "2000", 10),
@@ -12,4 +9,8 @@ export const env = {
 
   UPLOAD_DIR: process.env.UPLOAD_DIR ?? "./uploads",
   MAX_FILE_SIZE: parseInt(process.env.MAX_FILE_SIZE ?? "10485760", 10),
+
+  CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME!,
+  CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY!,
+  CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET!,
 };

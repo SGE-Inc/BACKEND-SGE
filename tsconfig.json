@@ -16,10 +16,12 @@
     "sourceMap": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "baseUrl": "./",
     "paths": {
-      "@generated/*": ["./generated/*"]
+      "@generated/*": ["./generated/*"],
+      "@/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*", "lib/**/*", "prisma/**/*", "scripts/**/*"],
+  "include": ["src/**/*", "prisma/**/*", "scripts/**/*"],
   "exclude": ["node_modules", "dist"]
 }

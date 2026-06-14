@@ -1,9 +1,11 @@
 import bcrypt from "bcryptjs";
-import { prisma } from "../models/prisma.js";
+import { prisma } from "../lib/prisma.js";
 import { createError } from "../middlewares/error-handler.js";
+import type { AuthUserResponse } from "../types/index.js";
+import type { User } from "@generated/prisma/index.js";
 
 export class AdminAuthService {
-  async register(data: { nome: string; email: string; senha: string }) {
+  async register(data: { nome: string; email: string; senha: string }): Promise<AuthUserResponse> {
     const existing = await prisma.user.findUnique({
       where: { email: data.email },
     });
@@ -32,7 +34,7 @@ export class AdminAuthService {
     };
   }
 
-  async login(email: string, senha: string) {
+  async login(email: string, senha: string): Promise<User> {
     const user = await prisma.user.findUnique({
       where: { email },
     });
