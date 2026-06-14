@@ -5397,6 +5397,7 @@ export namespace Prisma {
     tipoIdentificacao: string | null
     numeroIdentificacao: string | null
     numeroProcesso: string | null
+    ultimaClasseFrequentada: string | null
     turmaId: string | null
     curso: string | null
     classe: string | null
@@ -5424,6 +5425,7 @@ export namespace Prisma {
     tipoIdentificacao: string | null
     numeroIdentificacao: string | null
     numeroProcesso: string | null
+    ultimaClasseFrequentada: string | null
     turmaId: string | null
     curso: string | null
     classe: string | null
@@ -5451,6 +5453,7 @@ export namespace Prisma {
     tipoIdentificacao: number
     numeroIdentificacao: number
     numeroProcesso: number
+    ultimaClasseFrequentada: number
     turmaId: number
     curso: number
     classe: number
@@ -5480,6 +5483,7 @@ export namespace Prisma {
     tipoIdentificacao?: true
     numeroIdentificacao?: true
     numeroProcesso?: true
+    ultimaClasseFrequentada?: true
     turmaId?: true
     curso?: true
     classe?: true
@@ -5507,6 +5511,7 @@ export namespace Prisma {
     tipoIdentificacao?: true
     numeroIdentificacao?: true
     numeroProcesso?: true
+    ultimaClasseFrequentada?: true
     turmaId?: true
     curso?: true
     classe?: true
@@ -5534,6 +5539,7 @@ export namespace Prisma {
     tipoIdentificacao?: true
     numeroIdentificacao?: true
     numeroProcesso?: true
+    ultimaClasseFrequentada?: true
     turmaId?: true
     curso?: true
     classe?: true
@@ -5634,6 +5640,7 @@ export namespace Prisma {
     tipoIdentificacao: string
     numeroIdentificacao: string
     numeroProcesso: string
+    ultimaClasseFrequentada: string | null
     turmaId: string | null
     curso: string | null
     classe: string | null
@@ -5678,6 +5685,7 @@ export namespace Prisma {
     tipoIdentificacao?: boolean
     numeroIdentificacao?: boolean
     numeroProcesso?: boolean
+    ultimaClasseFrequentada?: boolean
     turmaId?: boolean
     curso?: boolean
     classe?: boolean
@@ -5707,6 +5715,7 @@ export namespace Prisma {
     tipoIdentificacao?: boolean
     numeroIdentificacao?: boolean
     numeroProcesso?: boolean
+    ultimaClasseFrequentada?: boolean
     turmaId?: boolean
     curso?: boolean
     classe?: boolean
@@ -5736,6 +5745,7 @@ export namespace Prisma {
     tipoIdentificacao?: boolean
     numeroIdentificacao?: boolean
     numeroProcesso?: boolean
+    ultimaClasseFrequentada?: boolean
     turmaId?: boolean
     curso?: boolean
     classe?: boolean
@@ -5765,6 +5775,7 @@ export namespace Prisma {
     tipoIdentificacao?: boolean
     numeroIdentificacao?: boolean
     numeroProcesso?: boolean
+    ultimaClasseFrequentada?: boolean
     turmaId?: boolean
     curso?: boolean
     classe?: boolean
@@ -5785,7 +5796,7 @@ export namespace Prisma {
     encarregadoEmail?: boolean
   }
 
-  export type AlunoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "dataNascimento" | "tipoIdentificacao" | "numeroIdentificacao" | "numeroProcesso" | "turmaId" | "curso" | "classe" | "turno" | "genero" | "estadoCivil" | "nomePai" | "nomeMae" | "naturalidade" | "provincia" | "municipio" | "comuna" | "encarregadoNome" | "encarregadoParentesco" | "encarregadoGenero" | "encarregadoDataNascimento" | "encarregadoTelefone" | "encarregadoEmail", ExtArgs["result"]["aluno"]>
+  export type AlunoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "dataNascimento" | "tipoIdentificacao" | "numeroIdentificacao" | "numeroProcesso" | "ultimaClasseFrequentada" | "turmaId" | "curso" | "classe" | "turno" | "genero" | "estadoCivil" | "nomePai" | "nomeMae" | "naturalidade" | "provincia" | "municipio" | "comuna" | "encarregadoNome" | "encarregadoParentesco" | "encarregadoGenero" | "encarregadoDataNascimento" | "encarregadoTelefone" | "encarregadoEmail", ExtArgs["result"]["aluno"]>
   export type AlunoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     turma?: boolean | Aluno$turmaArgs<ExtArgs>
@@ -5812,6 +5823,7 @@ export namespace Prisma {
       tipoIdentificacao: string
       numeroIdentificacao: string
       numeroProcesso: string
+      ultimaClasseFrequentada: string | null
       turmaId: string | null
       curso: string | null
       classe: string | null
@@ -6261,6 +6273,7 @@ export namespace Prisma {
     readonly tipoIdentificacao: FieldRef<"Aluno", 'String'>
     readonly numeroIdentificacao: FieldRef<"Aluno", 'String'>
     readonly numeroProcesso: FieldRef<"Aluno", 'String'>
+    readonly ultimaClasseFrequentada: FieldRef<"Aluno", 'String'>
     readonly turmaId: FieldRef<"Aluno", 'String'>
     readonly curso: FieldRef<"Aluno", 'String'>
     readonly classe: FieldRef<"Aluno", 'String'>
@@ -14608,6 +14621,7 @@ export namespace Prisma {
     tipoIdentificacao: 'tipoIdentificacao',
     numeroIdentificacao: 'numeroIdentificacao',
     numeroProcesso: 'numeroProcesso',
+    ultimaClasseFrequentada: 'ultimaClasseFrequentada',
     turmaId: 'turmaId',
     curso: 'curso',
     classe: 'classe',
@@ -15048,6 +15062,7 @@ export namespace Prisma {
     tipoIdentificacao?: StringFilter<"Aluno"> | string
     numeroIdentificacao?: StringFilter<"Aluno"> | string
     numeroProcesso?: StringFilter<"Aluno"> | string
+    ultimaClasseFrequentada?: StringNullableFilter<"Aluno"> | string | null
     turmaId?: StringNullableFilter<"Aluno"> | string | null
     curso?: StringNullableFilter<"Aluno"> | string | null
     classe?: StringNullableFilter<"Aluno"> | string | null
@@ -15077,6 +15092,7 @@ export namespace Prisma {
     tipoIdentificacao?: SortOrder
     numeroIdentificacao?: SortOrder
     numeroProcesso?: SortOrder
+    ultimaClasseFrequentada?: SortOrderInput | SortOrder
     turmaId?: SortOrderInput | SortOrder
     curso?: SortOrderInput | SortOrder
     classe?: SortOrderInput | SortOrder
@@ -15109,6 +15125,7 @@ export namespace Prisma {
     dataNascimento?: DateTimeFilter<"Aluno"> | Date | string
     tipoIdentificacao?: StringFilter<"Aluno"> | string
     numeroIdentificacao?: StringFilter<"Aluno"> | string
+    ultimaClasseFrequentada?: StringNullableFilter<"Aluno"> | string | null
     turmaId?: StringNullableFilter<"Aluno"> | string | null
     curso?: StringNullableFilter<"Aluno"> | string | null
     classe?: StringNullableFilter<"Aluno"> | string | null
@@ -15138,6 +15155,7 @@ export namespace Prisma {
     tipoIdentificacao?: SortOrder
     numeroIdentificacao?: SortOrder
     numeroProcesso?: SortOrder
+    ultimaClasseFrequentada?: SortOrderInput | SortOrder
     turmaId?: SortOrderInput | SortOrder
     curso?: SortOrderInput | SortOrder
     classe?: SortOrderInput | SortOrder
@@ -15171,6 +15189,7 @@ export namespace Prisma {
     tipoIdentificacao?: StringWithAggregatesFilter<"Aluno"> | string
     numeroIdentificacao?: StringWithAggregatesFilter<"Aluno"> | string
     numeroProcesso?: StringWithAggregatesFilter<"Aluno"> | string
+    ultimaClasseFrequentada?: StringNullableWithAggregatesFilter<"Aluno"> | string | null
     turmaId?: StringNullableWithAggregatesFilter<"Aluno"> | string | null
     curso?: StringNullableWithAggregatesFilter<"Aluno"> | string | null
     classe?: StringNullableWithAggregatesFilter<"Aluno"> | string | null
@@ -15885,6 +15904,7 @@ export namespace Prisma {
     tipoIdentificacao: string
     numeroIdentificacao: string
     numeroProcesso: string
+    ultimaClasseFrequentada?: string | null
     curso?: string | null
     classe?: string | null
     turno?: string | null
@@ -15913,6 +15933,7 @@ export namespace Prisma {
     tipoIdentificacao: string
     numeroIdentificacao: string
     numeroProcesso: string
+    ultimaClasseFrequentada?: string | null
     turmaId?: string | null
     curso?: string | null
     classe?: string | null
@@ -15939,6 +15960,7 @@ export namespace Prisma {
     tipoIdentificacao?: StringFieldUpdateOperationsInput | string
     numeroIdentificacao?: StringFieldUpdateOperationsInput | string
     numeroProcesso?: StringFieldUpdateOperationsInput | string
+    ultimaClasseFrequentada?: NullableStringFieldUpdateOperationsInput | string | null
     curso?: NullableStringFieldUpdateOperationsInput | string | null
     classe?: NullableStringFieldUpdateOperationsInput | string | null
     turno?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15967,6 +15989,7 @@ export namespace Prisma {
     tipoIdentificacao?: StringFieldUpdateOperationsInput | string
     numeroIdentificacao?: StringFieldUpdateOperationsInput | string
     numeroProcesso?: StringFieldUpdateOperationsInput | string
+    ultimaClasseFrequentada?: NullableStringFieldUpdateOperationsInput | string | null
     turmaId?: NullableStringFieldUpdateOperationsInput | string | null
     curso?: NullableStringFieldUpdateOperationsInput | string | null
     classe?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15994,6 +16017,7 @@ export namespace Prisma {
     tipoIdentificacao: string
     numeroIdentificacao: string
     numeroProcesso: string
+    ultimaClasseFrequentada?: string | null
     turmaId?: string | null
     curso?: string | null
     classe?: string | null
@@ -16020,6 +16044,7 @@ export namespace Prisma {
     tipoIdentificacao?: StringFieldUpdateOperationsInput | string
     numeroIdentificacao?: StringFieldUpdateOperationsInput | string
     numeroProcesso?: StringFieldUpdateOperationsInput | string
+    ultimaClasseFrequentada?: NullableStringFieldUpdateOperationsInput | string | null
     curso?: NullableStringFieldUpdateOperationsInput | string | null
     classe?: NullableStringFieldUpdateOperationsInput | string | null
     turno?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16046,6 +16071,7 @@ export namespace Prisma {
     tipoIdentificacao?: StringFieldUpdateOperationsInput | string
     numeroIdentificacao?: StringFieldUpdateOperationsInput | string
     numeroProcesso?: StringFieldUpdateOperationsInput | string
+    ultimaClasseFrequentada?: NullableStringFieldUpdateOperationsInput | string | null
     turmaId?: NullableStringFieldUpdateOperationsInput | string | null
     curso?: NullableStringFieldUpdateOperationsInput | string | null
     classe?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16860,6 +16886,7 @@ export namespace Prisma {
     tipoIdentificacao?: SortOrder
     numeroIdentificacao?: SortOrder
     numeroProcesso?: SortOrder
+    ultimaClasseFrequentada?: SortOrder
     turmaId?: SortOrder
     curso?: SortOrder
     classe?: SortOrder
@@ -16887,6 +16914,7 @@ export namespace Prisma {
     tipoIdentificacao?: SortOrder
     numeroIdentificacao?: SortOrder
     numeroProcesso?: SortOrder
+    ultimaClasseFrequentada?: SortOrder
     turmaId?: SortOrder
     curso?: SortOrder
     classe?: SortOrder
@@ -16914,6 +16942,7 @@ export namespace Prisma {
     tipoIdentificacao?: SortOrder
     numeroIdentificacao?: SortOrder
     numeroProcesso?: SortOrder
+    ultimaClasseFrequentada?: SortOrder
     turmaId?: SortOrder
     curso?: SortOrder
     classe?: SortOrder
@@ -18218,6 +18247,7 @@ export namespace Prisma {
     tipoIdentificacao: string
     numeroIdentificacao: string
     numeroProcesso: string
+    ultimaClasseFrequentada?: string | null
     curso?: string | null
     classe?: string | null
     turno?: string | null
@@ -18244,6 +18274,7 @@ export namespace Prisma {
     tipoIdentificacao: string
     numeroIdentificacao: string
     numeroProcesso: string
+    ultimaClasseFrequentada?: string | null
     turmaId?: string | null
     curso?: string | null
     classe?: string | null
@@ -18336,6 +18367,7 @@ export namespace Prisma {
     tipoIdentificacao?: StringFieldUpdateOperationsInput | string
     numeroIdentificacao?: StringFieldUpdateOperationsInput | string
     numeroProcesso?: StringFieldUpdateOperationsInput | string
+    ultimaClasseFrequentada?: NullableStringFieldUpdateOperationsInput | string | null
     curso?: NullableStringFieldUpdateOperationsInput | string | null
     classe?: NullableStringFieldUpdateOperationsInput | string | null
     turno?: NullableStringFieldUpdateOperationsInput | string | null
@@ -18362,6 +18394,7 @@ export namespace Prisma {
     tipoIdentificacao?: StringFieldUpdateOperationsInput | string
     numeroIdentificacao?: StringFieldUpdateOperationsInput | string
     numeroProcesso?: StringFieldUpdateOperationsInput | string
+    ultimaClasseFrequentada?: NullableStringFieldUpdateOperationsInput | string | null
     turmaId?: NullableStringFieldUpdateOperationsInput | string | null
     curso?: NullableStringFieldUpdateOperationsInput | string | null
     classe?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19075,6 +19108,7 @@ export namespace Prisma {
     tipoIdentificacao: string
     numeroIdentificacao: string
     numeroProcesso: string
+    ultimaClasseFrequentada?: string | null
     curso?: string | null
     classe?: string | null
     turno?: string | null
@@ -19102,6 +19136,7 @@ export namespace Prisma {
     tipoIdentificacao: string
     numeroIdentificacao: string
     numeroProcesso: string
+    ultimaClasseFrequentada?: string | null
     curso?: string | null
     classe?: string | null
     turno?: string | null
@@ -19202,6 +19237,7 @@ export namespace Prisma {
     tipoIdentificacao?: StringFilter<"Aluno"> | string
     numeroIdentificacao?: StringFilter<"Aluno"> | string
     numeroProcesso?: StringFilter<"Aluno"> | string
+    ultimaClasseFrequentada?: StringNullableFilter<"Aluno"> | string | null
     turmaId?: StringNullableFilter<"Aluno"> | string | null
     curso?: StringNullableFilter<"Aluno"> | string | null
     classe?: StringNullableFilter<"Aluno"> | string | null
@@ -19871,6 +19907,7 @@ export namespace Prisma {
     tipoIdentificacao: string
     numeroIdentificacao: string
     numeroProcesso: string
+    ultimaClasseFrequentada?: string | null
     curso?: string | null
     classe?: string | null
     turno?: string | null
@@ -19901,6 +19938,7 @@ export namespace Prisma {
     tipoIdentificacao?: StringFieldUpdateOperationsInput | string
     numeroIdentificacao?: StringFieldUpdateOperationsInput | string
     numeroProcesso?: StringFieldUpdateOperationsInput | string
+    ultimaClasseFrequentada?: NullableStringFieldUpdateOperationsInput | string | null
     curso?: NullableStringFieldUpdateOperationsInput | string | null
     classe?: NullableStringFieldUpdateOperationsInput | string | null
     turno?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19928,6 +19966,7 @@ export namespace Prisma {
     tipoIdentificacao?: StringFieldUpdateOperationsInput | string
     numeroIdentificacao?: StringFieldUpdateOperationsInput | string
     numeroProcesso?: StringFieldUpdateOperationsInput | string
+    ultimaClasseFrequentada?: NullableStringFieldUpdateOperationsInput | string | null
     curso?: NullableStringFieldUpdateOperationsInput | string | null
     classe?: NullableStringFieldUpdateOperationsInput | string | null
     turno?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19954,6 +19993,7 @@ export namespace Prisma {
     tipoIdentificacao?: StringFieldUpdateOperationsInput | string
     numeroIdentificacao?: StringFieldUpdateOperationsInput | string
     numeroProcesso?: StringFieldUpdateOperationsInput | string
+    ultimaClasseFrequentada?: NullableStringFieldUpdateOperationsInput | string | null
     curso?: NullableStringFieldUpdateOperationsInput | string | null
     classe?: NullableStringFieldUpdateOperationsInput | string | null
     turno?: NullableStringFieldUpdateOperationsInput | string | null

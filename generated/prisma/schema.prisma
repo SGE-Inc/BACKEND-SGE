@@ -72,6 +72,7 @@ model Aluno {
   tipoIdentificacao         String
   numeroIdentificacao       String
   numeroProcesso            String    @unique
+  ultimaClasseFrequentada   String?
   turmaId                   String?
   turma                     Turma?    @relation(fields: [turmaId], references: [id])
   curso                     String?

@@ -153,6 +153,7 @@ exports.Prisma.AlunoScalarFieldEnum = {
   tipoIdentificacao: 'tipoIdentificacao',
   numeroIdentificacao: 'numeroIdentificacao',
   numeroProcesso: 'numeroProcesso',
+  ultimaClasseFrequentada: 'ultimaClasseFrequentada',
   turmaId: 'turmaId',
   curso: 'curso',
   classe: 'classe',
