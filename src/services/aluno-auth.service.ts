@@ -8,6 +8,23 @@ function gerarSenha(): string {
   return crypto.randomBytes(4).toString("hex").toUpperCase();
 }
 
+async function resolveTurma(cursoNome: string, classe: string): Promise<string | undefined> {
+  const curso = await prisma.curso.findFirst({
+    where: {
+      OR: [
+        { nome: { equals: cursoNome, mode: "insensitive" } },
+        { sigla: { equals: cursoNome, mode: "insensitive" } },
+      ],
+    },
+  });
+  if (!curso) return undefined;
+
+  const turma = await prisma.turma.findFirst({
+    where: { cursoId: curso.id, classe },
+  });
+  return turma?.id;
+}
+
 export class AlunoAuthService {
   async register(data: {
     nome: string;
@@ -16,6 +33,8 @@ export class AlunoAuthService {
     numeroIdentificacao: string;
     numeroProcesso: string;
     ultimaClasseFrequentada: string;
+    classe: string;
+    curso: string;
     telefone: string;
     email?: string;
   }) {
@@ -33,6 +52,8 @@ export class AlunoAuthService {
     if (existingUser) {
       throw createError(409, "Credenciais já geradas para este aluno");
     }
+
+    const turmaId = await resolveTurma(data.curso, data.classe);
 
     const senha = gerarSenha();
     const senhaHash = await bcrypt.hash(senha, 10);
@@ -52,6 +73,9 @@ export class AlunoAuthService {
             numeroIdentificacao: data.numeroIdentificacao,
             numeroProcesso: data.numeroProcesso,
             ultimaClasseFrequentada: data.ultimaClasseFrequentada,
+            classe: data.classe,
+            curso: data.curso,
+            turmaId: turmaId ?? null,
           },
         },
       },
@@ -104,6 +128,8 @@ export class AlunoAuthService {
       numeroIdentificacao: aluno.numeroIdentificacao,
       numeroProcesso: aluno.numeroProcesso,
       ultimaClasseFrequentada: aluno.ultimaClasseFrequentada,
+      classe: aluno.classe,
+      curso: aluno.curso,
       turmaId: aluno.turmaId,
     };
   }

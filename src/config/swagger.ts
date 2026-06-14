@@ -370,7 +370,7 @@ const options: swaggerJsdoc.Options = {
         },
         RegisterAluno: {
           type: "object",
-          required: ["nome", "dataNascimento", "tipoIdentificacao", "numeroIdentificacao", "numeroProcesso", "ultimaClasseFrequentada", "telefone"],
+          required: ["nome", "dataNascimento", "tipoIdentificacao", "numeroIdentificacao", "numeroProcesso", "ultimaClasseFrequentada", "classe", "curso", "telefone"],
           properties: {
             nome: { type: "string", description: "Nome completo do aluno", example: "João Silva" },
             dataNascimento: { type: "string", format: "date", description: "Data de nascimento", example: "2008-05-15" },
@@ -378,6 +378,8 @@ const options: swaggerJsdoc.Options = {
             numeroIdentificacao: { type: "string", description: "Nº do documento", example: "021528943LA053" },
             numeroProcesso: { type: "string", description: "Nº de processo do aluno", example: "80727" },
             ultimaClasseFrequentada: { type: "string", description: "Última classe frequentada", example: "9ª Classe" },
+            classe: { type: "string", description: "Classe a frequentar", example: "10ª Classe" },
+            curso: { type: "string", description: "Nome ou sigla do curso", example: "Informática" },
             telefone: { type: "string", description: "Telefone para contacto", example: "912345678" },
             email: { type: "string", format: "email", description: "Email (opcional)", example: "aluno@email.com" },
           },
@@ -423,6 +425,8 @@ const options: swaggerJsdoc.Options = {
             numeroIdentificacao: { type: "string" },
             numeroProcesso: { type: "string" },
             ultimaClasseFrequentada: { type: "string" },
+            classe: { type: "string", nullable: true },
+            curso: { type: "string", nullable: true },
             turmaId: { type: "string", nullable: true },
           },
         },

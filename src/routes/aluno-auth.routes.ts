@@ -14,7 +14,7 @@ const controller = new AlunoAuthController();
  *   post:
  *     tags: [Aluno - Autenticação]
  *     summary: Registar novo aluno
- *     description: Regista um novo aluno e retorna credenciais de acesso geradas automaticamente
+ *     description: Regista um novo aluno com curso e classe, atribuindo automaticamente à turma correspondente
  *     requestBody:
  *       required: true
  *       content:

@@ -9,6 +9,8 @@ export const registerAlunoSchema = z.object({
   numeroIdentificacao: z.string().min(1, "Nº de identificação é obrigatório"),
   numeroProcesso: z.string().min(1, "Nº de processo é obrigatório"),
   ultimaClasseFrequentada: z.string().min(1, "Última classe frequentada é obrigatória"),
+  classe: z.string().min(1, "Classe é obrigatória"),
+  curso: z.string().min(1, "Curso é obrigatório"),
   telefone: z.string().min(1, "Telefone é obrigatório"),
   email: z.string().email("Email inválido").optional().or(z.literal("")),
 });
