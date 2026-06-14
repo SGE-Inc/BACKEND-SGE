@@ -207,6 +207,31 @@ const options: swaggerJsdoc.Options = {
             },
           },
         },
+        CreateCurso: {
+          type: "object",
+          required: ["nome", "sigla"],
+          properties: {
+            nome: { type: "string", description: "Nome do curso", example: "Informática" },
+            sigla: { type: "string", description: "Sigla do curso", example: "IN" },
+          },
+        },
+        UpdateCurso: {
+          type: "object",
+          properties: {
+            nome: { type: "string" },
+            sigla: { type: "string" },
+          },
+        },
+        CursoResponse: {
+          type: "object",
+          properties: {
+            id: { type: "string", format: "uuid" },
+            nome: { type: "string", example: "Informática" },
+            sigla: { type: "string", example: "IN" },
+            numTurmas: { type: "integer", example: 5 },
+            numDisciplinas: { type: "integer", example: 12 },
+          },
+        },
         CreateTurma: {
           type: "object",
           required: ["nome", "curso", "classe", "vagas", "turno", "anoLectivo"],
