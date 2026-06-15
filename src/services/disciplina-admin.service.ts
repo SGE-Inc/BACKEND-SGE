@@ -59,6 +59,7 @@ export class DisciplinaAdminService {
       classe: disciplina.classe,
       cargaHoraria: disciplina.cargaHoraria,
       cor: disciplina.cor,
+      message: "Disciplina criada com sucesso",
     };
   }
 
@@ -80,6 +81,7 @@ export class DisciplinaAdminService {
       classe: disciplina.classe,
       cargaHoraria: disciplina.cargaHoraria,
       cor: disciplina.cor,
+      message: "Disciplina actualizada com sucesso",
     };
   }
 

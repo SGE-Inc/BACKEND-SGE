@@ -36,6 +36,7 @@ export class AdminAuthController {
         email: user.email,
         role: user.role.toLowerCase(),
       },
+      message: "Login efectuado com sucesso",
     });
   };
 

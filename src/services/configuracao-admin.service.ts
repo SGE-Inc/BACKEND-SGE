@@ -53,6 +53,7 @@ export class ConfiguracaoAdminService {
       website: inst.website,
       diretor: inst.diretor,
       logotipo: inst.logotipo,
+      message: "Instituição actualizada com sucesso",
     };
   }
 
@@ -71,7 +72,7 @@ export class ConfiguracaoAdminService {
         data: { nome: "", sigla: "", logotipo: result.secure_url, adminId },
       });
     }
-    return { logotipo: result.secure_url };
+    return { logotipo: result.secure_url, message: "Logotipo actualizado com sucesso" };
   }
 
   async listAnosLectivos(): Promise<AnoLectivoResponse[]> {
@@ -106,6 +107,7 @@ export class ConfiguracaoAdminService {
       dataInicio: ano.dataInicio.toISOString(),
       dataFim: ano.dataFim.toISOString(),
       activo: ano.activo,
+      message: "Ano lectivo criado com sucesso",
     };
   }
 
@@ -127,6 +129,7 @@ export class ConfiguracaoAdminService {
       dataInicio: updated.dataInicio.toISOString(),
       dataFim: updated.dataFim.toISOString(),
       activo: updated.activo,
+      message: "Ano lectivo activado com sucesso",
     };
   }
 
@@ -145,6 +148,7 @@ export class ConfiguracaoAdminService {
       dataInicio: ano.dataInicio.toISOString(),
       dataFim: ano.dataFim.toISOString(),
       activo: ano.activo,
+      message: "Ano lectivo actualizado com sucesso",
     };
   }
 }

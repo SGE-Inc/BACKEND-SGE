@@ -3,6 +3,7 @@ export interface AuthUserResponse {
   nome: string;
   email: string;
   role: string;
+  message?: string;
 }
 
 export interface ProfessorResponse {
@@ -12,6 +13,7 @@ export interface ProfessorResponse {
   cargo: string;
   contacto: string | null;
   status: string;
+  message?: string;
 }
 
 export interface TurmaResponse {
@@ -25,6 +27,7 @@ export interface TurmaResponse {
   turno: string;
   anoLectivo: string;
   numEstudantes: number;
+  message?: string;
 }
 
 export interface DisciplinaResponse {
@@ -36,6 +39,7 @@ export interface DisciplinaResponse {
   classe: string;
   cargaHoraria: number;
   cor: string | null;
+  message?: string;
 }
 
 export interface InstituicaoResponse {
@@ -48,6 +52,7 @@ export interface InstituicaoResponse {
   website: string | null;
   diretor: string | null;
   logotipo: string | null;
+  message?: string;
 }
 
 export interface AnoLectivoResponse {
@@ -56,4 +61,5 @@ export interface AnoLectivoResponse {
   dataInicio: string;
   dataFim: string;
   activo: boolean;
+  message?: string;
 }

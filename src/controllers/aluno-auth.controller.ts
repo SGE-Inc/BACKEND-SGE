@@ -36,6 +36,7 @@ export class AlunoAuthController {
         utilizador: user.numeroUtilizador,
         role: user.role.toLowerCase(),
       },
+      message: "Login efectuado com sucesso",
     });
   };
 

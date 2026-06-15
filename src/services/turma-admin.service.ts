@@ -66,6 +66,7 @@ export class TurmaAdminService {
       turno: turma.turno,
       anoLectivo: turma.anoLectivo,
       numEstudantes: turma._count.alunos,
+      message: "Turma criada com sucesso",
     };
   }
 
@@ -92,6 +93,7 @@ export class TurmaAdminService {
       turno: turma.turno,
       anoLectivo: turma.anoLectivo,
       numEstudantes: turma._count.alunos,
+      message: "Turma actualizada com sucesso",
     };
   }
 

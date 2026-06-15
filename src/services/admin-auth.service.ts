@@ -31,10 +31,12 @@ export class AdminAuthService {
       nome: user.nome,
       email: user.email,
       role: user.role.toLowerCase(),
+      message: "Administrador registado com sucesso",
     };
   }
 
   async login(email: string, senha: string): Promise<User> {
+
     const user = await prisma.user.findUnique({
       where: { email },
     });

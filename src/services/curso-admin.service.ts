@@ -43,7 +43,7 @@ export class CursoAdminService {
       throw createError(409, "Já existe um curso com este nome ou sigla");
     }
     const curso = await prisma.curso.create({ data });
-    return { id: curso.id, nome: curso.nome, sigla: curso.sigla, numTurmas: 0, numDisciplinas: 0 };
+    return { id: curso.id, nome: curso.nome, sigla: curso.sigla, numTurmas: 0, numDisciplinas: 0, message: "Curso criado com sucesso" };
   }
 
   async update(id: string, data: { nome?: string; sigla?: string }) {
@@ -60,6 +60,7 @@ export class CursoAdminService {
       sigla: curso.sigla,
       numTurmas: counts!._count.turmas,
       numDisciplinas: counts!._count.disciplinas,
+      message: "Curso actualizado com sucesso",
     };
   }
 

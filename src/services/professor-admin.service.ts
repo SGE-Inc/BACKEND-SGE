@@ -53,6 +53,7 @@ export class ProfessorAdminService {
       cargo: user.professor!.cargo,
       contacto: user.professor!.contacto,
       status: user.status.toLowerCase(),
+      message: "Professor registado com sucesso",
     };
   }
 
@@ -133,6 +134,7 @@ export class ProfessorAdminService {
       cargo: updated.cargo,
       contacto: updated.contacto,
       status: updated.user.status.toLowerCase(),
+      message: "Professor actualizado com sucesso",
     };
   }
 
@@ -176,6 +178,7 @@ export class ProfessorAdminService {
       cargo: professor.cargo,
       contacto: professor.contacto,
       status: updated.status.toLowerCase(),
+      message: "Status do professor alterado com sucesso",
     };
   }
 }
