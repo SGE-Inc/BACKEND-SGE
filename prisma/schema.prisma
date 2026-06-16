@@ -98,6 +98,7 @@ model Aluno {
 
   resultados     Resultado[]
   faltas         Falta[]
+  convocatorias  Convocatoria[]
 
   @@map("alunos")
 }
@@ -423,6 +424,36 @@ model HorarioAula {
   turma         Turma      @relation(fields: [turmaId], references: [id])
 
   @@map("horario_aulas")
+}
+
+model Convocatoria {
+  id               String   @id @default(uuid())
+  alunoId          String
+  trimestre        String
+  dataEmissao      DateTime
+  dataRealizacao   DateTime
+  hora             String
+  sala             String
+  agenda           String[]
+  createdAt        DateTime @default(now())
+
+  aluno            Aluno    @relation(fields: [alunoId], references: [id])
+
+  @@map("convocatorias")
+}
+
+model Informacao {
+  id              String   @id @default(uuid())
+  titulo          String
+  descricao       String?
+  conteudo        String
+  dataPublicacao  DateTime @default(now())
+  imagemUrl       String?
+  link            String?
+  hasIcon         Boolean  @default(false)
+  createdAt       DateTime @default(now())
+
+  @@map("informacoes")
 }
 
 model AdminUtilizador {

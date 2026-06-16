@@ -1026,6 +1026,143 @@ const options: swaggerJsdoc.Options = {
             justificacao: { type: "string", nullable: true },
           },
         },
+        AlunoPerfilResponse: {
+          type: "object",
+          properties: {
+            id: { type: "string", format: "uuid" },
+            userId: { type: "string", format: "uuid" },
+            nome: { type: "string" },
+            email: { type: "string", nullable: true },
+            telefone: { type: "string", nullable: true },
+            numeroUtilizador: { type: "string", nullable: true },
+            status: { type: "string" },
+            dataNascimento: { type: "string", format: "date-time" },
+            tipoIdentificacao: { type: "string" },
+            numeroIdentificacao: { type: "string" },
+            numeroProcesso: { type: "string" },
+            turmaNome: { type: "string", nullable: true },
+            cursoNome: { type: "string", nullable: true },
+            classe: { type: "string", nullable: true },
+            turno: { type: "string", nullable: true },
+            genero: { type: "string", nullable: true },
+            estadoCivil: { type: "string", nullable: true },
+            nomePai: { type: "string", nullable: true },
+            nomeMae: { type: "string", nullable: true },
+            naturalidade: { type: "string", nullable: true },
+            provincia: { type: "string", nullable: true },
+            municipio: { type: "string", nullable: true },
+            comuna: { type: "string", nullable: true },
+            encarregadoNome: { type: "string", nullable: true },
+            encarregadoParentesco: { type: "string", nullable: true },
+            encarregadoGenero: { type: "string", nullable: true },
+            encarregadoDataNascimento: { type: "string", nullable: true },
+            encarregadoTelefone: { type: "string", nullable: true },
+            encarregadoEmail: { type: "string", nullable: true },
+          },
+        },
+        AlunoDashboardStats: {
+          type: "object",
+          properties: {
+            totalDisciplinas: { type: "integer", example: 11 },
+            totalMateriais: { type: "integer", example: 22 },
+            totalExames: { type: "integer", example: 15 },
+            turmaNome: { type: "string", nullable: true },
+          },
+        },
+        AlunoRankingResponse: {
+          type: "object",
+          properties: {
+            position: { type: "integer" },
+            name: { type: "string" },
+            score: { type: "number" },
+            isCurrentUser: { type: "boolean" },
+          },
+        },
+        AlunoDisciplinaResponse: {
+          type: "object",
+          properties: {
+            id: { type: "string", format: "uuid" },
+            nome: { type: "string" },
+            sigla: { type: "string" },
+            cor: { type: "string" },
+            professorNome: { type: "string" },
+            totalMateriais: { type: "integer" },
+          },
+        },
+        AlunoBoletimResponse: {
+          type: "object",
+          properties: {
+            trimestre: { type: "string" },
+            disciplinas: {
+              type: "array",
+              items: {
+                type: "object",
+                properties: {
+                  n: { type: "integer" },
+                  nome: { type: "string" },
+                  faltasJ: { type: "integer" },
+                  faltasI: { type: "integer" },
+                  pp: { type: "number", nullable: true },
+                  pt: { type: "number", nullable: true },
+                  mt: { type: "number", nullable: true },
+                },
+              },
+            },
+            media: { type: "number" },
+          },
+        },
+        AlunoConvocatoriaResponse: {
+          type: "object",
+          properties: {
+            id: { type: "string", format: "uuid" },
+            trimestre: { type: "string" },
+            dataEmissao: { type: "string", format: "date-time" },
+            dataRealizacao: { type: "string", format: "date-time" },
+            hora: { type: "string" },
+            sala: { type: "string" },
+            agenda: { type: "array", items: { type: "string" } },
+          },
+        },
+        AlunoInformacaoResponse: {
+          type: "object",
+          properties: {
+            id: { type: "string", format: "uuid" },
+            titulo: { type: "string" },
+            descricao: { type: "string", nullable: true },
+            conteudo: { type: "string" },
+            dataPublicacao: { type: "string", format: "date-time" },
+            imagemUrl: { type: "string", nullable: true },
+            link: { type: "string", nullable: true },
+            hasIcon: { type: "boolean" },
+          },
+        },
+        AlunoProvaResponse: {
+          type: "object",
+          properties: {
+            id: { type: "string" },
+            data: { type: "string", format: "date-time" },
+            hora: { type: "string" },
+            sala: { type: "string" },
+            tipo: { type: "string" },
+            trimestre: { type: "string" },
+            disciplina: { type: "string" },
+            sigla: { type: "string" },
+            estado: { type: "string" },
+          },
+        },
+        AlunoMaterialResponse: {
+          type: "object",
+          properties: {
+            id: { type: "string", format: "uuid" },
+            titulo: { type: "string" },
+            descricao: { type: "string", nullable: true },
+            tipo: { type: "string" },
+            ficheiro: { type: "string", nullable: true },
+            tamanho: { type: "integer", nullable: true },
+            visivel: { type: "boolean" },
+            createdAt: { type: "string", format: "date-time" },
+          },
+        },
       },
     },
     paths: {
@@ -2784,20 +2921,225 @@ const options: swaggerJsdoc.Options = {
            },
          },
        },
-       "/professor/horario": {
-         get: {
-           tags: ["Professor Horário"],
-           summary: "Obter horário semanal do professor",
-           security: [{ cookieAuth: [] }],
-           responses: {
-             200: { description: "Horário semanal", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/ProfessorHorarioResponse" } } } } },
-             401: { description: "Não autenticado" },
-           },
-         },
-       },
-     },
-   },
-  apis: [],
+        "/professor/horario": {
+          get: {
+            tags: ["Professor Horário"],
+            summary: "Obter horário semanal do professor",
+            security: [{ cookieAuth: [] }],
+            responses: {
+              200: { description: "Horário semanal", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/ProfessorHorarioResponse" } } } } },
+              401: { description: "Não autenticado" },
+            },
+          },
+        },
+        "/aluno/perfil": {
+          get: {
+            tags: ["Aluno"],
+            summary: "Obter perfil completo do aluno",
+            security: [{ cookieAuth: [] }],
+            responses: {
+              200: { description: "Perfil do aluno", content: { "application/json": { schema: { $ref: "#/components/schemas/AlunoPerfilResponse" } } } },
+              401: { description: "Não autenticado" },
+            },
+          },
+        },
+        "/aluno/dashboard/stats": {
+          get: {
+            tags: ["Aluno Dashboard"],
+            summary: "Obter estatísticas do aluno",
+            security: [{ cookieAuth: [] }],
+            responses: {
+              200: { description: "Estatísticas", content: { "application/json": { schema: { $ref: "#/components/schemas/AlunoDashboardStats" } } } },
+              401: { description: "Não autenticado" },
+            },
+          },
+        },
+        "/aluno/dashboard/ranking": {
+          get: {
+            tags: ["Aluno Dashboard"],
+            summary: "Obter ranking da turma",
+            security: [{ cookieAuth: [] }],
+            parameters: [
+              { name: "turmaId", in: "query", required: true, schema: { type: "string", format: "uuid" } },
+              { name: "trimestre", in: "query", schema: { type: "string" } },
+            ],
+            responses: {
+              200: { description: "Ranking", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/AlunoRankingResponse" } } } } },
+              401: { description: "Não autenticado" },
+            },
+          },
+        },
+        "/aluno/dashboard/melhores-disciplinas": {
+          get: {
+            tags: ["Aluno Dashboard"],
+            summary: "Obter melhores disciplinas do aluno",
+            security: [{ cookieAuth: [] }],
+            responses: {
+              200: { description: "Melhores disciplinas" },
+              401: { description: "Não autenticado" },
+            },
+          },
+        },
+        "/aluno/dashboard/distribuicao-notas": {
+          get: {
+            tags: ["Aluno Dashboard"],
+            summary: "Obter distribuição de notas",
+            security: [{ cookieAuth: [] }],
+            responses: {
+              200: { description: "Distribuição de notas" },
+              401: { description: "Não autenticado" },
+            },
+          },
+        },
+        "/aluno/turma/disciplinas": {
+          get: {
+            tags: ["Aluno Turma"],
+            summary: "Listar disciplinas da turma",
+            security: [{ cookieAuth: [] }],
+            parameters: [
+              { name: "turmaId", in: "query", required: true, schema: { type: "string", format: "uuid" } },
+            ],
+            responses: {
+              200: { description: "Disciplinas", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/AlunoDisciplinaResponse" } } } } },
+              401: { description: "Não autenticado" },
+            },
+          },
+        },
+        "/aluno/turma/disciplinas/{disciplinaId}/materiais": {
+          get: {
+            tags: ["Aluno Turma"],
+            summary: "Listar materiais de uma disciplina",
+            security: [{ cookieAuth: [] }],
+            parameters: [
+              { name: "disciplinaId", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+            ],
+            responses: {
+              200: { description: "Materiais", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/AlunoMaterialResponse" } } } } },
+              401: { description: "Não autenticado" },
+            },
+          },
+        },
+        "/aluno/turma/materiais": {
+          post: {
+            tags: ["Aluno Turma"],
+            summary: "Submeter material",
+            security: [{ cookieAuth: [] }],
+            requestBody: { required: true, content: { "application/json": { schema: { $ref: "#/components/schemas/CreateMaterial" } } } },
+            responses: {
+              201: { description: "Material submetido" },
+              400: { description: "Dados inválidos" },
+              401: { description: "Não autenticado" },
+            },
+          },
+        },
+        "/aluno/boletins": {
+          get: {
+            tags: ["Aluno Boletins"],
+            summary: "Obter boletins do aluno",
+            security: [{ cookieAuth: [] }],
+            parameters: [
+              { name: "trimestre", in: "query", schema: { type: "string" } },
+            ],
+            responses: {
+              200: { description: "Boletins", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/AlunoBoletimResponse" } } } } },
+              401: { description: "Não autenticado" },
+            },
+          },
+        },
+        "/aluno/boletins/{trimestre}": {
+          get: {
+            tags: ["Aluno Boletins"],
+            summary: "Obter boletim de um trimestre específico",
+            security: [{ cookieAuth: [] }],
+            parameters: [
+              { name: "trimestre", in: "path", required: true, schema: { type: "string" } },
+            ],
+            responses: {
+              200: { description: "Boletim do trimestre", content: { "application/json": { schema: { $ref: "#/components/schemas/AlunoBoletimResponse" } } } },
+              401: { description: "Não autenticado" },
+            },
+          },
+        },
+        "/aluno/horario": {
+          get: {
+            tags: ["Aluno Horário"],
+            summary: "Obter horário semanal da turma",
+            security: [{ cookieAuth: [] }],
+            parameters: [
+              { name: "turmaId", in: "query", required: true, schema: { type: "string", format: "uuid" } },
+            ],
+            responses: {
+              200: { description: "Horário semanal", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/ProfessorHorarioResponse" } } } } },
+              401: { description: "Não autenticado" },
+            },
+          },
+        },
+        "/aluno/provas/calendario": {
+          get: {
+            tags: ["Aluno Provas"],
+            summary: "Obter calendário de provas",
+            security: [{ cookieAuth: [] }],
+            parameters: [
+              { name: "trimestre", in: "query", schema: { type: "string" } },
+              { name: "calendario", in: "query", schema: { type: "string" } },
+            ],
+            responses: {
+              200: { description: "Calendário de provas", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/AlunoProvaResponse" } } } } },
+              401: { description: "Não autenticado" },
+            },
+          },
+        },
+        "/aluno/provas/epocas": {
+          get: {
+            tags: ["Aluno Provas"],
+            summary: "Listar épocas de prova",
+            security: [{ cookieAuth: [] }],
+            responses: {
+              200: { description: "Épocas de prova" },
+              401: { description: "Não autenticado" },
+            },
+          },
+        },
+        "/aluno/convocatorias": {
+          get: {
+            tags: ["Aluno Convocatórias"],
+            summary: "Listar convocatórias do aluno",
+            security: [{ cookieAuth: [] }],
+            responses: {
+              200: { description: "Convocatórias", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/AlunoConvocatoriaResponse" } } } } },
+              401: { description: "Não autenticado" },
+            },
+          },
+        },
+        "/aluno/informacoes": {
+          get: {
+            tags: ["Aluno Informações"],
+            summary: "Listar informações/avisos",
+            security: [{ cookieAuth: [] }],
+            responses: {
+              200: { description: "Informações", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/AlunoInformacaoResponse" } } } } },
+              401: { description: "Não autenticado" },
+            },
+          },
+        },
+        "/aluno/informacoes/{id}": {
+          get: {
+            tags: ["Aluno Informações"],
+            summary: "Obter informação por ID",
+            security: [{ cookieAuth: [] }],
+            parameters: [
+              { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+            ],
+            responses: {
+              200: { description: "Informação", content: { "application/json": { schema: { $ref: "#/components/schemas/AlunoInformacaoResponse" } } } },
+              404: { description: "Não encontrada" },
+              401: { description: "Não autenticado" },
+            },
+          },
+        },
+      },
+    },
+   apis: [],
 };
 
 export const swaggerSpec = swaggerJsdoc(options);

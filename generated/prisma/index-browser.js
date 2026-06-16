@@ -381,6 +381,30 @@ exports.Prisma.HorarioAulaScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.ConvocatoriaScalarFieldEnum = {
+  id: 'id',
+  alunoId: 'alunoId',
+  trimestre: 'trimestre',
+  dataEmissao: 'dataEmissao',
+  dataRealizacao: 'dataRealizacao',
+  hora: 'hora',
+  sala: 'sala',
+  agenda: 'agenda',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.InformacaoScalarFieldEnum = {
+  id: 'id',
+  titulo: 'titulo',
+  descricao: 'descricao',
+  conteudo: 'conteudo',
+  dataPublicacao: 'dataPublicacao',
+  imagemUrl: 'imagemUrl',
+  link: 'link',
+  hasIcon: 'hasIcon',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.AdminUtilizadorScalarFieldEnum = {
   id: 'id',
   nome: 'nome',
@@ -474,6 +498,8 @@ exports.Prisma.ModelName = {
   Aviso: 'Aviso',
   Falta: 'Falta',
   HorarioAula: 'HorarioAula',
+  Convocatoria: 'Convocatoria',
+  Informacao: 'Informacao',
   AdminUtilizador: 'AdminUtilizador'
 };
 

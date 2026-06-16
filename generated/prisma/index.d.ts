@@ -129,6 +129,16 @@ export type Falta = $Result.DefaultSelection<Prisma.$FaltaPayload>
  */
 export type HorarioAula = $Result.DefaultSelection<Prisma.$HorarioAulaPayload>
 /**
+ * Model Convocatoria
+ * 
+ */
+export type Convocatoria = $Result.DefaultSelection<Prisma.$ConvocatoriaPayload>
+/**
+ * Model Informacao
+ * 
+ */
+export type Informacao = $Result.DefaultSelection<Prisma.$InformacaoPayload>
+/**
  * Model AdminUtilizador
  * 
  */
@@ -565,6 +575,26 @@ export class PrismaClient<
     * ```
     */
   get horarioAula(): Prisma.HorarioAulaDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.convocatoria`: Exposes CRUD operations for the **Convocatoria** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Convocatorias
+    * const convocatorias = await prisma.convocatoria.findMany()
+    * ```
+    */
+  get convocatoria(): Prisma.ConvocatoriaDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.informacao`: Exposes CRUD operations for the **Informacao** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Informacaos
+    * const informacaos = await prisma.informacao.findMany()
+    * ```
+    */
+  get informacao(): Prisma.InformacaoDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.adminUtilizador`: Exposes CRUD operations for the **AdminUtilizador** model.
@@ -1032,6 +1062,8 @@ export namespace Prisma {
     Aviso: 'Aviso',
     Falta: 'Falta',
     HorarioAula: 'HorarioAula',
+    Convocatoria: 'Convocatoria',
+    Informacao: 'Informacao',
     AdminUtilizador: 'AdminUtilizador'
   };
 
@@ -1048,7 +1080,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "admin" | "professor" | "aluno" | "curso" | "turma" | "disciplina" | "professorDisciplina" | "instituicao" | "anoLectivo" | "configuracao" | "trimestre" | "parametroAvaliacao" | "exame" | "resultado" | "epocaExame" | "auditoriaLog" | "cargo" | "permissao" | "materialDidatico" | "aviso" | "falta" | "horarioAula" | "adminUtilizador"
+      modelProps: "user" | "admin" | "professor" | "aluno" | "curso" | "turma" | "disciplina" | "professorDisciplina" | "instituicao" | "anoLectivo" | "configuracao" | "trimestre" | "parametroAvaliacao" | "exame" | "resultado" | "epocaExame" | "auditoriaLog" | "cargo" | "permissao" | "materialDidatico" | "aviso" | "falta" | "horarioAula" | "convocatoria" | "informacao" | "adminUtilizador"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2754,6 +2786,154 @@ export namespace Prisma {
           }
         }
       }
+      Convocatoria: {
+        payload: Prisma.$ConvocatoriaPayload<ExtArgs>
+        fields: Prisma.ConvocatoriaFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ConvocatoriaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConvocatoriaPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ConvocatoriaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConvocatoriaPayload>
+          }
+          findFirst: {
+            args: Prisma.ConvocatoriaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConvocatoriaPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ConvocatoriaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConvocatoriaPayload>
+          }
+          findMany: {
+            args: Prisma.ConvocatoriaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConvocatoriaPayload>[]
+          }
+          create: {
+            args: Prisma.ConvocatoriaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConvocatoriaPayload>
+          }
+          createMany: {
+            args: Prisma.ConvocatoriaCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ConvocatoriaCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConvocatoriaPayload>[]
+          }
+          delete: {
+            args: Prisma.ConvocatoriaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConvocatoriaPayload>
+          }
+          update: {
+            args: Prisma.ConvocatoriaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConvocatoriaPayload>
+          }
+          deleteMany: {
+            args: Prisma.ConvocatoriaDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ConvocatoriaUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ConvocatoriaUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConvocatoriaPayload>[]
+          }
+          upsert: {
+            args: Prisma.ConvocatoriaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ConvocatoriaPayload>
+          }
+          aggregate: {
+            args: Prisma.ConvocatoriaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateConvocatoria>
+          }
+          groupBy: {
+            args: Prisma.ConvocatoriaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ConvocatoriaGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ConvocatoriaCountArgs<ExtArgs>
+            result: $Utils.Optional<ConvocatoriaCountAggregateOutputType> | number
+          }
+        }
+      }
+      Informacao: {
+        payload: Prisma.$InformacaoPayload<ExtArgs>
+        fields: Prisma.InformacaoFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.InformacaoFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InformacaoPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.InformacaoFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InformacaoPayload>
+          }
+          findFirst: {
+            args: Prisma.InformacaoFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InformacaoPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.InformacaoFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InformacaoPayload>
+          }
+          findMany: {
+            args: Prisma.InformacaoFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InformacaoPayload>[]
+          }
+          create: {
+            args: Prisma.InformacaoCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InformacaoPayload>
+          }
+          createMany: {
+            args: Prisma.InformacaoCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.InformacaoCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InformacaoPayload>[]
+          }
+          delete: {
+            args: Prisma.InformacaoDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InformacaoPayload>
+          }
+          update: {
+            args: Prisma.InformacaoUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InformacaoPayload>
+          }
+          deleteMany: {
+            args: Prisma.InformacaoDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.InformacaoUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.InformacaoUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InformacaoPayload>[]
+          }
+          upsert: {
+            args: Prisma.InformacaoUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InformacaoPayload>
+          }
+          aggregate: {
+            args: Prisma.InformacaoAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateInformacao>
+          }
+          groupBy: {
+            args: Prisma.InformacaoGroupByArgs<ExtArgs>
+            result: $Utils.Optional<InformacaoGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.InformacaoCountArgs<ExtArgs>
+            result: $Utils.Optional<InformacaoCountAggregateOutputType> | number
+          }
+        }
+      }
       AdminUtilizador: {
         payload: Prisma.$AdminUtilizadorPayload<ExtArgs>
         fields: Prisma.AdminUtilizadorFieldRefs
@@ -2959,6 +3139,8 @@ export namespace Prisma {
     aviso?: AvisoOmit
     falta?: FaltaOmit
     horarioAula?: HorarioAulaOmit
+    convocatoria?: ConvocatoriaOmit
+    informacao?: InformacaoOmit
     adminUtilizador?: AdminUtilizadorOmit
   }
 
@@ -3149,11 +3331,13 @@ export namespace Prisma {
   export type AlunoCountOutputType = {
     resultados: number
     faltas: number
+    convocatorias: number
   }
 
   export type AlunoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     resultados?: boolean | AlunoCountOutputTypeCountResultadosArgs
     faltas?: boolean | AlunoCountOutputTypeCountFaltasArgs
+    convocatorias?: boolean | AlunoCountOutputTypeCountConvocatoriasArgs
   }
 
   // Custom InputTypes
@@ -3179,6 +3363,13 @@ export namespace Prisma {
    */
   export type AlunoCountOutputTypeCountFaltasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FaltaWhereInput
+  }
+
+  /**
+   * AlunoCountOutputType without action
+   */
+  export type AlunoCountOutputTypeCountConvocatoriasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ConvocatoriaWhereInput
   }
 
 
@@ -7185,6 +7376,7 @@ export namespace Prisma {
     turma?: boolean | Aluno$turmaArgs<ExtArgs>
     resultados?: boolean | Aluno$resultadosArgs<ExtArgs>
     faltas?: boolean | Aluno$faltasArgs<ExtArgs>
+    convocatorias?: boolean | Aluno$convocatoriasArgs<ExtArgs>
     _count?: boolean | AlunoCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["aluno"]>
 
@@ -7282,6 +7474,7 @@ export namespace Prisma {
     turma?: boolean | Aluno$turmaArgs<ExtArgs>
     resultados?: boolean | Aluno$resultadosArgs<ExtArgs>
     faltas?: boolean | Aluno$faltasArgs<ExtArgs>
+    convocatorias?: boolean | Aluno$convocatoriasArgs<ExtArgs>
     _count?: boolean | AlunoCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type AlunoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7300,6 +7493,7 @@ export namespace Prisma {
       turma: Prisma.$TurmaPayload<ExtArgs> | null
       resultados: Prisma.$ResultadoPayload<ExtArgs>[]
       faltas: Prisma.$FaltaPayload<ExtArgs>[]
+      convocatorias: Prisma.$ConvocatoriaPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7725,6 +7919,7 @@ export namespace Prisma {
     turma<T extends Aluno$turmaArgs<ExtArgs> = {}>(args?: Subset<T, Aluno$turmaArgs<ExtArgs>>): Prisma__TurmaClient<$Result.GetResult<Prisma.$TurmaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     resultados<T extends Aluno$resultadosArgs<ExtArgs> = {}>(args?: Subset<T, Aluno$resultadosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResultadoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     faltas<T extends Aluno$faltasArgs<ExtArgs> = {}>(args?: Subset<T, Aluno$faltasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FaltaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    convocatorias<T extends Aluno$convocatoriasArgs<ExtArgs> = {}>(args?: Subset<T, Aluno$convocatoriasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConvocatoriaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8244,6 +8439,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: FaltaScalarFieldEnum | FaltaScalarFieldEnum[]
+  }
+
+  /**
+   * Aluno.convocatorias
+   */
+  export type Aluno$convocatoriasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Convocatoria
+     */
+    select?: ConvocatoriaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Convocatoria
+     */
+    omit?: ConvocatoriaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConvocatoriaInclude<ExtArgs> | null
+    where?: ConvocatoriaWhereInput
+    orderBy?: ConvocatoriaOrderByWithRelationInput | ConvocatoriaOrderByWithRelationInput[]
+    cursor?: ConvocatoriaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ConvocatoriaScalarFieldEnum | ConvocatoriaScalarFieldEnum[]
   }
 
   /**
@@ -29400,6 +29619,2169 @@ export namespace Prisma {
 
 
   /**
+   * Model Convocatoria
+   */
+
+  export type AggregateConvocatoria = {
+    _count: ConvocatoriaCountAggregateOutputType | null
+    _min: ConvocatoriaMinAggregateOutputType | null
+    _max: ConvocatoriaMaxAggregateOutputType | null
+  }
+
+  export type ConvocatoriaMinAggregateOutputType = {
+    id: string | null
+    alunoId: string | null
+    trimestre: string | null
+    dataEmissao: Date | null
+    dataRealizacao: Date | null
+    hora: string | null
+    sala: string | null
+    createdAt: Date | null
+  }
+
+  export type ConvocatoriaMaxAggregateOutputType = {
+    id: string | null
+    alunoId: string | null
+    trimestre: string | null
+    dataEmissao: Date | null
+    dataRealizacao: Date | null
+    hora: string | null
+    sala: string | null
+    createdAt: Date | null
+  }
+
+  export type ConvocatoriaCountAggregateOutputType = {
+    id: number
+    alunoId: number
+    trimestre: number
+    dataEmissao: number
+    dataRealizacao: number
+    hora: number
+    sala: number
+    agenda: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ConvocatoriaMinAggregateInputType = {
+    id?: true
+    alunoId?: true
+    trimestre?: true
+    dataEmissao?: true
+    dataRealizacao?: true
+    hora?: true
+    sala?: true
+    createdAt?: true
+  }
+
+  export type ConvocatoriaMaxAggregateInputType = {
+    id?: true
+    alunoId?: true
+    trimestre?: true
+    dataEmissao?: true
+    dataRealizacao?: true
+    hora?: true
+    sala?: true
+    createdAt?: true
+  }
+
+  export type ConvocatoriaCountAggregateInputType = {
+    id?: true
+    alunoId?: true
+    trimestre?: true
+    dataEmissao?: true
+    dataRealizacao?: true
+    hora?: true
+    sala?: true
+    agenda?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ConvocatoriaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Convocatoria to aggregate.
+     */
+    where?: ConvocatoriaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Convocatorias to fetch.
+     */
+    orderBy?: ConvocatoriaOrderByWithRelationInput | ConvocatoriaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ConvocatoriaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Convocatorias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Convocatorias.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Convocatorias
+    **/
+    _count?: true | ConvocatoriaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ConvocatoriaMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ConvocatoriaMaxAggregateInputType
+  }
+
+  export type GetConvocatoriaAggregateType<T extends ConvocatoriaAggregateArgs> = {
+        [P in keyof T & keyof AggregateConvocatoria]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateConvocatoria[P]>
+      : GetScalarType<T[P], AggregateConvocatoria[P]>
+  }
+
+
+
+
+  export type ConvocatoriaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ConvocatoriaWhereInput
+    orderBy?: ConvocatoriaOrderByWithAggregationInput | ConvocatoriaOrderByWithAggregationInput[]
+    by: ConvocatoriaScalarFieldEnum[] | ConvocatoriaScalarFieldEnum
+    having?: ConvocatoriaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ConvocatoriaCountAggregateInputType | true
+    _min?: ConvocatoriaMinAggregateInputType
+    _max?: ConvocatoriaMaxAggregateInputType
+  }
+
+  export type ConvocatoriaGroupByOutputType = {
+    id: string
+    alunoId: string
+    trimestre: string
+    dataEmissao: Date
+    dataRealizacao: Date
+    hora: string
+    sala: string
+    agenda: string[]
+    createdAt: Date
+    _count: ConvocatoriaCountAggregateOutputType | null
+    _min: ConvocatoriaMinAggregateOutputType | null
+    _max: ConvocatoriaMaxAggregateOutputType | null
+  }
+
+  type GetConvocatoriaGroupByPayload<T extends ConvocatoriaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ConvocatoriaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ConvocatoriaGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ConvocatoriaGroupByOutputType[P]>
+            : GetScalarType<T[P], ConvocatoriaGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ConvocatoriaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    alunoId?: boolean
+    trimestre?: boolean
+    dataEmissao?: boolean
+    dataRealizacao?: boolean
+    hora?: boolean
+    sala?: boolean
+    agenda?: boolean
+    createdAt?: boolean
+    aluno?: boolean | AlunoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["convocatoria"]>
+
+  export type ConvocatoriaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    alunoId?: boolean
+    trimestre?: boolean
+    dataEmissao?: boolean
+    dataRealizacao?: boolean
+    hora?: boolean
+    sala?: boolean
+    agenda?: boolean
+    createdAt?: boolean
+    aluno?: boolean | AlunoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["convocatoria"]>
+
+  export type ConvocatoriaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    alunoId?: boolean
+    trimestre?: boolean
+    dataEmissao?: boolean
+    dataRealizacao?: boolean
+    hora?: boolean
+    sala?: boolean
+    agenda?: boolean
+    createdAt?: boolean
+    aluno?: boolean | AlunoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["convocatoria"]>
+
+  export type ConvocatoriaSelectScalar = {
+    id?: boolean
+    alunoId?: boolean
+    trimestre?: boolean
+    dataEmissao?: boolean
+    dataRealizacao?: boolean
+    hora?: boolean
+    sala?: boolean
+    agenda?: boolean
+    createdAt?: boolean
+  }
+
+  export type ConvocatoriaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "alunoId" | "trimestre" | "dataEmissao" | "dataRealizacao" | "hora" | "sala" | "agenda" | "createdAt", ExtArgs["result"]["convocatoria"]>
+  export type ConvocatoriaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    aluno?: boolean | AlunoDefaultArgs<ExtArgs>
+  }
+  export type ConvocatoriaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    aluno?: boolean | AlunoDefaultArgs<ExtArgs>
+  }
+  export type ConvocatoriaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    aluno?: boolean | AlunoDefaultArgs<ExtArgs>
+  }
+
+  export type $ConvocatoriaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Convocatoria"
+    objects: {
+      aluno: Prisma.$AlunoPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      alunoId: string
+      trimestre: string
+      dataEmissao: Date
+      dataRealizacao: Date
+      hora: string
+      sala: string
+      agenda: string[]
+      createdAt: Date
+    }, ExtArgs["result"]["convocatoria"]>
+    composites: {}
+  }
+
+  type ConvocatoriaGetPayload<S extends boolean | null | undefined | ConvocatoriaDefaultArgs> = $Result.GetResult<Prisma.$ConvocatoriaPayload, S>
+
+  type ConvocatoriaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ConvocatoriaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ConvocatoriaCountAggregateInputType | true
+    }
+
+  export interface ConvocatoriaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Convocatoria'], meta: { name: 'Convocatoria' } }
+    /**
+     * Find zero or one Convocatoria that matches the filter.
+     * @param {ConvocatoriaFindUniqueArgs} args - Arguments to find a Convocatoria
+     * @example
+     * // Get one Convocatoria
+     * const convocatoria = await prisma.convocatoria.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ConvocatoriaFindUniqueArgs>(args: SelectSubset<T, ConvocatoriaFindUniqueArgs<ExtArgs>>): Prisma__ConvocatoriaClient<$Result.GetResult<Prisma.$ConvocatoriaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Convocatoria that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ConvocatoriaFindUniqueOrThrowArgs} args - Arguments to find a Convocatoria
+     * @example
+     * // Get one Convocatoria
+     * const convocatoria = await prisma.convocatoria.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ConvocatoriaFindUniqueOrThrowArgs>(args: SelectSubset<T, ConvocatoriaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ConvocatoriaClient<$Result.GetResult<Prisma.$ConvocatoriaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Convocatoria that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConvocatoriaFindFirstArgs} args - Arguments to find a Convocatoria
+     * @example
+     * // Get one Convocatoria
+     * const convocatoria = await prisma.convocatoria.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ConvocatoriaFindFirstArgs>(args?: SelectSubset<T, ConvocatoriaFindFirstArgs<ExtArgs>>): Prisma__ConvocatoriaClient<$Result.GetResult<Prisma.$ConvocatoriaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Convocatoria that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConvocatoriaFindFirstOrThrowArgs} args - Arguments to find a Convocatoria
+     * @example
+     * // Get one Convocatoria
+     * const convocatoria = await prisma.convocatoria.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ConvocatoriaFindFirstOrThrowArgs>(args?: SelectSubset<T, ConvocatoriaFindFirstOrThrowArgs<ExtArgs>>): Prisma__ConvocatoriaClient<$Result.GetResult<Prisma.$ConvocatoriaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Convocatorias that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConvocatoriaFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Convocatorias
+     * const convocatorias = await prisma.convocatoria.findMany()
+     * 
+     * // Get first 10 Convocatorias
+     * const convocatorias = await prisma.convocatoria.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const convocatoriaWithIdOnly = await prisma.convocatoria.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ConvocatoriaFindManyArgs>(args?: SelectSubset<T, ConvocatoriaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConvocatoriaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Convocatoria.
+     * @param {ConvocatoriaCreateArgs} args - Arguments to create a Convocatoria.
+     * @example
+     * // Create one Convocatoria
+     * const Convocatoria = await prisma.convocatoria.create({
+     *   data: {
+     *     // ... data to create a Convocatoria
+     *   }
+     * })
+     * 
+     */
+    create<T extends ConvocatoriaCreateArgs>(args: SelectSubset<T, ConvocatoriaCreateArgs<ExtArgs>>): Prisma__ConvocatoriaClient<$Result.GetResult<Prisma.$ConvocatoriaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Convocatorias.
+     * @param {ConvocatoriaCreateManyArgs} args - Arguments to create many Convocatorias.
+     * @example
+     * // Create many Convocatorias
+     * const convocatoria = await prisma.convocatoria.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ConvocatoriaCreateManyArgs>(args?: SelectSubset<T, ConvocatoriaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Convocatorias and returns the data saved in the database.
+     * @param {ConvocatoriaCreateManyAndReturnArgs} args - Arguments to create many Convocatorias.
+     * @example
+     * // Create many Convocatorias
+     * const convocatoria = await prisma.convocatoria.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Convocatorias and only return the `id`
+     * const convocatoriaWithIdOnly = await prisma.convocatoria.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ConvocatoriaCreateManyAndReturnArgs>(args?: SelectSubset<T, ConvocatoriaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConvocatoriaPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Convocatoria.
+     * @param {ConvocatoriaDeleteArgs} args - Arguments to delete one Convocatoria.
+     * @example
+     * // Delete one Convocatoria
+     * const Convocatoria = await prisma.convocatoria.delete({
+     *   where: {
+     *     // ... filter to delete one Convocatoria
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ConvocatoriaDeleteArgs>(args: SelectSubset<T, ConvocatoriaDeleteArgs<ExtArgs>>): Prisma__ConvocatoriaClient<$Result.GetResult<Prisma.$ConvocatoriaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Convocatoria.
+     * @param {ConvocatoriaUpdateArgs} args - Arguments to update one Convocatoria.
+     * @example
+     * // Update one Convocatoria
+     * const convocatoria = await prisma.convocatoria.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ConvocatoriaUpdateArgs>(args: SelectSubset<T, ConvocatoriaUpdateArgs<ExtArgs>>): Prisma__ConvocatoriaClient<$Result.GetResult<Prisma.$ConvocatoriaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Convocatorias.
+     * @param {ConvocatoriaDeleteManyArgs} args - Arguments to filter Convocatorias to delete.
+     * @example
+     * // Delete a few Convocatorias
+     * const { count } = await prisma.convocatoria.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ConvocatoriaDeleteManyArgs>(args?: SelectSubset<T, ConvocatoriaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Convocatorias.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConvocatoriaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Convocatorias
+     * const convocatoria = await prisma.convocatoria.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ConvocatoriaUpdateManyArgs>(args: SelectSubset<T, ConvocatoriaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Convocatorias and returns the data updated in the database.
+     * @param {ConvocatoriaUpdateManyAndReturnArgs} args - Arguments to update many Convocatorias.
+     * @example
+     * // Update many Convocatorias
+     * const convocatoria = await prisma.convocatoria.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Convocatorias and only return the `id`
+     * const convocatoriaWithIdOnly = await prisma.convocatoria.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ConvocatoriaUpdateManyAndReturnArgs>(args: SelectSubset<T, ConvocatoriaUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConvocatoriaPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Convocatoria.
+     * @param {ConvocatoriaUpsertArgs} args - Arguments to update or create a Convocatoria.
+     * @example
+     * // Update or create a Convocatoria
+     * const convocatoria = await prisma.convocatoria.upsert({
+     *   create: {
+     *     // ... data to create a Convocatoria
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Convocatoria we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ConvocatoriaUpsertArgs>(args: SelectSubset<T, ConvocatoriaUpsertArgs<ExtArgs>>): Prisma__ConvocatoriaClient<$Result.GetResult<Prisma.$ConvocatoriaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Convocatorias.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConvocatoriaCountArgs} args - Arguments to filter Convocatorias to count.
+     * @example
+     * // Count the number of Convocatorias
+     * const count = await prisma.convocatoria.count({
+     *   where: {
+     *     // ... the filter for the Convocatorias we want to count
+     *   }
+     * })
+    **/
+    count<T extends ConvocatoriaCountArgs>(
+      args?: Subset<T, ConvocatoriaCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ConvocatoriaCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Convocatoria.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConvocatoriaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ConvocatoriaAggregateArgs>(args: Subset<T, ConvocatoriaAggregateArgs>): Prisma.PrismaPromise<GetConvocatoriaAggregateType<T>>
+
+    /**
+     * Group by Convocatoria.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ConvocatoriaGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ConvocatoriaGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ConvocatoriaGroupByArgs['orderBy'] }
+        : { orderBy?: ConvocatoriaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ConvocatoriaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetConvocatoriaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Convocatoria model
+   */
+  readonly fields: ConvocatoriaFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Convocatoria.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ConvocatoriaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    aluno<T extends AlunoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AlunoDefaultArgs<ExtArgs>>): Prisma__AlunoClient<$Result.GetResult<Prisma.$AlunoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Convocatoria model
+   */
+  interface ConvocatoriaFieldRefs {
+    readonly id: FieldRef<"Convocatoria", 'String'>
+    readonly alunoId: FieldRef<"Convocatoria", 'String'>
+    readonly trimestre: FieldRef<"Convocatoria", 'String'>
+    readonly dataEmissao: FieldRef<"Convocatoria", 'DateTime'>
+    readonly dataRealizacao: FieldRef<"Convocatoria", 'DateTime'>
+    readonly hora: FieldRef<"Convocatoria", 'String'>
+    readonly sala: FieldRef<"Convocatoria", 'String'>
+    readonly agenda: FieldRef<"Convocatoria", 'String[]'>
+    readonly createdAt: FieldRef<"Convocatoria", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Convocatoria findUnique
+   */
+  export type ConvocatoriaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Convocatoria
+     */
+    select?: ConvocatoriaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Convocatoria
+     */
+    omit?: ConvocatoriaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConvocatoriaInclude<ExtArgs> | null
+    /**
+     * Filter, which Convocatoria to fetch.
+     */
+    where: ConvocatoriaWhereUniqueInput
+  }
+
+  /**
+   * Convocatoria findUniqueOrThrow
+   */
+  export type ConvocatoriaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Convocatoria
+     */
+    select?: ConvocatoriaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Convocatoria
+     */
+    omit?: ConvocatoriaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConvocatoriaInclude<ExtArgs> | null
+    /**
+     * Filter, which Convocatoria to fetch.
+     */
+    where: ConvocatoriaWhereUniqueInput
+  }
+
+  /**
+   * Convocatoria findFirst
+   */
+  export type ConvocatoriaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Convocatoria
+     */
+    select?: ConvocatoriaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Convocatoria
+     */
+    omit?: ConvocatoriaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConvocatoriaInclude<ExtArgs> | null
+    /**
+     * Filter, which Convocatoria to fetch.
+     */
+    where?: ConvocatoriaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Convocatorias to fetch.
+     */
+    orderBy?: ConvocatoriaOrderByWithRelationInput | ConvocatoriaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Convocatorias.
+     */
+    cursor?: ConvocatoriaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Convocatorias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Convocatorias.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Convocatorias.
+     */
+    distinct?: ConvocatoriaScalarFieldEnum | ConvocatoriaScalarFieldEnum[]
+  }
+
+  /**
+   * Convocatoria findFirstOrThrow
+   */
+  export type ConvocatoriaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Convocatoria
+     */
+    select?: ConvocatoriaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Convocatoria
+     */
+    omit?: ConvocatoriaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConvocatoriaInclude<ExtArgs> | null
+    /**
+     * Filter, which Convocatoria to fetch.
+     */
+    where?: ConvocatoriaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Convocatorias to fetch.
+     */
+    orderBy?: ConvocatoriaOrderByWithRelationInput | ConvocatoriaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Convocatorias.
+     */
+    cursor?: ConvocatoriaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Convocatorias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Convocatorias.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Convocatorias.
+     */
+    distinct?: ConvocatoriaScalarFieldEnum | ConvocatoriaScalarFieldEnum[]
+  }
+
+  /**
+   * Convocatoria findMany
+   */
+  export type ConvocatoriaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Convocatoria
+     */
+    select?: ConvocatoriaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Convocatoria
+     */
+    omit?: ConvocatoriaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConvocatoriaInclude<ExtArgs> | null
+    /**
+     * Filter, which Convocatorias to fetch.
+     */
+    where?: ConvocatoriaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Convocatorias to fetch.
+     */
+    orderBy?: ConvocatoriaOrderByWithRelationInput | ConvocatoriaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Convocatorias.
+     */
+    cursor?: ConvocatoriaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Convocatorias from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Convocatorias.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Convocatorias.
+     */
+    distinct?: ConvocatoriaScalarFieldEnum | ConvocatoriaScalarFieldEnum[]
+  }
+
+  /**
+   * Convocatoria create
+   */
+  export type ConvocatoriaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Convocatoria
+     */
+    select?: ConvocatoriaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Convocatoria
+     */
+    omit?: ConvocatoriaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConvocatoriaInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Convocatoria.
+     */
+    data: XOR<ConvocatoriaCreateInput, ConvocatoriaUncheckedCreateInput>
+  }
+
+  /**
+   * Convocatoria createMany
+   */
+  export type ConvocatoriaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Convocatorias.
+     */
+    data: ConvocatoriaCreateManyInput | ConvocatoriaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Convocatoria createManyAndReturn
+   */
+  export type ConvocatoriaCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Convocatoria
+     */
+    select?: ConvocatoriaSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Convocatoria
+     */
+    omit?: ConvocatoriaOmit<ExtArgs> | null
+    /**
+     * The data used to create many Convocatorias.
+     */
+    data: ConvocatoriaCreateManyInput | ConvocatoriaCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConvocatoriaIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Convocatoria update
+   */
+  export type ConvocatoriaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Convocatoria
+     */
+    select?: ConvocatoriaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Convocatoria
+     */
+    omit?: ConvocatoriaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConvocatoriaInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Convocatoria.
+     */
+    data: XOR<ConvocatoriaUpdateInput, ConvocatoriaUncheckedUpdateInput>
+    /**
+     * Choose, which Convocatoria to update.
+     */
+    where: ConvocatoriaWhereUniqueInput
+  }
+
+  /**
+   * Convocatoria updateMany
+   */
+  export type ConvocatoriaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Convocatorias.
+     */
+    data: XOR<ConvocatoriaUpdateManyMutationInput, ConvocatoriaUncheckedUpdateManyInput>
+    /**
+     * Filter which Convocatorias to update
+     */
+    where?: ConvocatoriaWhereInput
+    /**
+     * Limit how many Convocatorias to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Convocatoria updateManyAndReturn
+   */
+  export type ConvocatoriaUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Convocatoria
+     */
+    select?: ConvocatoriaSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Convocatoria
+     */
+    omit?: ConvocatoriaOmit<ExtArgs> | null
+    /**
+     * The data used to update Convocatorias.
+     */
+    data: XOR<ConvocatoriaUpdateManyMutationInput, ConvocatoriaUncheckedUpdateManyInput>
+    /**
+     * Filter which Convocatorias to update
+     */
+    where?: ConvocatoriaWhereInput
+    /**
+     * Limit how many Convocatorias to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConvocatoriaIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Convocatoria upsert
+   */
+  export type ConvocatoriaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Convocatoria
+     */
+    select?: ConvocatoriaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Convocatoria
+     */
+    omit?: ConvocatoriaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConvocatoriaInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Convocatoria to update in case it exists.
+     */
+    where: ConvocatoriaWhereUniqueInput
+    /**
+     * In case the Convocatoria found by the `where` argument doesn't exist, create a new Convocatoria with this data.
+     */
+    create: XOR<ConvocatoriaCreateInput, ConvocatoriaUncheckedCreateInput>
+    /**
+     * In case the Convocatoria was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ConvocatoriaUpdateInput, ConvocatoriaUncheckedUpdateInput>
+  }
+
+  /**
+   * Convocatoria delete
+   */
+  export type ConvocatoriaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Convocatoria
+     */
+    select?: ConvocatoriaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Convocatoria
+     */
+    omit?: ConvocatoriaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConvocatoriaInclude<ExtArgs> | null
+    /**
+     * Filter which Convocatoria to delete.
+     */
+    where: ConvocatoriaWhereUniqueInput
+  }
+
+  /**
+   * Convocatoria deleteMany
+   */
+  export type ConvocatoriaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Convocatorias to delete
+     */
+    where?: ConvocatoriaWhereInput
+    /**
+     * Limit how many Convocatorias to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Convocatoria without action
+   */
+  export type ConvocatoriaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Convocatoria
+     */
+    select?: ConvocatoriaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Convocatoria
+     */
+    omit?: ConvocatoriaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ConvocatoriaInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Informacao
+   */
+
+  export type AggregateInformacao = {
+    _count: InformacaoCountAggregateOutputType | null
+    _min: InformacaoMinAggregateOutputType | null
+    _max: InformacaoMaxAggregateOutputType | null
+  }
+
+  export type InformacaoMinAggregateOutputType = {
+    id: string | null
+    titulo: string | null
+    descricao: string | null
+    conteudo: string | null
+    dataPublicacao: Date | null
+    imagemUrl: string | null
+    link: string | null
+    hasIcon: boolean | null
+    createdAt: Date | null
+  }
+
+  export type InformacaoMaxAggregateOutputType = {
+    id: string | null
+    titulo: string | null
+    descricao: string | null
+    conteudo: string | null
+    dataPublicacao: Date | null
+    imagemUrl: string | null
+    link: string | null
+    hasIcon: boolean | null
+    createdAt: Date | null
+  }
+
+  export type InformacaoCountAggregateOutputType = {
+    id: number
+    titulo: number
+    descricao: number
+    conteudo: number
+    dataPublicacao: number
+    imagemUrl: number
+    link: number
+    hasIcon: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type InformacaoMinAggregateInputType = {
+    id?: true
+    titulo?: true
+    descricao?: true
+    conteudo?: true
+    dataPublicacao?: true
+    imagemUrl?: true
+    link?: true
+    hasIcon?: true
+    createdAt?: true
+  }
+
+  export type InformacaoMaxAggregateInputType = {
+    id?: true
+    titulo?: true
+    descricao?: true
+    conteudo?: true
+    dataPublicacao?: true
+    imagemUrl?: true
+    link?: true
+    hasIcon?: true
+    createdAt?: true
+  }
+
+  export type InformacaoCountAggregateInputType = {
+    id?: true
+    titulo?: true
+    descricao?: true
+    conteudo?: true
+    dataPublicacao?: true
+    imagemUrl?: true
+    link?: true
+    hasIcon?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type InformacaoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Informacao to aggregate.
+     */
+    where?: InformacaoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Informacaos to fetch.
+     */
+    orderBy?: InformacaoOrderByWithRelationInput | InformacaoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: InformacaoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Informacaos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Informacaos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Informacaos
+    **/
+    _count?: true | InformacaoCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: InformacaoMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: InformacaoMaxAggregateInputType
+  }
+
+  export type GetInformacaoAggregateType<T extends InformacaoAggregateArgs> = {
+        [P in keyof T & keyof AggregateInformacao]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateInformacao[P]>
+      : GetScalarType<T[P], AggregateInformacao[P]>
+  }
+
+
+
+
+  export type InformacaoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InformacaoWhereInput
+    orderBy?: InformacaoOrderByWithAggregationInput | InformacaoOrderByWithAggregationInput[]
+    by: InformacaoScalarFieldEnum[] | InformacaoScalarFieldEnum
+    having?: InformacaoScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: InformacaoCountAggregateInputType | true
+    _min?: InformacaoMinAggregateInputType
+    _max?: InformacaoMaxAggregateInputType
+  }
+
+  export type InformacaoGroupByOutputType = {
+    id: string
+    titulo: string
+    descricao: string | null
+    conteudo: string
+    dataPublicacao: Date
+    imagemUrl: string | null
+    link: string | null
+    hasIcon: boolean
+    createdAt: Date
+    _count: InformacaoCountAggregateOutputType | null
+    _min: InformacaoMinAggregateOutputType | null
+    _max: InformacaoMaxAggregateOutputType | null
+  }
+
+  type GetInformacaoGroupByPayload<T extends InformacaoGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<InformacaoGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof InformacaoGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], InformacaoGroupByOutputType[P]>
+            : GetScalarType<T[P], InformacaoGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type InformacaoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    titulo?: boolean
+    descricao?: boolean
+    conteudo?: boolean
+    dataPublicacao?: boolean
+    imagemUrl?: boolean
+    link?: boolean
+    hasIcon?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["informacao"]>
+
+  export type InformacaoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    titulo?: boolean
+    descricao?: boolean
+    conteudo?: boolean
+    dataPublicacao?: boolean
+    imagemUrl?: boolean
+    link?: boolean
+    hasIcon?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["informacao"]>
+
+  export type InformacaoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    titulo?: boolean
+    descricao?: boolean
+    conteudo?: boolean
+    dataPublicacao?: boolean
+    imagemUrl?: boolean
+    link?: boolean
+    hasIcon?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["informacao"]>
+
+  export type InformacaoSelectScalar = {
+    id?: boolean
+    titulo?: boolean
+    descricao?: boolean
+    conteudo?: boolean
+    dataPublicacao?: boolean
+    imagemUrl?: boolean
+    link?: boolean
+    hasIcon?: boolean
+    createdAt?: boolean
+  }
+
+  export type InformacaoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "titulo" | "descricao" | "conteudo" | "dataPublicacao" | "imagemUrl" | "link" | "hasIcon" | "createdAt", ExtArgs["result"]["informacao"]>
+
+  export type $InformacaoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Informacao"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      titulo: string
+      descricao: string | null
+      conteudo: string
+      dataPublicacao: Date
+      imagemUrl: string | null
+      link: string | null
+      hasIcon: boolean
+      createdAt: Date
+    }, ExtArgs["result"]["informacao"]>
+    composites: {}
+  }
+
+  type InformacaoGetPayload<S extends boolean | null | undefined | InformacaoDefaultArgs> = $Result.GetResult<Prisma.$InformacaoPayload, S>
+
+  type InformacaoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<InformacaoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: InformacaoCountAggregateInputType | true
+    }
+
+  export interface InformacaoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Informacao'], meta: { name: 'Informacao' } }
+    /**
+     * Find zero or one Informacao that matches the filter.
+     * @param {InformacaoFindUniqueArgs} args - Arguments to find a Informacao
+     * @example
+     * // Get one Informacao
+     * const informacao = await prisma.informacao.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends InformacaoFindUniqueArgs>(args: SelectSubset<T, InformacaoFindUniqueArgs<ExtArgs>>): Prisma__InformacaoClient<$Result.GetResult<Prisma.$InformacaoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Informacao that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {InformacaoFindUniqueOrThrowArgs} args - Arguments to find a Informacao
+     * @example
+     * // Get one Informacao
+     * const informacao = await prisma.informacao.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends InformacaoFindUniqueOrThrowArgs>(args: SelectSubset<T, InformacaoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__InformacaoClient<$Result.GetResult<Prisma.$InformacaoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Informacao that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InformacaoFindFirstArgs} args - Arguments to find a Informacao
+     * @example
+     * // Get one Informacao
+     * const informacao = await prisma.informacao.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends InformacaoFindFirstArgs>(args?: SelectSubset<T, InformacaoFindFirstArgs<ExtArgs>>): Prisma__InformacaoClient<$Result.GetResult<Prisma.$InformacaoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Informacao that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InformacaoFindFirstOrThrowArgs} args - Arguments to find a Informacao
+     * @example
+     * // Get one Informacao
+     * const informacao = await prisma.informacao.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends InformacaoFindFirstOrThrowArgs>(args?: SelectSubset<T, InformacaoFindFirstOrThrowArgs<ExtArgs>>): Prisma__InformacaoClient<$Result.GetResult<Prisma.$InformacaoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Informacaos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InformacaoFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Informacaos
+     * const informacaos = await prisma.informacao.findMany()
+     * 
+     * // Get first 10 Informacaos
+     * const informacaos = await prisma.informacao.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const informacaoWithIdOnly = await prisma.informacao.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends InformacaoFindManyArgs>(args?: SelectSubset<T, InformacaoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InformacaoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Informacao.
+     * @param {InformacaoCreateArgs} args - Arguments to create a Informacao.
+     * @example
+     * // Create one Informacao
+     * const Informacao = await prisma.informacao.create({
+     *   data: {
+     *     // ... data to create a Informacao
+     *   }
+     * })
+     * 
+     */
+    create<T extends InformacaoCreateArgs>(args: SelectSubset<T, InformacaoCreateArgs<ExtArgs>>): Prisma__InformacaoClient<$Result.GetResult<Prisma.$InformacaoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Informacaos.
+     * @param {InformacaoCreateManyArgs} args - Arguments to create many Informacaos.
+     * @example
+     * // Create many Informacaos
+     * const informacao = await prisma.informacao.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends InformacaoCreateManyArgs>(args?: SelectSubset<T, InformacaoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Informacaos and returns the data saved in the database.
+     * @param {InformacaoCreateManyAndReturnArgs} args - Arguments to create many Informacaos.
+     * @example
+     * // Create many Informacaos
+     * const informacao = await prisma.informacao.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Informacaos and only return the `id`
+     * const informacaoWithIdOnly = await prisma.informacao.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends InformacaoCreateManyAndReturnArgs>(args?: SelectSubset<T, InformacaoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InformacaoPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Informacao.
+     * @param {InformacaoDeleteArgs} args - Arguments to delete one Informacao.
+     * @example
+     * // Delete one Informacao
+     * const Informacao = await prisma.informacao.delete({
+     *   where: {
+     *     // ... filter to delete one Informacao
+     *   }
+     * })
+     * 
+     */
+    delete<T extends InformacaoDeleteArgs>(args: SelectSubset<T, InformacaoDeleteArgs<ExtArgs>>): Prisma__InformacaoClient<$Result.GetResult<Prisma.$InformacaoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Informacao.
+     * @param {InformacaoUpdateArgs} args - Arguments to update one Informacao.
+     * @example
+     * // Update one Informacao
+     * const informacao = await prisma.informacao.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends InformacaoUpdateArgs>(args: SelectSubset<T, InformacaoUpdateArgs<ExtArgs>>): Prisma__InformacaoClient<$Result.GetResult<Prisma.$InformacaoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Informacaos.
+     * @param {InformacaoDeleteManyArgs} args - Arguments to filter Informacaos to delete.
+     * @example
+     * // Delete a few Informacaos
+     * const { count } = await prisma.informacao.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends InformacaoDeleteManyArgs>(args?: SelectSubset<T, InformacaoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Informacaos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InformacaoUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Informacaos
+     * const informacao = await prisma.informacao.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends InformacaoUpdateManyArgs>(args: SelectSubset<T, InformacaoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Informacaos and returns the data updated in the database.
+     * @param {InformacaoUpdateManyAndReturnArgs} args - Arguments to update many Informacaos.
+     * @example
+     * // Update many Informacaos
+     * const informacao = await prisma.informacao.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Informacaos and only return the `id`
+     * const informacaoWithIdOnly = await prisma.informacao.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends InformacaoUpdateManyAndReturnArgs>(args: SelectSubset<T, InformacaoUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InformacaoPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Informacao.
+     * @param {InformacaoUpsertArgs} args - Arguments to update or create a Informacao.
+     * @example
+     * // Update or create a Informacao
+     * const informacao = await prisma.informacao.upsert({
+     *   create: {
+     *     // ... data to create a Informacao
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Informacao we want to update
+     *   }
+     * })
+     */
+    upsert<T extends InformacaoUpsertArgs>(args: SelectSubset<T, InformacaoUpsertArgs<ExtArgs>>): Prisma__InformacaoClient<$Result.GetResult<Prisma.$InformacaoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Informacaos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InformacaoCountArgs} args - Arguments to filter Informacaos to count.
+     * @example
+     * // Count the number of Informacaos
+     * const count = await prisma.informacao.count({
+     *   where: {
+     *     // ... the filter for the Informacaos we want to count
+     *   }
+     * })
+    **/
+    count<T extends InformacaoCountArgs>(
+      args?: Subset<T, InformacaoCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], InformacaoCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Informacao.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InformacaoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends InformacaoAggregateArgs>(args: Subset<T, InformacaoAggregateArgs>): Prisma.PrismaPromise<GetInformacaoAggregateType<T>>
+
+    /**
+     * Group by Informacao.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InformacaoGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends InformacaoGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: InformacaoGroupByArgs['orderBy'] }
+        : { orderBy?: InformacaoGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, InformacaoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetInformacaoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Informacao model
+   */
+  readonly fields: InformacaoFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Informacao.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__InformacaoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Informacao model
+   */
+  interface InformacaoFieldRefs {
+    readonly id: FieldRef<"Informacao", 'String'>
+    readonly titulo: FieldRef<"Informacao", 'String'>
+    readonly descricao: FieldRef<"Informacao", 'String'>
+    readonly conteudo: FieldRef<"Informacao", 'String'>
+    readonly dataPublicacao: FieldRef<"Informacao", 'DateTime'>
+    readonly imagemUrl: FieldRef<"Informacao", 'String'>
+    readonly link: FieldRef<"Informacao", 'String'>
+    readonly hasIcon: FieldRef<"Informacao", 'Boolean'>
+    readonly createdAt: FieldRef<"Informacao", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Informacao findUnique
+   */
+  export type InformacaoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Informacao
+     */
+    select?: InformacaoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Informacao
+     */
+    omit?: InformacaoOmit<ExtArgs> | null
+    /**
+     * Filter, which Informacao to fetch.
+     */
+    where: InformacaoWhereUniqueInput
+  }
+
+  /**
+   * Informacao findUniqueOrThrow
+   */
+  export type InformacaoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Informacao
+     */
+    select?: InformacaoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Informacao
+     */
+    omit?: InformacaoOmit<ExtArgs> | null
+    /**
+     * Filter, which Informacao to fetch.
+     */
+    where: InformacaoWhereUniqueInput
+  }
+
+  /**
+   * Informacao findFirst
+   */
+  export type InformacaoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Informacao
+     */
+    select?: InformacaoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Informacao
+     */
+    omit?: InformacaoOmit<ExtArgs> | null
+    /**
+     * Filter, which Informacao to fetch.
+     */
+    where?: InformacaoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Informacaos to fetch.
+     */
+    orderBy?: InformacaoOrderByWithRelationInput | InformacaoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Informacaos.
+     */
+    cursor?: InformacaoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Informacaos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Informacaos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Informacaos.
+     */
+    distinct?: InformacaoScalarFieldEnum | InformacaoScalarFieldEnum[]
+  }
+
+  /**
+   * Informacao findFirstOrThrow
+   */
+  export type InformacaoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Informacao
+     */
+    select?: InformacaoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Informacao
+     */
+    omit?: InformacaoOmit<ExtArgs> | null
+    /**
+     * Filter, which Informacao to fetch.
+     */
+    where?: InformacaoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Informacaos to fetch.
+     */
+    orderBy?: InformacaoOrderByWithRelationInput | InformacaoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Informacaos.
+     */
+    cursor?: InformacaoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Informacaos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Informacaos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Informacaos.
+     */
+    distinct?: InformacaoScalarFieldEnum | InformacaoScalarFieldEnum[]
+  }
+
+  /**
+   * Informacao findMany
+   */
+  export type InformacaoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Informacao
+     */
+    select?: InformacaoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Informacao
+     */
+    omit?: InformacaoOmit<ExtArgs> | null
+    /**
+     * Filter, which Informacaos to fetch.
+     */
+    where?: InformacaoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Informacaos to fetch.
+     */
+    orderBy?: InformacaoOrderByWithRelationInput | InformacaoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Informacaos.
+     */
+    cursor?: InformacaoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Informacaos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Informacaos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Informacaos.
+     */
+    distinct?: InformacaoScalarFieldEnum | InformacaoScalarFieldEnum[]
+  }
+
+  /**
+   * Informacao create
+   */
+  export type InformacaoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Informacao
+     */
+    select?: InformacaoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Informacao
+     */
+    omit?: InformacaoOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Informacao.
+     */
+    data: XOR<InformacaoCreateInput, InformacaoUncheckedCreateInput>
+  }
+
+  /**
+   * Informacao createMany
+   */
+  export type InformacaoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Informacaos.
+     */
+    data: InformacaoCreateManyInput | InformacaoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Informacao createManyAndReturn
+   */
+  export type InformacaoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Informacao
+     */
+    select?: InformacaoSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Informacao
+     */
+    omit?: InformacaoOmit<ExtArgs> | null
+    /**
+     * The data used to create many Informacaos.
+     */
+    data: InformacaoCreateManyInput | InformacaoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Informacao update
+   */
+  export type InformacaoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Informacao
+     */
+    select?: InformacaoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Informacao
+     */
+    omit?: InformacaoOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Informacao.
+     */
+    data: XOR<InformacaoUpdateInput, InformacaoUncheckedUpdateInput>
+    /**
+     * Choose, which Informacao to update.
+     */
+    where: InformacaoWhereUniqueInput
+  }
+
+  /**
+   * Informacao updateMany
+   */
+  export type InformacaoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Informacaos.
+     */
+    data: XOR<InformacaoUpdateManyMutationInput, InformacaoUncheckedUpdateManyInput>
+    /**
+     * Filter which Informacaos to update
+     */
+    where?: InformacaoWhereInput
+    /**
+     * Limit how many Informacaos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Informacao updateManyAndReturn
+   */
+  export type InformacaoUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Informacao
+     */
+    select?: InformacaoSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Informacao
+     */
+    omit?: InformacaoOmit<ExtArgs> | null
+    /**
+     * The data used to update Informacaos.
+     */
+    data: XOR<InformacaoUpdateManyMutationInput, InformacaoUncheckedUpdateManyInput>
+    /**
+     * Filter which Informacaos to update
+     */
+    where?: InformacaoWhereInput
+    /**
+     * Limit how many Informacaos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Informacao upsert
+   */
+  export type InformacaoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Informacao
+     */
+    select?: InformacaoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Informacao
+     */
+    omit?: InformacaoOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Informacao to update in case it exists.
+     */
+    where: InformacaoWhereUniqueInput
+    /**
+     * In case the Informacao found by the `where` argument doesn't exist, create a new Informacao with this data.
+     */
+    create: XOR<InformacaoCreateInput, InformacaoUncheckedCreateInput>
+    /**
+     * In case the Informacao was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<InformacaoUpdateInput, InformacaoUncheckedUpdateInput>
+  }
+
+  /**
+   * Informacao delete
+   */
+  export type InformacaoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Informacao
+     */
+    select?: InformacaoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Informacao
+     */
+    omit?: InformacaoOmit<ExtArgs> | null
+    /**
+     * Filter which Informacao to delete.
+     */
+    where: InformacaoWhereUniqueInput
+  }
+
+  /**
+   * Informacao deleteMany
+   */
+  export type InformacaoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Informacaos to delete
+     */
+    where?: InformacaoWhereInput
+    /**
+     * Limit how many Informacaos to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Informacao without action
+   */
+  export type InformacaoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Informacao
+     */
+    select?: InformacaoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Informacao
+     */
+    omit?: InformacaoOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Model AdminUtilizador
    */
 
@@ -30821,6 +33203,36 @@ export namespace Prisma {
   export type HorarioAulaScalarFieldEnum = (typeof HorarioAulaScalarFieldEnum)[keyof typeof HorarioAulaScalarFieldEnum]
 
 
+  export const ConvocatoriaScalarFieldEnum: {
+    id: 'id',
+    alunoId: 'alunoId',
+    trimestre: 'trimestre',
+    dataEmissao: 'dataEmissao',
+    dataRealizacao: 'dataRealizacao',
+    hora: 'hora',
+    sala: 'sala',
+    agenda: 'agenda',
+    createdAt: 'createdAt'
+  };
+
+  export type ConvocatoriaScalarFieldEnum = (typeof ConvocatoriaScalarFieldEnum)[keyof typeof ConvocatoriaScalarFieldEnum]
+
+
+  export const InformacaoScalarFieldEnum: {
+    id: 'id',
+    titulo: 'titulo',
+    descricao: 'descricao',
+    conteudo: 'conteudo',
+    dataPublicacao: 'dataPublicacao',
+    imagemUrl: 'imagemUrl',
+    link: 'link',
+    hasIcon: 'hasIcon',
+    createdAt: 'createdAt'
+  };
+
+  export type InformacaoScalarFieldEnum = (typeof InformacaoScalarFieldEnum)[keyof typeof InformacaoScalarFieldEnum]
+
+
   export const AdminUtilizadorScalarFieldEnum: {
     id: 'id',
     nome: 'nome',
@@ -31238,6 +33650,7 @@ export namespace Prisma {
     turma?: XOR<TurmaNullableScalarRelationFilter, TurmaWhereInput> | null
     resultados?: ResultadoListRelationFilter
     faltas?: FaltaListRelationFilter
+    convocatorias?: ConvocatoriaListRelationFilter
   }
 
   export type AlunoOrderByWithRelationInput = {
@@ -31270,6 +33683,7 @@ export namespace Prisma {
     turma?: TurmaOrderByWithRelationInput
     resultados?: ResultadoOrderByRelationAggregateInput
     faltas?: FaltaOrderByRelationAggregateInput
+    convocatorias?: ConvocatoriaOrderByRelationAggregateInput
   }
 
   export type AlunoWhereUniqueInput = Prisma.AtLeast<{
@@ -31305,6 +33719,7 @@ export namespace Prisma {
     turma?: XOR<TurmaNullableScalarRelationFilter, TurmaWhereInput> | null
     resultados?: ResultadoListRelationFilter
     faltas?: FaltaListRelationFilter
+    convocatorias?: ConvocatoriaListRelationFilter
   }, "id" | "userId" | "numeroProcesso">
 
   export type AlunoOrderByWithAggregationInput = {
@@ -32750,6 +35165,153 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"HorarioAula"> | Date | string
   }
 
+  export type ConvocatoriaWhereInput = {
+    AND?: ConvocatoriaWhereInput | ConvocatoriaWhereInput[]
+    OR?: ConvocatoriaWhereInput[]
+    NOT?: ConvocatoriaWhereInput | ConvocatoriaWhereInput[]
+    id?: StringFilter<"Convocatoria"> | string
+    alunoId?: StringFilter<"Convocatoria"> | string
+    trimestre?: StringFilter<"Convocatoria"> | string
+    dataEmissao?: DateTimeFilter<"Convocatoria"> | Date | string
+    dataRealizacao?: DateTimeFilter<"Convocatoria"> | Date | string
+    hora?: StringFilter<"Convocatoria"> | string
+    sala?: StringFilter<"Convocatoria"> | string
+    agenda?: StringNullableListFilter<"Convocatoria">
+    createdAt?: DateTimeFilter<"Convocatoria"> | Date | string
+    aluno?: XOR<AlunoScalarRelationFilter, AlunoWhereInput>
+  }
+
+  export type ConvocatoriaOrderByWithRelationInput = {
+    id?: SortOrder
+    alunoId?: SortOrder
+    trimestre?: SortOrder
+    dataEmissao?: SortOrder
+    dataRealizacao?: SortOrder
+    hora?: SortOrder
+    sala?: SortOrder
+    agenda?: SortOrder
+    createdAt?: SortOrder
+    aluno?: AlunoOrderByWithRelationInput
+  }
+
+  export type ConvocatoriaWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ConvocatoriaWhereInput | ConvocatoriaWhereInput[]
+    OR?: ConvocatoriaWhereInput[]
+    NOT?: ConvocatoriaWhereInput | ConvocatoriaWhereInput[]
+    alunoId?: StringFilter<"Convocatoria"> | string
+    trimestre?: StringFilter<"Convocatoria"> | string
+    dataEmissao?: DateTimeFilter<"Convocatoria"> | Date | string
+    dataRealizacao?: DateTimeFilter<"Convocatoria"> | Date | string
+    hora?: StringFilter<"Convocatoria"> | string
+    sala?: StringFilter<"Convocatoria"> | string
+    agenda?: StringNullableListFilter<"Convocatoria">
+    createdAt?: DateTimeFilter<"Convocatoria"> | Date | string
+    aluno?: XOR<AlunoScalarRelationFilter, AlunoWhereInput>
+  }, "id">
+
+  export type ConvocatoriaOrderByWithAggregationInput = {
+    id?: SortOrder
+    alunoId?: SortOrder
+    trimestre?: SortOrder
+    dataEmissao?: SortOrder
+    dataRealizacao?: SortOrder
+    hora?: SortOrder
+    sala?: SortOrder
+    agenda?: SortOrder
+    createdAt?: SortOrder
+    _count?: ConvocatoriaCountOrderByAggregateInput
+    _max?: ConvocatoriaMaxOrderByAggregateInput
+    _min?: ConvocatoriaMinOrderByAggregateInput
+  }
+
+  export type ConvocatoriaScalarWhereWithAggregatesInput = {
+    AND?: ConvocatoriaScalarWhereWithAggregatesInput | ConvocatoriaScalarWhereWithAggregatesInput[]
+    OR?: ConvocatoriaScalarWhereWithAggregatesInput[]
+    NOT?: ConvocatoriaScalarWhereWithAggregatesInput | ConvocatoriaScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Convocatoria"> | string
+    alunoId?: StringWithAggregatesFilter<"Convocatoria"> | string
+    trimestre?: StringWithAggregatesFilter<"Convocatoria"> | string
+    dataEmissao?: DateTimeWithAggregatesFilter<"Convocatoria"> | Date | string
+    dataRealizacao?: DateTimeWithAggregatesFilter<"Convocatoria"> | Date | string
+    hora?: StringWithAggregatesFilter<"Convocatoria"> | string
+    sala?: StringWithAggregatesFilter<"Convocatoria"> | string
+    agenda?: StringNullableListFilter<"Convocatoria">
+    createdAt?: DateTimeWithAggregatesFilter<"Convocatoria"> | Date | string
+  }
+
+  export type InformacaoWhereInput = {
+    AND?: InformacaoWhereInput | InformacaoWhereInput[]
+    OR?: InformacaoWhereInput[]
+    NOT?: InformacaoWhereInput | InformacaoWhereInput[]
+    id?: StringFilter<"Informacao"> | string
+    titulo?: StringFilter<"Informacao"> | string
+    descricao?: StringNullableFilter<"Informacao"> | string | null
+    conteudo?: StringFilter<"Informacao"> | string
+    dataPublicacao?: DateTimeFilter<"Informacao"> | Date | string
+    imagemUrl?: StringNullableFilter<"Informacao"> | string | null
+    link?: StringNullableFilter<"Informacao"> | string | null
+    hasIcon?: BoolFilter<"Informacao"> | boolean
+    createdAt?: DateTimeFilter<"Informacao"> | Date | string
+  }
+
+  export type InformacaoOrderByWithRelationInput = {
+    id?: SortOrder
+    titulo?: SortOrder
+    descricao?: SortOrderInput | SortOrder
+    conteudo?: SortOrder
+    dataPublicacao?: SortOrder
+    imagemUrl?: SortOrderInput | SortOrder
+    link?: SortOrderInput | SortOrder
+    hasIcon?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type InformacaoWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: InformacaoWhereInput | InformacaoWhereInput[]
+    OR?: InformacaoWhereInput[]
+    NOT?: InformacaoWhereInput | InformacaoWhereInput[]
+    titulo?: StringFilter<"Informacao"> | string
+    descricao?: StringNullableFilter<"Informacao"> | string | null
+    conteudo?: StringFilter<"Informacao"> | string
+    dataPublicacao?: DateTimeFilter<"Informacao"> | Date | string
+    imagemUrl?: StringNullableFilter<"Informacao"> | string | null
+    link?: StringNullableFilter<"Informacao"> | string | null
+    hasIcon?: BoolFilter<"Informacao"> | boolean
+    createdAt?: DateTimeFilter<"Informacao"> | Date | string
+  }, "id">
+
+  export type InformacaoOrderByWithAggregationInput = {
+    id?: SortOrder
+    titulo?: SortOrder
+    descricao?: SortOrderInput | SortOrder
+    conteudo?: SortOrder
+    dataPublicacao?: SortOrder
+    imagemUrl?: SortOrderInput | SortOrder
+    link?: SortOrderInput | SortOrder
+    hasIcon?: SortOrder
+    createdAt?: SortOrder
+    _count?: InformacaoCountOrderByAggregateInput
+    _max?: InformacaoMaxOrderByAggregateInput
+    _min?: InformacaoMinOrderByAggregateInput
+  }
+
+  export type InformacaoScalarWhereWithAggregatesInput = {
+    AND?: InformacaoScalarWhereWithAggregatesInput | InformacaoScalarWhereWithAggregatesInput[]
+    OR?: InformacaoScalarWhereWithAggregatesInput[]
+    NOT?: InformacaoScalarWhereWithAggregatesInput | InformacaoScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Informacao"> | string
+    titulo?: StringWithAggregatesFilter<"Informacao"> | string
+    descricao?: StringNullableWithAggregatesFilter<"Informacao"> | string | null
+    conteudo?: StringWithAggregatesFilter<"Informacao"> | string
+    dataPublicacao?: DateTimeWithAggregatesFilter<"Informacao"> | Date | string
+    imagemUrl?: StringNullableWithAggregatesFilter<"Informacao"> | string | null
+    link?: StringNullableWithAggregatesFilter<"Informacao"> | string | null
+    hasIcon?: BoolWithAggregatesFilter<"Informacao"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"Informacao"> | Date | string
+  }
+
   export type AdminUtilizadorWhereInput = {
     AND?: AdminUtilizadorWhereInput | AdminUtilizadorWhereInput[]
     OR?: AdminUtilizadorWhereInput[]
@@ -33080,6 +35642,7 @@ export namespace Prisma {
     turma?: TurmaCreateNestedOneWithoutAlunosInput
     resultados?: ResultadoCreateNestedManyWithoutAlunoInput
     faltas?: FaltaCreateNestedManyWithoutAlunoInput
+    convocatorias?: ConvocatoriaCreateNestedManyWithoutAlunoInput
   }
 
   export type AlunoUncheckedCreateInput = {
@@ -33110,6 +35673,7 @@ export namespace Prisma {
     encarregadoEmail?: string | null
     resultados?: ResultadoUncheckedCreateNestedManyWithoutAlunoInput
     faltas?: FaltaUncheckedCreateNestedManyWithoutAlunoInput
+    convocatorias?: ConvocatoriaUncheckedCreateNestedManyWithoutAlunoInput
   }
 
   export type AlunoUpdateInput = {
@@ -33140,6 +35704,7 @@ export namespace Prisma {
     turma?: TurmaUpdateOneWithoutAlunosNestedInput
     resultados?: ResultadoUpdateManyWithoutAlunoNestedInput
     faltas?: FaltaUpdateManyWithoutAlunoNestedInput
+    convocatorias?: ConvocatoriaUpdateManyWithoutAlunoNestedInput
   }
 
   export type AlunoUncheckedUpdateInput = {
@@ -33170,6 +35735,7 @@ export namespace Prisma {
     encarregadoEmail?: NullableStringFieldUpdateOperationsInput | string | null
     resultados?: ResultadoUncheckedUpdateManyWithoutAlunoNestedInput
     faltas?: FaltaUncheckedUpdateManyWithoutAlunoNestedInput
+    convocatorias?: ConvocatoriaUncheckedUpdateManyWithoutAlunoNestedInput
   }
 
   export type AlunoCreateManyInput = {
@@ -34735,6 +37301,173 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ConvocatoriaCreateInput = {
+    id?: string
+    trimestre: string
+    dataEmissao: Date | string
+    dataRealizacao: Date | string
+    hora: string
+    sala: string
+    agenda?: ConvocatoriaCreateagendaInput | string[]
+    createdAt?: Date | string
+    aluno: AlunoCreateNestedOneWithoutConvocatoriasInput
+  }
+
+  export type ConvocatoriaUncheckedCreateInput = {
+    id?: string
+    alunoId: string
+    trimestre: string
+    dataEmissao: Date | string
+    dataRealizacao: Date | string
+    hora: string
+    sala: string
+    agenda?: ConvocatoriaCreateagendaInput | string[]
+    createdAt?: Date | string
+  }
+
+  export type ConvocatoriaUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    trimestre?: StringFieldUpdateOperationsInput | string
+    dataEmissao?: DateTimeFieldUpdateOperationsInput | Date | string
+    dataRealizacao?: DateTimeFieldUpdateOperationsInput | Date | string
+    hora?: StringFieldUpdateOperationsInput | string
+    sala?: StringFieldUpdateOperationsInput | string
+    agenda?: ConvocatoriaUpdateagendaInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    aluno?: AlunoUpdateOneRequiredWithoutConvocatoriasNestedInput
+  }
+
+  export type ConvocatoriaUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    alunoId?: StringFieldUpdateOperationsInput | string
+    trimestre?: StringFieldUpdateOperationsInput | string
+    dataEmissao?: DateTimeFieldUpdateOperationsInput | Date | string
+    dataRealizacao?: DateTimeFieldUpdateOperationsInput | Date | string
+    hora?: StringFieldUpdateOperationsInput | string
+    sala?: StringFieldUpdateOperationsInput | string
+    agenda?: ConvocatoriaUpdateagendaInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ConvocatoriaCreateManyInput = {
+    id?: string
+    alunoId: string
+    trimestre: string
+    dataEmissao: Date | string
+    dataRealizacao: Date | string
+    hora: string
+    sala: string
+    agenda?: ConvocatoriaCreateagendaInput | string[]
+    createdAt?: Date | string
+  }
+
+  export type ConvocatoriaUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    trimestre?: StringFieldUpdateOperationsInput | string
+    dataEmissao?: DateTimeFieldUpdateOperationsInput | Date | string
+    dataRealizacao?: DateTimeFieldUpdateOperationsInput | Date | string
+    hora?: StringFieldUpdateOperationsInput | string
+    sala?: StringFieldUpdateOperationsInput | string
+    agenda?: ConvocatoriaUpdateagendaInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ConvocatoriaUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    alunoId?: StringFieldUpdateOperationsInput | string
+    trimestre?: StringFieldUpdateOperationsInput | string
+    dataEmissao?: DateTimeFieldUpdateOperationsInput | Date | string
+    dataRealizacao?: DateTimeFieldUpdateOperationsInput | Date | string
+    hora?: StringFieldUpdateOperationsInput | string
+    sala?: StringFieldUpdateOperationsInput | string
+    agenda?: ConvocatoriaUpdateagendaInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InformacaoCreateInput = {
+    id?: string
+    titulo: string
+    descricao?: string | null
+    conteudo: string
+    dataPublicacao?: Date | string
+    imagemUrl?: string | null
+    link?: string | null
+    hasIcon?: boolean
+    createdAt?: Date | string
+  }
+
+  export type InformacaoUncheckedCreateInput = {
+    id?: string
+    titulo: string
+    descricao?: string | null
+    conteudo: string
+    dataPublicacao?: Date | string
+    imagemUrl?: string | null
+    link?: string | null
+    hasIcon?: boolean
+    createdAt?: Date | string
+  }
+
+  export type InformacaoUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    conteudo?: StringFieldUpdateOperationsInput | string
+    dataPublicacao?: DateTimeFieldUpdateOperationsInput | Date | string
+    imagemUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    link?: NullableStringFieldUpdateOperationsInput | string | null
+    hasIcon?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InformacaoUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    conteudo?: StringFieldUpdateOperationsInput | string
+    dataPublicacao?: DateTimeFieldUpdateOperationsInput | Date | string
+    imagemUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    link?: NullableStringFieldUpdateOperationsInput | string | null
+    hasIcon?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InformacaoCreateManyInput = {
+    id?: string
+    titulo: string
+    descricao?: string | null
+    conteudo: string
+    dataPublicacao?: Date | string
+    imagemUrl?: string | null
+    link?: string | null
+    hasIcon?: boolean
+    createdAt?: Date | string
+  }
+
+  export type InformacaoUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    conteudo?: StringFieldUpdateOperationsInput | string
+    dataPublicacao?: DateTimeFieldUpdateOperationsInput | Date | string
+    imagemUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    link?: NullableStringFieldUpdateOperationsInput | string | null
+    hasIcon?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InformacaoUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    titulo?: StringFieldUpdateOperationsInput | string
+    descricao?: NullableStringFieldUpdateOperationsInput | string | null
+    conteudo?: StringFieldUpdateOperationsInput | string
+    dataPublicacao?: DateTimeFieldUpdateOperationsInput | Date | string
+    imagemUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    link?: NullableStringFieldUpdateOperationsInput | string | null
+    hasIcon?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type AdminUtilizadorCreateInput = {
     id?: string
     nome: string
@@ -35159,11 +37892,21 @@ export namespace Prisma {
     none?: FaltaWhereInput
   }
 
+  export type ConvocatoriaListRelationFilter = {
+    every?: ConvocatoriaWhereInput
+    some?: ConvocatoriaWhereInput
+    none?: ConvocatoriaWhereInput
+  }
+
   export type ResultadoOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type FaltaOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ConvocatoriaOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -36181,6 +38924,84 @@ export namespace Prisma {
     _max?: NestedEnumDiaSemanaFilter<$PrismaModel>
   }
 
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
+  export type ConvocatoriaCountOrderByAggregateInput = {
+    id?: SortOrder
+    alunoId?: SortOrder
+    trimestre?: SortOrder
+    dataEmissao?: SortOrder
+    dataRealizacao?: SortOrder
+    hora?: SortOrder
+    sala?: SortOrder
+    agenda?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ConvocatoriaMaxOrderByAggregateInput = {
+    id?: SortOrder
+    alunoId?: SortOrder
+    trimestre?: SortOrder
+    dataEmissao?: SortOrder
+    dataRealizacao?: SortOrder
+    hora?: SortOrder
+    sala?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ConvocatoriaMinOrderByAggregateInput = {
+    id?: SortOrder
+    alunoId?: SortOrder
+    trimestre?: SortOrder
+    dataEmissao?: SortOrder
+    dataRealizacao?: SortOrder
+    hora?: SortOrder
+    sala?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type InformacaoCountOrderByAggregateInput = {
+    id?: SortOrder
+    titulo?: SortOrder
+    descricao?: SortOrder
+    conteudo?: SortOrder
+    dataPublicacao?: SortOrder
+    imagemUrl?: SortOrder
+    link?: SortOrder
+    hasIcon?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type InformacaoMaxOrderByAggregateInput = {
+    id?: SortOrder
+    titulo?: SortOrder
+    descricao?: SortOrder
+    conteudo?: SortOrder
+    dataPublicacao?: SortOrder
+    imagemUrl?: SortOrder
+    link?: SortOrder
+    hasIcon?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type InformacaoMinOrderByAggregateInput = {
+    id?: SortOrder
+    titulo?: SortOrder
+    descricao?: SortOrder
+    conteudo?: SortOrder
+    dataPublicacao?: SortOrder
+    imagemUrl?: SortOrder
+    link?: SortOrder
+    hasIcon?: SortOrder
+    createdAt?: SortOrder
+  }
+
   export type AdminUtilizadorCountOrderByAggregateInput = {
     id?: SortOrder
     nome?: SortOrder
@@ -36687,6 +39508,13 @@ export namespace Prisma {
     connect?: FaltaWhereUniqueInput | FaltaWhereUniqueInput[]
   }
 
+  export type ConvocatoriaCreateNestedManyWithoutAlunoInput = {
+    create?: XOR<ConvocatoriaCreateWithoutAlunoInput, ConvocatoriaUncheckedCreateWithoutAlunoInput> | ConvocatoriaCreateWithoutAlunoInput[] | ConvocatoriaUncheckedCreateWithoutAlunoInput[]
+    connectOrCreate?: ConvocatoriaCreateOrConnectWithoutAlunoInput | ConvocatoriaCreateOrConnectWithoutAlunoInput[]
+    createMany?: ConvocatoriaCreateManyAlunoInputEnvelope
+    connect?: ConvocatoriaWhereUniqueInput | ConvocatoriaWhereUniqueInput[]
+  }
+
   export type ResultadoUncheckedCreateNestedManyWithoutAlunoInput = {
     create?: XOR<ResultadoCreateWithoutAlunoInput, ResultadoUncheckedCreateWithoutAlunoInput> | ResultadoCreateWithoutAlunoInput[] | ResultadoUncheckedCreateWithoutAlunoInput[]
     connectOrCreate?: ResultadoCreateOrConnectWithoutAlunoInput | ResultadoCreateOrConnectWithoutAlunoInput[]
@@ -36699,6 +39527,13 @@ export namespace Prisma {
     connectOrCreate?: FaltaCreateOrConnectWithoutAlunoInput | FaltaCreateOrConnectWithoutAlunoInput[]
     createMany?: FaltaCreateManyAlunoInputEnvelope
     connect?: FaltaWhereUniqueInput | FaltaWhereUniqueInput[]
+  }
+
+  export type ConvocatoriaUncheckedCreateNestedManyWithoutAlunoInput = {
+    create?: XOR<ConvocatoriaCreateWithoutAlunoInput, ConvocatoriaUncheckedCreateWithoutAlunoInput> | ConvocatoriaCreateWithoutAlunoInput[] | ConvocatoriaUncheckedCreateWithoutAlunoInput[]
+    connectOrCreate?: ConvocatoriaCreateOrConnectWithoutAlunoInput | ConvocatoriaCreateOrConnectWithoutAlunoInput[]
+    createMany?: ConvocatoriaCreateManyAlunoInputEnvelope
+    connect?: ConvocatoriaWhereUniqueInput | ConvocatoriaWhereUniqueInput[]
   }
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -36751,6 +39586,20 @@ export namespace Prisma {
     deleteMany?: FaltaScalarWhereInput | FaltaScalarWhereInput[]
   }
 
+  export type ConvocatoriaUpdateManyWithoutAlunoNestedInput = {
+    create?: XOR<ConvocatoriaCreateWithoutAlunoInput, ConvocatoriaUncheckedCreateWithoutAlunoInput> | ConvocatoriaCreateWithoutAlunoInput[] | ConvocatoriaUncheckedCreateWithoutAlunoInput[]
+    connectOrCreate?: ConvocatoriaCreateOrConnectWithoutAlunoInput | ConvocatoriaCreateOrConnectWithoutAlunoInput[]
+    upsert?: ConvocatoriaUpsertWithWhereUniqueWithoutAlunoInput | ConvocatoriaUpsertWithWhereUniqueWithoutAlunoInput[]
+    createMany?: ConvocatoriaCreateManyAlunoInputEnvelope
+    set?: ConvocatoriaWhereUniqueInput | ConvocatoriaWhereUniqueInput[]
+    disconnect?: ConvocatoriaWhereUniqueInput | ConvocatoriaWhereUniqueInput[]
+    delete?: ConvocatoriaWhereUniqueInput | ConvocatoriaWhereUniqueInput[]
+    connect?: ConvocatoriaWhereUniqueInput | ConvocatoriaWhereUniqueInput[]
+    update?: ConvocatoriaUpdateWithWhereUniqueWithoutAlunoInput | ConvocatoriaUpdateWithWhereUniqueWithoutAlunoInput[]
+    updateMany?: ConvocatoriaUpdateManyWithWhereWithoutAlunoInput | ConvocatoriaUpdateManyWithWhereWithoutAlunoInput[]
+    deleteMany?: ConvocatoriaScalarWhereInput | ConvocatoriaScalarWhereInput[]
+  }
+
   export type ResultadoUncheckedUpdateManyWithoutAlunoNestedInput = {
     create?: XOR<ResultadoCreateWithoutAlunoInput, ResultadoUncheckedCreateWithoutAlunoInput> | ResultadoCreateWithoutAlunoInput[] | ResultadoUncheckedCreateWithoutAlunoInput[]
     connectOrCreate?: ResultadoCreateOrConnectWithoutAlunoInput | ResultadoCreateOrConnectWithoutAlunoInput[]
@@ -36777,6 +39626,20 @@ export namespace Prisma {
     update?: FaltaUpdateWithWhereUniqueWithoutAlunoInput | FaltaUpdateWithWhereUniqueWithoutAlunoInput[]
     updateMany?: FaltaUpdateManyWithWhereWithoutAlunoInput | FaltaUpdateManyWithWhereWithoutAlunoInput[]
     deleteMany?: FaltaScalarWhereInput | FaltaScalarWhereInput[]
+  }
+
+  export type ConvocatoriaUncheckedUpdateManyWithoutAlunoNestedInput = {
+    create?: XOR<ConvocatoriaCreateWithoutAlunoInput, ConvocatoriaUncheckedCreateWithoutAlunoInput> | ConvocatoriaCreateWithoutAlunoInput[] | ConvocatoriaUncheckedCreateWithoutAlunoInput[]
+    connectOrCreate?: ConvocatoriaCreateOrConnectWithoutAlunoInput | ConvocatoriaCreateOrConnectWithoutAlunoInput[]
+    upsert?: ConvocatoriaUpsertWithWhereUniqueWithoutAlunoInput | ConvocatoriaUpsertWithWhereUniqueWithoutAlunoInput[]
+    createMany?: ConvocatoriaCreateManyAlunoInputEnvelope
+    set?: ConvocatoriaWhereUniqueInput | ConvocatoriaWhereUniqueInput[]
+    disconnect?: ConvocatoriaWhereUniqueInput | ConvocatoriaWhereUniqueInput[]
+    delete?: ConvocatoriaWhereUniqueInput | ConvocatoriaWhereUniqueInput[]
+    connect?: ConvocatoriaWhereUniqueInput | ConvocatoriaWhereUniqueInput[]
+    update?: ConvocatoriaUpdateWithWhereUniqueWithoutAlunoInput | ConvocatoriaUpdateWithWhereUniqueWithoutAlunoInput[]
+    updateMany?: ConvocatoriaUpdateManyWithWhereWithoutAlunoInput | ConvocatoriaUpdateManyWithWhereWithoutAlunoInput[]
+    deleteMany?: ConvocatoriaScalarWhereInput | ConvocatoriaScalarWhereInput[]
   }
 
   export type TurmaCreateNestedManyWithoutCursoInput = {
@@ -37659,6 +40522,29 @@ export namespace Prisma {
     update?: XOR<XOR<TurmaUpdateToOneWithWhereWithoutHorariosInput, TurmaUpdateWithoutHorariosInput>, TurmaUncheckedUpdateWithoutHorariosInput>
   }
 
+  export type ConvocatoriaCreateagendaInput = {
+    set: string[]
+  }
+
+  export type AlunoCreateNestedOneWithoutConvocatoriasInput = {
+    create?: XOR<AlunoCreateWithoutConvocatoriasInput, AlunoUncheckedCreateWithoutConvocatoriasInput>
+    connectOrCreate?: AlunoCreateOrConnectWithoutConvocatoriasInput
+    connect?: AlunoWhereUniqueInput
+  }
+
+  export type ConvocatoriaUpdateagendaInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type AlunoUpdateOneRequiredWithoutConvocatoriasNestedInput = {
+    create?: XOR<AlunoCreateWithoutConvocatoriasInput, AlunoUncheckedCreateWithoutConvocatoriasInput>
+    connectOrCreate?: AlunoCreateOrConnectWithoutConvocatoriasInput
+    upsert?: AlunoUpsertWithoutConvocatoriasInput
+    connect?: AlunoWhereUniqueInput
+    update?: XOR<XOR<AlunoUpdateToOneWithWhereWithoutConvocatoriasInput, AlunoUpdateWithoutConvocatoriasInput>, AlunoUncheckedUpdateWithoutConvocatoriasInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -38032,6 +40918,7 @@ export namespace Prisma {
     turma?: TurmaCreateNestedOneWithoutAlunosInput
     resultados?: ResultadoCreateNestedManyWithoutAlunoInput
     faltas?: FaltaCreateNestedManyWithoutAlunoInput
+    convocatorias?: ConvocatoriaCreateNestedManyWithoutAlunoInput
   }
 
   export type AlunoUncheckedCreateWithoutUserInput = {
@@ -38061,6 +40948,7 @@ export namespace Prisma {
     encarregadoEmail?: string | null
     resultados?: ResultadoUncheckedCreateNestedManyWithoutAlunoInput
     faltas?: FaltaUncheckedCreateNestedManyWithoutAlunoInput
+    convocatorias?: ConvocatoriaUncheckedCreateNestedManyWithoutAlunoInput
   }
 
   export type AlunoCreateOrConnectWithoutUserInput = {
@@ -38162,6 +41050,7 @@ export namespace Prisma {
     turma?: TurmaUpdateOneWithoutAlunosNestedInput
     resultados?: ResultadoUpdateManyWithoutAlunoNestedInput
     faltas?: FaltaUpdateManyWithoutAlunoNestedInput
+    convocatorias?: ConvocatoriaUpdateManyWithoutAlunoNestedInput
   }
 
   export type AlunoUncheckedUpdateWithoutUserInput = {
@@ -38191,6 +41080,7 @@ export namespace Prisma {
     encarregadoEmail?: NullableStringFieldUpdateOperationsInput | string | null
     resultados?: ResultadoUncheckedUpdateManyWithoutAlunoNestedInput
     faltas?: FaltaUncheckedUpdateManyWithoutAlunoNestedInput
+    convocatorias?: ConvocatoriaUncheckedUpdateManyWithoutAlunoNestedInput
   }
 
   export type UserCreateWithoutAdminInput = {
@@ -38896,6 +41786,38 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ConvocatoriaCreateWithoutAlunoInput = {
+    id?: string
+    trimestre: string
+    dataEmissao: Date | string
+    dataRealizacao: Date | string
+    hora: string
+    sala: string
+    agenda?: ConvocatoriaCreateagendaInput | string[]
+    createdAt?: Date | string
+  }
+
+  export type ConvocatoriaUncheckedCreateWithoutAlunoInput = {
+    id?: string
+    trimestre: string
+    dataEmissao: Date | string
+    dataRealizacao: Date | string
+    hora: string
+    sala: string
+    agenda?: ConvocatoriaCreateagendaInput | string[]
+    createdAt?: Date | string
+  }
+
+  export type ConvocatoriaCreateOrConnectWithoutAlunoInput = {
+    where: ConvocatoriaWhereUniqueInput
+    create: XOR<ConvocatoriaCreateWithoutAlunoInput, ConvocatoriaUncheckedCreateWithoutAlunoInput>
+  }
+
+  export type ConvocatoriaCreateManyAlunoInputEnvelope = {
+    data: ConvocatoriaCreateManyAlunoInput | ConvocatoriaCreateManyAlunoInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserUpsertWithoutAlunoInput = {
     update: XOR<UserUpdateWithoutAlunoInput, UserUncheckedUpdateWithoutAlunoInput>
     create: XOR<UserCreateWithoutAlunoInput, UserUncheckedCreateWithoutAlunoInput>
@@ -39035,6 +41957,37 @@ export namespace Prisma {
     justificada?: BoolFilter<"Falta"> | boolean
     justificacao?: StringNullableFilter<"Falta"> | string | null
     createdAt?: DateTimeFilter<"Falta"> | Date | string
+  }
+
+  export type ConvocatoriaUpsertWithWhereUniqueWithoutAlunoInput = {
+    where: ConvocatoriaWhereUniqueInput
+    update: XOR<ConvocatoriaUpdateWithoutAlunoInput, ConvocatoriaUncheckedUpdateWithoutAlunoInput>
+    create: XOR<ConvocatoriaCreateWithoutAlunoInput, ConvocatoriaUncheckedCreateWithoutAlunoInput>
+  }
+
+  export type ConvocatoriaUpdateWithWhereUniqueWithoutAlunoInput = {
+    where: ConvocatoriaWhereUniqueInput
+    data: XOR<ConvocatoriaUpdateWithoutAlunoInput, ConvocatoriaUncheckedUpdateWithoutAlunoInput>
+  }
+
+  export type ConvocatoriaUpdateManyWithWhereWithoutAlunoInput = {
+    where: ConvocatoriaScalarWhereInput
+    data: XOR<ConvocatoriaUpdateManyMutationInput, ConvocatoriaUncheckedUpdateManyWithoutAlunoInput>
+  }
+
+  export type ConvocatoriaScalarWhereInput = {
+    AND?: ConvocatoriaScalarWhereInput | ConvocatoriaScalarWhereInput[]
+    OR?: ConvocatoriaScalarWhereInput[]
+    NOT?: ConvocatoriaScalarWhereInput | ConvocatoriaScalarWhereInput[]
+    id?: StringFilter<"Convocatoria"> | string
+    alunoId?: StringFilter<"Convocatoria"> | string
+    trimestre?: StringFilter<"Convocatoria"> | string
+    dataEmissao?: DateTimeFilter<"Convocatoria"> | Date | string
+    dataRealizacao?: DateTimeFilter<"Convocatoria"> | Date | string
+    hora?: StringFilter<"Convocatoria"> | string
+    sala?: StringFilter<"Convocatoria"> | string
+    agenda?: StringNullableListFilter<"Convocatoria">
+    createdAt?: DateTimeFilter<"Convocatoria"> | Date | string
   }
 
   export type TurmaCreateWithoutCursoInput = {
@@ -39233,6 +42186,7 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutAlunoInput
     resultados?: ResultadoCreateNestedManyWithoutAlunoInput
     faltas?: FaltaCreateNestedManyWithoutAlunoInput
+    convocatorias?: ConvocatoriaCreateNestedManyWithoutAlunoInput
   }
 
   export type AlunoUncheckedCreateWithoutTurmaInput = {
@@ -39262,6 +42216,7 @@ export namespace Prisma {
     encarregadoEmail?: string | null
     resultados?: ResultadoUncheckedCreateNestedManyWithoutAlunoInput
     faltas?: FaltaUncheckedCreateNestedManyWithoutAlunoInput
+    convocatorias?: ConvocatoriaUncheckedCreateNestedManyWithoutAlunoInput
   }
 
   export type AlunoCreateOrConnectWithoutTurmaInput = {
@@ -40459,6 +43414,7 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutAlunoInput
     turma?: TurmaCreateNestedOneWithoutAlunosInput
     faltas?: FaltaCreateNestedManyWithoutAlunoInput
+    convocatorias?: ConvocatoriaCreateNestedManyWithoutAlunoInput
   }
 
   export type AlunoUncheckedCreateWithoutResultadosInput = {
@@ -40488,6 +43444,7 @@ export namespace Prisma {
     encarregadoTelefone?: string | null
     encarregadoEmail?: string | null
     faltas?: FaltaUncheckedCreateNestedManyWithoutAlunoInput
+    convocatorias?: ConvocatoriaUncheckedCreateNestedManyWithoutAlunoInput
   }
 
   export type AlunoCreateOrConnectWithoutResultadosInput = {
@@ -40576,6 +43533,7 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutAlunoNestedInput
     turma?: TurmaUpdateOneWithoutAlunosNestedInput
     faltas?: FaltaUpdateManyWithoutAlunoNestedInput
+    convocatorias?: ConvocatoriaUpdateManyWithoutAlunoNestedInput
   }
 
   export type AlunoUncheckedUpdateWithoutResultadosInput = {
@@ -40605,6 +43563,7 @@ export namespace Prisma {
     encarregadoTelefone?: NullableStringFieldUpdateOperationsInput | string | null
     encarregadoEmail?: NullableStringFieldUpdateOperationsInput | string | null
     faltas?: FaltaUncheckedUpdateManyWithoutAlunoNestedInput
+    convocatorias?: ConvocatoriaUncheckedUpdateManyWithoutAlunoNestedInput
   }
 
   export type DisciplinaCreateWithoutMateriaisInput = {
@@ -40914,6 +43873,7 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutAlunoInput
     turma?: TurmaCreateNestedOneWithoutAlunosInput
     resultados?: ResultadoCreateNestedManyWithoutAlunoInput
+    convocatorias?: ConvocatoriaCreateNestedManyWithoutAlunoInput
   }
 
   export type AlunoUncheckedCreateWithoutFaltasInput = {
@@ -40943,6 +43903,7 @@ export namespace Prisma {
     encarregadoTelefone?: string | null
     encarregadoEmail?: string | null
     resultados?: ResultadoUncheckedCreateNestedManyWithoutAlunoInput
+    convocatorias?: ConvocatoriaUncheckedCreateNestedManyWithoutAlunoInput
   }
 
   export type AlunoCreateOrConnectWithoutFaltasInput = {
@@ -41027,6 +43988,7 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutAlunoNestedInput
     turma?: TurmaUpdateOneWithoutAlunosNestedInput
     resultados?: ResultadoUpdateManyWithoutAlunoNestedInput
+    convocatorias?: ConvocatoriaUpdateManyWithoutAlunoNestedInput
   }
 
   export type AlunoUncheckedUpdateWithoutFaltasInput = {
@@ -41056,6 +44018,7 @@ export namespace Prisma {
     encarregadoTelefone?: NullableStringFieldUpdateOperationsInput | string | null
     encarregadoEmail?: NullableStringFieldUpdateOperationsInput | string | null
     resultados?: ResultadoUncheckedUpdateManyWithoutAlunoNestedInput
+    convocatorias?: ConvocatoriaUncheckedUpdateManyWithoutAlunoNestedInput
   }
 
   export type DisciplinaUpsertWithoutFaltasInput = {
@@ -41317,6 +44280,142 @@ export namespace Prisma {
     alunos?: AlunoUncheckedUpdateManyWithoutTurmaNestedInput
     professores?: ProfessorDisciplinaUncheckedUpdateManyWithoutTurmaNestedInput
     exames?: ExameUncheckedUpdateManyWithoutTurmaNestedInput
+  }
+
+  export type AlunoCreateWithoutConvocatoriasInput = {
+    id?: string
+    dataNascimento: Date | string
+    tipoIdentificacao: string
+    numeroIdentificacao: string
+    numeroProcesso: string
+    ultimaClasseFrequentada?: string | null
+    curso?: string | null
+    classe?: string | null
+    turno?: string | null
+    genero?: string | null
+    estadoCivil?: string | null
+    nomePai?: string | null
+    nomeMae?: string | null
+    naturalidade?: string | null
+    provincia?: string | null
+    municipio?: string | null
+    comuna?: string | null
+    encarregadoNome?: string | null
+    encarregadoParentesco?: string | null
+    encarregadoGenero?: string | null
+    encarregadoDataNascimento?: Date | string | null
+    encarregadoTelefone?: string | null
+    encarregadoEmail?: string | null
+    user: UserCreateNestedOneWithoutAlunoInput
+    turma?: TurmaCreateNestedOneWithoutAlunosInput
+    resultados?: ResultadoCreateNestedManyWithoutAlunoInput
+    faltas?: FaltaCreateNestedManyWithoutAlunoInput
+  }
+
+  export type AlunoUncheckedCreateWithoutConvocatoriasInput = {
+    id?: string
+    userId: string
+    dataNascimento: Date | string
+    tipoIdentificacao: string
+    numeroIdentificacao: string
+    numeroProcesso: string
+    ultimaClasseFrequentada?: string | null
+    turmaId?: string | null
+    curso?: string | null
+    classe?: string | null
+    turno?: string | null
+    genero?: string | null
+    estadoCivil?: string | null
+    nomePai?: string | null
+    nomeMae?: string | null
+    naturalidade?: string | null
+    provincia?: string | null
+    municipio?: string | null
+    comuna?: string | null
+    encarregadoNome?: string | null
+    encarregadoParentesco?: string | null
+    encarregadoGenero?: string | null
+    encarregadoDataNascimento?: Date | string | null
+    encarregadoTelefone?: string | null
+    encarregadoEmail?: string | null
+    resultados?: ResultadoUncheckedCreateNestedManyWithoutAlunoInput
+    faltas?: FaltaUncheckedCreateNestedManyWithoutAlunoInput
+  }
+
+  export type AlunoCreateOrConnectWithoutConvocatoriasInput = {
+    where: AlunoWhereUniqueInput
+    create: XOR<AlunoCreateWithoutConvocatoriasInput, AlunoUncheckedCreateWithoutConvocatoriasInput>
+  }
+
+  export type AlunoUpsertWithoutConvocatoriasInput = {
+    update: XOR<AlunoUpdateWithoutConvocatoriasInput, AlunoUncheckedUpdateWithoutConvocatoriasInput>
+    create: XOR<AlunoCreateWithoutConvocatoriasInput, AlunoUncheckedCreateWithoutConvocatoriasInput>
+    where?: AlunoWhereInput
+  }
+
+  export type AlunoUpdateToOneWithWhereWithoutConvocatoriasInput = {
+    where?: AlunoWhereInput
+    data: XOR<AlunoUpdateWithoutConvocatoriasInput, AlunoUncheckedUpdateWithoutConvocatoriasInput>
+  }
+
+  export type AlunoUpdateWithoutConvocatoriasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    dataNascimento?: DateTimeFieldUpdateOperationsInput | Date | string
+    tipoIdentificacao?: StringFieldUpdateOperationsInput | string
+    numeroIdentificacao?: StringFieldUpdateOperationsInput | string
+    numeroProcesso?: StringFieldUpdateOperationsInput | string
+    ultimaClasseFrequentada?: NullableStringFieldUpdateOperationsInput | string | null
+    curso?: NullableStringFieldUpdateOperationsInput | string | null
+    classe?: NullableStringFieldUpdateOperationsInput | string | null
+    turno?: NullableStringFieldUpdateOperationsInput | string | null
+    genero?: NullableStringFieldUpdateOperationsInput | string | null
+    estadoCivil?: NullableStringFieldUpdateOperationsInput | string | null
+    nomePai?: NullableStringFieldUpdateOperationsInput | string | null
+    nomeMae?: NullableStringFieldUpdateOperationsInput | string | null
+    naturalidade?: NullableStringFieldUpdateOperationsInput | string | null
+    provincia?: NullableStringFieldUpdateOperationsInput | string | null
+    municipio?: NullableStringFieldUpdateOperationsInput | string | null
+    comuna?: NullableStringFieldUpdateOperationsInput | string | null
+    encarregadoNome?: NullableStringFieldUpdateOperationsInput | string | null
+    encarregadoParentesco?: NullableStringFieldUpdateOperationsInput | string | null
+    encarregadoGenero?: NullableStringFieldUpdateOperationsInput | string | null
+    encarregadoDataNascimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    encarregadoTelefone?: NullableStringFieldUpdateOperationsInput | string | null
+    encarregadoEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    user?: UserUpdateOneRequiredWithoutAlunoNestedInput
+    turma?: TurmaUpdateOneWithoutAlunosNestedInput
+    resultados?: ResultadoUpdateManyWithoutAlunoNestedInput
+    faltas?: FaltaUpdateManyWithoutAlunoNestedInput
+  }
+
+  export type AlunoUncheckedUpdateWithoutConvocatoriasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    dataNascimento?: DateTimeFieldUpdateOperationsInput | Date | string
+    tipoIdentificacao?: StringFieldUpdateOperationsInput | string
+    numeroIdentificacao?: StringFieldUpdateOperationsInput | string
+    numeroProcesso?: StringFieldUpdateOperationsInput | string
+    ultimaClasseFrequentada?: NullableStringFieldUpdateOperationsInput | string | null
+    turmaId?: NullableStringFieldUpdateOperationsInput | string | null
+    curso?: NullableStringFieldUpdateOperationsInput | string | null
+    classe?: NullableStringFieldUpdateOperationsInput | string | null
+    turno?: NullableStringFieldUpdateOperationsInput | string | null
+    genero?: NullableStringFieldUpdateOperationsInput | string | null
+    estadoCivil?: NullableStringFieldUpdateOperationsInput | string | null
+    nomePai?: NullableStringFieldUpdateOperationsInput | string | null
+    nomeMae?: NullableStringFieldUpdateOperationsInput | string | null
+    naturalidade?: NullableStringFieldUpdateOperationsInput | string | null
+    provincia?: NullableStringFieldUpdateOperationsInput | string | null
+    municipio?: NullableStringFieldUpdateOperationsInput | string | null
+    comuna?: NullableStringFieldUpdateOperationsInput | string | null
+    encarregadoNome?: NullableStringFieldUpdateOperationsInput | string | null
+    encarregadoParentesco?: NullableStringFieldUpdateOperationsInput | string | null
+    encarregadoGenero?: NullableStringFieldUpdateOperationsInput | string | null
+    encarregadoDataNascimento?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    encarregadoTelefone?: NullableStringFieldUpdateOperationsInput | string | null
+    encarregadoEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    resultados?: ResultadoUncheckedUpdateManyWithoutAlunoNestedInput
+    faltas?: FaltaUncheckedUpdateManyWithoutAlunoNestedInput
   }
 
   export type InstituicaoCreateManyAdminInput = {
@@ -41612,6 +44711,17 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
+  export type ConvocatoriaCreateManyAlunoInput = {
+    id?: string
+    trimestre: string
+    dataEmissao: Date | string
+    dataRealizacao: Date | string
+    hora: string
+    sala: string
+    agenda?: ConvocatoriaCreateagendaInput | string[]
+    createdAt?: Date | string
+  }
+
   export type ResultadoUpdateWithoutAlunoInput = {
     id?: StringFieldUpdateOperationsInput | string
     nota?: FloatFieldUpdateOperationsInput | number
@@ -41660,6 +44770,39 @@ export namespace Prisma {
     data?: DateTimeFieldUpdateOperationsInput | Date | string
     justificada?: BoolFieldUpdateOperationsInput | boolean
     justificacao?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ConvocatoriaUpdateWithoutAlunoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    trimestre?: StringFieldUpdateOperationsInput | string
+    dataEmissao?: DateTimeFieldUpdateOperationsInput | Date | string
+    dataRealizacao?: DateTimeFieldUpdateOperationsInput | Date | string
+    hora?: StringFieldUpdateOperationsInput | string
+    sala?: StringFieldUpdateOperationsInput | string
+    agenda?: ConvocatoriaUpdateagendaInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ConvocatoriaUncheckedUpdateWithoutAlunoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    trimestre?: StringFieldUpdateOperationsInput | string
+    dataEmissao?: DateTimeFieldUpdateOperationsInput | Date | string
+    dataRealizacao?: DateTimeFieldUpdateOperationsInput | Date | string
+    hora?: StringFieldUpdateOperationsInput | string
+    sala?: StringFieldUpdateOperationsInput | string
+    agenda?: ConvocatoriaUpdateagendaInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ConvocatoriaUncheckedUpdateManyWithoutAlunoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    trimestre?: StringFieldUpdateOperationsInput | string
+    dataEmissao?: DateTimeFieldUpdateOperationsInput | Date | string
+    dataRealizacao?: DateTimeFieldUpdateOperationsInput | Date | string
+    hora?: StringFieldUpdateOperationsInput | string
+    sala?: StringFieldUpdateOperationsInput | string
+    agenda?: ConvocatoriaUpdateagendaInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -41856,6 +44999,7 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutAlunoNestedInput
     resultados?: ResultadoUpdateManyWithoutAlunoNestedInput
     faltas?: FaltaUpdateManyWithoutAlunoNestedInput
+    convocatorias?: ConvocatoriaUpdateManyWithoutAlunoNestedInput
   }
 
   export type AlunoUncheckedUpdateWithoutTurmaInput = {
@@ -41885,6 +45029,7 @@ export namespace Prisma {
     encarregadoEmail?: NullableStringFieldUpdateOperationsInput | string | null
     resultados?: ResultadoUncheckedUpdateManyWithoutAlunoNestedInput
     faltas?: FaltaUncheckedUpdateManyWithoutAlunoNestedInput
+    convocatorias?: ConvocatoriaUncheckedUpdateManyWithoutAlunoNestedInput
   }
 
   export type AlunoUncheckedUpdateManyWithoutTurmaInput = {
