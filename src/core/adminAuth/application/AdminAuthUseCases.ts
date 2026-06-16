@@ -16,7 +16,7 @@ export const AdminRegisterUseCase: TAdminRegisterUseCase = (ResponseProvider, ha
       updatedAt: new Date(),
     };
     await saveAdmin(user);
-    return ResponseProvider(StatusCodes.CREATED, "Administrador registado com sucesso", {
+    return ResponseProvider(StatusCodes.CREATED, "Obahh ! Administrador registado com sucesso", {
       id: user.id,
       nome: user.nome,
       email: user.email,
@@ -24,7 +24,7 @@ export const AdminRegisterUseCase: TAdminRegisterUseCase = (ResponseProvider, ha
     });
   } catch (error: any) {
     if (error.code === "P2002") {
-      return ResponseProvider(StatusCodes.CONFLICT, "Email já registado", null);
+      return ResponseProvider(StatusCodes.CONFLICT, "Ops, Este email já foi registrado", null);
     }
     return ResponseProvider(StatusCodes.BAD_REQUEST, error.message, null);
   }
@@ -34,17 +34,17 @@ export const AdminLoginUseCase: TAdminLoginUseCase = (ResponseProvider, compare,
   try {
     const user = await findAdminByEmail(req.body.email);
     if (!user) {
-      return ResponseProvider(StatusCodes.NOT_FOUND, "Utilizador não encontrado", null);
+      return ResponseProvider(StatusCodes.NOT_FOUND, "Opah, Utilizador não encontrado", null);
     }
     if (user.status !== "ATIVO") {
       return ResponseProvider(StatusCodes.FORBIDDEN, "Conta desactivada", null);
     }
     const isMatch = await compare(req.body.senha, user.senhaHash);
     if (!isMatch) {
-      return ResponseProvider(StatusCodes.BAD_REQUEST, "Credenciais inválidas", null);
+      return ResponseProvider(StatusCodes.BAD_REQUEST, "Ops, Credenciais inválidas", null);
     }
     const token = createJwt({ sub: user.id, role: user.role });
-    return ResponseProvider(StatusCodes.OK, "Login bem-sucedido", {
+    return ResponseProvider(StatusCodes.OK, "Obahh ! Login bem-sucedido", {
       token,
       user: { id: user.id, nome: user.nome, email: user.email, role: user.role },
     });
@@ -61,10 +61,10 @@ export const AdminMeUseCase: TAdminMeUseCase = (ResponseProvider, findAdminById)
     }
     const user = await findAdminById(userId);
     if (!user) {
-      return ResponseProvider(StatusCodes.NOT_FOUND, "Utilizador não encontrado", null);
+      return ResponseProvider(StatusCodes.NOT_FOUND, "Opah, Utilizador não encontrado", null);
     }
     const { senhaHash, ...rest } = user;
-    return ResponseProvider(StatusCodes.OK, "Perfil do administrador", rest);
+    return ResponseProvider(StatusCodes.OK, "Obahh ! Perfil do administrador", rest);
   } catch (error: any) {
     return ResponseProvider(StatusCodes.BAD_REQUEST, error.message, null);
   }
@@ -78,15 +78,15 @@ export const AdminResetSenhaUseCase: TAdminResetSenhaUseCase = (ResponseProvider
     }
     const user = await findAdminById(userId);
     if (!user) {
-      return ResponseProvider(StatusCodes.NOT_FOUND, "Utilizador não encontrado", null);
+      return ResponseProvider(StatusCodes.NOT_FOUND, "Ops, Utilizador não encontrado", null);
     }
     const isMatch = await compare(req.body.senhaActual, user.senhaHash);
     if (!isMatch) {
-      return ResponseProvider(StatusCodes.BAD_REQUEST, "Senha actual incorrecta", null);
+      return ResponseProvider(StatusCodes.BAD_REQUEST, "Ops, Senha actual incorrecta", null);
     }
     const hashedPassword = await hash(req.body.novaSenha);
     await updateSenha(userId, hashedPassword);
-    return ResponseProvider(StatusCodes.OK, "Senha actualizada com sucesso", null);
+    return ResponseProvider(StatusCodes.OK, "Obahh ! Senha actualizada com sucesso", null);
   } catch (error: any) {
     return ResponseProvider(StatusCodes.BAD_REQUEST, error.message, null);
   }
