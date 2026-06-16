@@ -860,6 +860,172 @@ const options: swaggerJsdoc.Options = {
             cargaHorariaTotal: { type: "integer" },
           },
         },
+        ProfessorLogin: {
+          type: "object",
+          required: ["utilizador", "senha"],
+          properties: {
+            utilizador: { type: "string", description: "Número de utilizador do professor", example: "prof2024" },
+            senha: { type: "string", format: "password", description: "Senha", example: "123456" },
+          },
+        },
+        ProfessorSession: {
+          type: "object",
+          properties: {
+            id: { type: "string", format: "uuid" },
+            nome: { type: "string" },
+            cargo: { type: "string" },
+            role: { type: "string", example: "professor" },
+          },
+        },
+        ProfessorMeResponse: {
+          type: "object",
+          properties: {
+            id: { type: "string", format: "uuid" },
+            professorId: { type: "string", format: "uuid" },
+            nome: { type: "string" },
+            email: { type: "string", nullable: true },
+            numeroUtilizador: { type: "string", nullable: true },
+            cargo: { type: "string" },
+            contacto: { type: "string", nullable: true },
+            status: { type: "string" },
+          },
+        },
+        ProfessorStatsResponse: {
+          type: "object",
+          properties: {
+            totalDisciplinas: { type: "integer", example: 5 },
+            totalTurmas: { type: "integer", example: 3 },
+            totalMateriais: { type: "integer", example: 12 },
+            totalAvisos: { type: "integer", example: 8 },
+            totalEstudantes: { type: "integer", example: 90 },
+          },
+        },
+        ProfessorDisciplinaResponse: {
+          type: "object",
+          properties: {
+            id: { type: "string", format: "uuid" },
+            nome: { type: "string" },
+            sigla: { type: "string" },
+            classe: { type: "string" },
+            cargaHoraria: { type: "integer" },
+            cor: { type: "string", nullable: true },
+            turma: { type: "object", properties: { id: { type: "string" }, nome: { type: "string" } } },
+            curso: { type: "object", properties: { id: { type: "string" }, nome: { type: "string" }, sigla: { type: "string" } } },
+            totalAlunos: { type: "integer", example: 30 },
+          },
+        },
+        ProfessorEventoResponse: {
+          type: "object",
+          properties: {
+            id: { type: "string", format: "uuid" },
+            tipo: { type: "string", example: "exame" },
+            titulo: { type: "string" },
+            turma: { type: "string" },
+            data: { type: "string", format: "date-time" },
+            hora: { type: "string" },
+            sala: { type: "string" },
+          },
+        },
+        ProfessorHorarioResponse: {
+          type: "object",
+          properties: {
+            id: { type: "string", format: "uuid" },
+            dia: { type: "string", enum: ["SEGUNDA", "TERCA", "QUARTA", "QUINTA", "SEXTA", "SABADO"] },
+            horaInicio: { type: "string", example: "08:00" },
+            horaFim: { type: "string", example: "09:30" },
+            sala: { type: "string", nullable: true },
+            disciplina: {
+              type: "object",
+              properties: {
+                id: { type: "string" },
+                nome: { type: "string" },
+                sigla: { type: "string" },
+                cor: { type: "string" },
+              },
+            },
+            turma: { type: "object", properties: { id: { type: "string" }, nome: { type: "string" }, classe: { type: "string" } } },
+          },
+        },
+        CreateMaterial: {
+          type: "object",
+          required: ["titulo", "disciplinaId"],
+          properties: {
+            titulo: { type: "string" },
+            descricao: { type: "string" },
+            tipo: { type: "string", default: "pdf" },
+            url: { type: "string" },
+            ficheiro: { type: "string" },
+            tamanho: { type: "integer" },
+            visivel: { type: "boolean", default: true },
+            disciplinaId: { type: "string", format: "uuid" },
+          },
+        },
+        MaterialResponse: {
+          type: "object",
+          properties: {
+            id: { type: "string", format: "uuid" },
+            titulo: { type: "string" },
+            descricao: { type: "string", nullable: true },
+            tipo: { type: "string" },
+            url: { type: "string", nullable: true },
+            ficheiro: { type: "string", nullable: true },
+            visivel: { type: "boolean" },
+            disciplinaId: { type: "string" },
+            createdAt: { type: "string", format: "date-time" },
+          },
+        },
+        CreateAviso: {
+          type: "object",
+          required: ["texto", "disciplinaId", "autor"],
+          properties: {
+            texto: { type: "string" },
+            disciplinaId: { type: "string", format: "uuid" },
+            autor: { type: "string" },
+          },
+        },
+        AvisoResponse: {
+          type: "object",
+          properties: {
+            id: { type: "string", format: "uuid" },
+            texto: { type: "string" },
+            disciplinaId: { type: "string" },
+            autor: { type: "string" },
+            createdAt: { type: "string", format: "date-time" },
+          },
+        },
+        ProfessorEstudanteResponse: {
+          type: "object",
+          properties: {
+            id: { type: "string", format: "uuid" },
+            nome: { type: "string" },
+            email: { type: "string", nullable: true },
+            numeroProcesso: { type: "string" },
+            status: { type: "string" },
+            turmaId: { type: "string", nullable: true },
+            totalFaltas: { type: "integer", example: 0 },
+          },
+        },
+        ProfessorNotaResponse: {
+          type: "object",
+          properties: {
+            exameId: { type: "string", format: "uuid" },
+            tipo: { type: "string" },
+            trimestre: { type: "string" },
+            data: { type: "string", format: "date-time" },
+            nota: { type: "number" },
+          },
+        },
+        ProfessorFaltaResponse: {
+          type: "object",
+          properties: {
+            id: { type: "string", format: "uuid" },
+            alunoId: { type: "string" },
+            disciplinaId: { type: "string" },
+            data: { type: "string", format: "date-time" },
+            justificada: { type: "boolean" },
+            justificacao: { type: "string", nullable: true },
+          },
+        },
       },
     },
     paths: {
@@ -2244,19 +2410,393 @@ const options: swaggerJsdoc.Options = {
         },
       },
       "/admin/relatorios/professores-carga-horaria": {
-        get: {
-          tags: ["Relatórios"],
-          summary: "Relatório de carga horária dos professores",
-          security: [{ cookieAuth: [] }],
-          responses: {
-            200: { description: "Relatório de carga horária", content: { "application/json": { schema: { $ref: "#/components/schemas/RelatorioCargaHorariaResponse" } } } },
-            401: { description: "Não autenticado" },
-            403: { description: "Acesso negado" },
-          },
-        },
-      },
-    },
-  },
+         get: {
+           tags: ["Relatórios"],
+           summary: "Relatório de carga horária dos professores",
+           security: [{ cookieAuth: [] }],
+           responses: {
+             200: { description: "Relatório de carga horária", content: { "application/json": { schema: { $ref: "#/components/schemas/RelatorioCargaHorariaResponse" } } } },
+             401: { description: "Não autenticado" },
+             403: { description: "Acesso negado" },
+           },
+         },
+       },
+       "/professor/auth/login": {
+         post: {
+           tags: ["Professor Auth"],
+           summary: "Login professor",
+           requestBody: {
+             required: true,
+             content: { "application/json": { schema: { $ref: "#/components/schemas/ProfessorLogin" } } },
+           },
+           responses: {
+             200: { description: "Login bem-sucedido", content: { "application/json": { schema: { $ref: "#/components/schemas/ProfessorSession" } } } },
+             401: { description: "Credenciais inválidas", content: { "application/json": { schema: { $ref: "#/components/schemas/ErrorResponse" } } } },
+           },
+         },
+       },
+       "/professor/auth/logout": {
+         post: {
+           tags: ["Professor Auth"],
+           summary: "Logout professor",
+           security: [{ cookieAuth: [] }],
+           responses: { 200: { description: "Logout bem-sucedido" } },
+         },
+       },
+       "/professor/auth/me": {
+         get: {
+           tags: ["Professor Auth"],
+           summary: "Obter perfil do professor",
+           security: [{ cookieAuth: [] }],
+           responses: {
+             200: { description: "Perfil do professor", content: { "application/json": { schema: { $ref: "#/components/schemas/ProfessorMeResponse" } } } },
+             401: { description: "Não autenticado" },
+           },
+         },
+       },
+       "/professor/auth/reset-senha": {
+         put: {
+           tags: ["Professor Auth"],
+           summary: "Reset de senha do professor",
+           security: [{ cookieAuth: [] }],
+           requestBody: { required: true, content: { "application/json": { schema: { $ref: "#/components/schemas/ResetSenha" } } } },
+           responses: {
+             200: { description: "Senha alterada com sucesso" },
+             400: { description: "Dados inválidos" },
+             401: { description: "Não autenticado" },
+           },
+         },
+       },
+       "/professor/dashboard/stats": {
+         get: {
+           tags: ["Professor Dashboard"],
+           summary: "Obter estatísticas do professor",
+           security: [{ cookieAuth: [] }],
+           responses: {
+             200: { description: "Estatísticas do professor", content: { "application/json": { schema: { $ref: "#/components/schemas/ProfessorStatsResponse" } } } },
+             401: { description: "Não autenticado" },
+           },
+         },
+       },
+       "/professor/dashboard/disciplinas": {
+         get: {
+           tags: ["Professor Dashboard"],
+           summary: "Listar disciplinas do professor",
+           security: [{ cookieAuth: [] }],
+           responses: {
+             200: { description: "Disciplinas do professor", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/ProfessorDisciplinaResponse" } } } } },
+             401: { description: "Não autenticado" },
+           },
+         },
+       },
+       "/professor/dashboard/proximos-eventos": {
+         get: {
+           tags: ["Professor Dashboard"],
+           summary: "Obter próximos eventos",
+           security: [{ cookieAuth: [] }],
+           responses: {
+             200: { description: "Próximos eventos", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/ProfessorEventoResponse" } } } } },
+             401: { description: "Não autenticado" },
+           },
+         },
+       },
+       "/professor/dashboard/horario": {
+         get: {
+           tags: ["Professor Dashboard"],
+           summary: "Obter horário semanal",
+           security: [{ cookieAuth: [] }],
+           responses: {
+             200: { description: "Horário semanal", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/ProfessorHorarioResponse" } } } } },
+             401: { description: "Não autenticado" },
+           },
+         },
+       },
+       "/professor/dashboard/turmas": {
+         get: {
+           tags: ["Professor Dashboard"],
+           summary: "Listar turmas do professor",
+           security: [{ cookieAuth: [] }],
+           responses: {
+             200: { description: "Turmas do professor", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/ProfessorDisciplinaResponse" } } } } },
+             401: { description: "Não autenticado" },
+           },
+         },
+       },
+       "/professor/disciplinas": {
+         get: {
+           tags: ["Professor Disciplinas"],
+           summary: "Listar disciplinas do professor",
+           security: [{ cookieAuth: [] }],
+           responses: {
+             200: { description: "Disciplinas do professor", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/ProfessorDisciplinaResponse" } } } } },
+             401: { description: "Não autenticado" },
+           },
+         },
+       },
+       "/professor/disciplinas/{disciplinaId}/materiais": {
+         get: {
+           tags: ["Professor Disciplinas"],
+           summary: "Listar materiais de uma disciplina",
+           security: [{ cookieAuth: [] }],
+           parameters: [
+             { name: "disciplinaId", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+           ],
+           responses: {
+             200: { description: "Materiais da disciplina", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/MaterialResponse" } } } } },
+             401: { description: "Não autenticado" },
+           },
+         },
+       },
+       "/professor/disciplinas/materiais": {
+         post: {
+           tags: ["Professor Disciplinas"],
+           summary: "Criar material didático",
+           security: [{ cookieAuth: [] }],
+           requestBody: { required: true, content: { "application/json": { schema: { $ref: "#/components/schemas/CreateMaterial" } } } },
+           responses: {
+             201: { description: "Material criado com sucesso" },
+             400: { description: "Dados inválidos" },
+             401: { description: "Não autenticado" },
+           },
+         },
+       },
+       "/professor/disciplinas/materiais/{id}": {
+         put: {
+           tags: ["Professor Disciplinas"],
+           summary: "Actualizar material didático",
+           security: [{ cookieAuth: [] }],
+           parameters: [
+             { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+           ],
+           requestBody: { required: true, content: { "application/json": { schema: { $ref: "#/components/schemas/CreateMaterial" } } } },
+           responses: {
+             200: { description: "Material actualizado" },
+             400: { description: "Dados inválidos" },
+             401: { description: "Não autenticado" },
+             404: { description: "Não encontrado" },
+           },
+         },
+         delete: {
+           tags: ["Professor Disciplinas"],
+           summary: "Eliminar material didático",
+           security: [{ cookieAuth: [] }],
+           parameters: [
+             { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+           ],
+           responses: {
+             200: { description: "Material eliminado" },
+             401: { description: "Não autenticado" },
+             404: { description: "Não encontrado" },
+           },
+         },
+       },
+       "/professor/disciplinas/{disciplinaId}/avisos": {
+         get: {
+           tags: ["Professor Disciplinas"],
+           summary: "Listar avisos de uma disciplina",
+           security: [{ cookieAuth: [] }],
+           parameters: [
+             { name: "disciplinaId", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+           ],
+           responses: {
+             200: { description: "Avisos da disciplina", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/AvisoResponse" } } } } },
+             401: { description: "Não autenticado" },
+           },
+         },
+       },
+       "/professor/disciplinas/avisos": {
+         post: {
+           tags: ["Professor Disciplinas"],
+           summary: "Criar aviso",
+           security: [{ cookieAuth: [] }],
+           requestBody: { required: true, content: { "application/json": { schema: { $ref: "#/components/schemas/CreateAviso" } } } },
+           responses: {
+             201: { description: "Aviso criado com sucesso" },
+             400: { description: "Dados inválidos" },
+             401: { description: "Não autenticado" },
+           },
+         },
+       },
+       "/professor/disciplinas/avisos/{id}": {
+         delete: {
+           tags: ["Professor Disciplinas"],
+           summary: "Eliminar aviso",
+           security: [{ cookieAuth: [] }],
+           parameters: [
+             { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+           ],
+           responses: {
+             200: { description: "Aviso eliminado" },
+             401: { description: "Não autenticado" },
+             404: { description: "Não encontrado" },
+           },
+         },
+       },
+       "/professor/disciplinas/{disciplinaId}/alunos": {
+         get: {
+           tags: ["Professor Disciplinas"],
+           summary: "Listar alunos de uma disciplina",
+           security: [{ cookieAuth: [] }],
+           parameters: [
+             { name: "disciplinaId", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+           ],
+           responses: {
+             200: { description: "Alunos da disciplina", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/ProfessorEstudanteResponse" } } } } },
+             401: { description: "Não autenticado" },
+           },
+         },
+       },
+       "/professor/estudantes/turma/{turmaId}": {
+         get: {
+           tags: ["Professor Estudantes"],
+           summary: "Listar estudantes de uma turma",
+           security: [{ cookieAuth: [] }],
+           parameters: [
+             { name: "turmaId", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+           ],
+           responses: {
+             200: { description: "Estudantes da turma", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/ProfessorEstudanteResponse" } } } } },
+             401: { description: "Não autenticado" },
+           },
+         },
+       },
+       "/professor/estudantes/disciplina/{disciplinaId}": {
+         get: {
+           tags: ["Professor Estudantes"],
+           summary: "Listar estudantes de uma disciplina",
+           security: [{ cookieAuth: [] }],
+           parameters: [
+             { name: "disciplinaId", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+           ],
+           responses: {
+             200: { description: "Estudantes da disciplina", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/ProfessorEstudanteResponse" } } } } },
+             401: { description: "Não autenticado" },
+           },
+         },
+       },
+       "/professor/estudantes/{alunoId}/notas/{disciplinaId}": {
+         get: {
+           tags: ["Professor Estudantes"],
+           summary: "Obter notas de um estudante numa disciplina",
+           security: [{ cookieAuth: [] }],
+           parameters: [
+             { name: "alunoId", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+             { name: "disciplinaId", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+           ],
+           responses: {
+             200: { description: "Notas do estudante", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/ProfessorNotaResponse" } } } } },
+             401: { description: "Não autenticado" },
+           },
+         },
+       },
+       "/professor/estudantes/{alunoId}/faltas/{disciplinaId}": {
+         get: {
+           tags: ["Professor Estudantes"],
+           summary: "Obter faltas de um estudante numa disciplina",
+           security: [{ cookieAuth: [] }],
+           parameters: [
+             { name: "alunoId", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+             { name: "disciplinaId", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+           ],
+           responses: {
+             200: { description: "Faltas do estudante", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/ProfessorFaltaResponse" } } } } },
+             401: { description: "Não autenticado" },
+           },
+         },
+       },
+       "/professor/exames": {
+         get: {
+           tags: ["Professor Exames"],
+           summary: "Listar exames do professor",
+           security: [{ cookieAuth: [] }],
+           responses: {
+             200: { description: "Lista de exames" },
+             401: { description: "Não autenticado" },
+           },
+         },
+         post: {
+           tags: ["Professor Exames"],
+           summary: "Criar exame",
+           security: [{ cookieAuth: [] }],
+           requestBody: { required: true, content: { "application/json": { schema: { $ref: "#/components/schemas/CreateExame" } } } },
+           responses: {
+             201: { description: "Exame criado com sucesso" },
+             400: { description: "Dados inválidos" },
+             401: { description: "Não autenticado" },
+           },
+         },
+       },
+       "/professor/exames/{id}": {
+         get: {
+           tags: ["Professor Exames"],
+           summary: "Obter exame por ID",
+           security: [{ cookieAuth: [] }],
+           parameters: [
+             { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+           ],
+           responses: {
+             200: { description: "Dados do exame" },
+             401: { description: "Não autenticado" },
+             404: { description: "Não encontrado" },
+           },
+         },
+         put: {
+           tags: ["Professor Exames"],
+           summary: "Actualizar exame",
+           security: [{ cookieAuth: [] }],
+           parameters: [
+             { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+           ],
+           requestBody: { required: true, content: { "application/json": { schema: { $ref: "#/components/schemas/CreateExame" } } } },
+           responses: {
+             200: { description: "Exame actualizado" },
+             400: { description: "Dados inválidos" },
+             401: { description: "Não autenticado" },
+             404: { description: "Não encontrado" },
+           },
+         },
+         delete: {
+           tags: ["Professor Exames"],
+           summary: "Eliminar exame",
+           security: [{ cookieAuth: [] }],
+           parameters: [
+             { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+           ],
+           responses: {
+             200: { description: "Exame eliminado" },
+             401: { description: "Não autenticado" },
+             404: { description: "Não encontrado" },
+           },
+         },
+       },
+       "/professor/exames/{id}/resultados": {
+         get: {
+           tags: ["Professor Exames"],
+           summary: "Obter resultados do exame",
+           security: [{ cookieAuth: [] }],
+           parameters: [
+             { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+           ],
+           responses: {
+             200: { description: "Resultados do exame" },
+             401: { description: "Não autenticado" },
+             404: { description: "Não encontrado" },
+           },
+         },
+       },
+       "/professor/horario": {
+         get: {
+           tags: ["Professor Horário"],
+           summary: "Obter horário semanal do professor",
+           security: [{ cookieAuth: [] }],
+           responses: {
+             200: { description: "Horário semanal", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/ProfessorHorarioResponse" } } } } },
+             401: { description: "Não autenticado" },
+           },
+         },
+       },
+     },
+   },
   apis: [],
 };
 

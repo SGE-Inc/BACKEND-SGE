@@ -335,6 +335,52 @@ exports.Prisma.PermissaoScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.MaterialDidaticoScalarFieldEnum = {
+  id: 'id',
+  titulo: 'titulo',
+  descricao: 'descricao',
+  tipo: 'tipo',
+  url: 'url',
+  ficheiro: 'ficheiro',
+  tamanho: 'tamanho',
+  visivel: 'visivel',
+  disciplinaId: 'disciplinaId',
+  professorId: 'professorId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AvisoScalarFieldEnum = {
+  id: 'id',
+  texto: 'texto',
+  disciplinaId: 'disciplinaId',
+  autor: 'autor',
+  professorId: 'professorId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.FaltaScalarFieldEnum = {
+  id: 'id',
+  alunoId: 'alunoId',
+  disciplinaId: 'disciplinaId',
+  data: 'data',
+  justificada: 'justificada',
+  justificacao: 'justificacao',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.HorarioAulaScalarFieldEnum = {
+  id: 'id',
+  dia: 'dia',
+  horaInicio: 'horaInicio',
+  horaFim: 'horaFim',
+  disciplinaId: 'disciplinaId',
+  professorId: 'professorId',
+  turmaId: 'turmaId',
+  sala: 'sala',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.AdminUtilizadorScalarFieldEnum = {
   id: 'id',
   nome: 'nome',
@@ -395,6 +441,15 @@ exports.LogTipo = exports.$Enums.LogTipo = {
   AVISO: 'AVISO'
 };
 
+exports.DiaSemana = exports.$Enums.DiaSemana = {
+  SEGUNDA: 'SEGUNDA',
+  TERCA: 'TERCA',
+  QUARTA: 'QUARTA',
+  QUINTA: 'QUINTA',
+  SEXTA: 'SEXTA',
+  SABADO: 'SABADO'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   Admin: 'Admin',
@@ -415,6 +470,10 @@ exports.Prisma.ModelName = {
   AuditoriaLog: 'AuditoriaLog',
   Cargo: 'Cargo',
   Permissao: 'Permissao',
+  MaterialDidatico: 'MaterialDidatico',
+  Aviso: 'Aviso',
+  Falta: 'Falta',
+  HorarioAula: 'HorarioAula',
   AdminUtilizador: 'AdminUtilizador'
 };
 

@@ -60,6 +60,9 @@ model Professor {
   contacto String?
 
   disciplinas ProfessorDisciplina[]
+  materiais   MaterialDidatico[]
+  avisos      Aviso[]
+  horarios    HorarioAula[]
 
   @@map("professores")
 }
@@ -94,6 +97,7 @@ model Aluno {
   encarregadoEmail String?
 
   resultados     Resultado[]
+  faltas         Falta[]
 
   @@map("alunos")
 }
@@ -126,6 +130,7 @@ model Turma {
   alunos       Aluno[]
   professores  ProfessorDisciplina[]
   exames       Exame[]
+  horarios     HorarioAula[]
 
   @@unique([nome, cursoId])
   @@map("turmas")
@@ -145,6 +150,10 @@ model Disciplina {
   curso       Curso                    @relation(fields: [cursoId], references: [id])
   professores ProfessorDisciplina[]
   exames      Exame[]
+  materiais   MaterialDidatico[]
+  avisos      Aviso[]
+  faltas      Falta[]
+  horarios    HorarioAula[]
 
   @@unique([nome, cursoId, classe])
   @@map("disciplinas")
@@ -337,6 +346,83 @@ model Permissao {
   updatedAt  DateTime @updatedAt
 
   @@map("permissoes")
+}
+
+enum DiaSemana {
+  SEGUNDA
+  TERCA
+  QUARTA
+  QUINTA
+  SEXTA
+  SABADO
+}
+
+model MaterialDidatico {
+  id            String   @id @default(uuid())
+  titulo        String
+  descricao     String?
+  tipo          String   @default("pdf")
+  url           String?
+  ficheiro      String?
+  tamanho       Int?
+  visivel       Boolean  @default(true)
+  disciplinaId  String
+  professorId   String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  disciplina    Disciplina @relation(fields: [disciplinaId], references: [id])
+  professor     Professor  @relation(fields: [professorId], references: [id])
+
+  @@map("materiais_didaticos")
+}
+
+model Aviso {
+  id            String   @id @default(uuid())
+  texto         String
+  disciplinaId  String
+  autor         String
+  professorId   String
+  createdAt     DateTime @default(now())
+
+  disciplina    Disciplina @relation(fields: [disciplinaId], references: [id])
+  professor     Professor  @relation(fields: [professorId], references: [id])
+
+  @@map("avisos")
+}
+
+model Falta {
+  id            String   @id @default(uuid())
+  alunoId       String
+  disciplinaId  String
+  data          DateTime
+  justificada   Boolean  @default(false)
+  justificacao  String?
+  createdAt     DateTime @default(now())
+
+  aluno         Aluno      @relation(fields: [alunoId], references: [id])
+  disciplina    Disciplina @relation(fields: [disciplinaId], references: [id])
+
+  @@unique([alunoId, disciplinaId, data])
+  @@map("faltas")
+}
+
+model HorarioAula {
+  id            String   @id @default(uuid())
+  dia           DiaSemana
+  horaInicio    String
+  horaFim       String
+  disciplinaId  String
+  professorId   String
+  turmaId       String
+  sala          String?
+  createdAt     DateTime @default(now())
+
+  disciplina    Disciplina @relation(fields: [disciplinaId], references: [id])
+  professor     Professor  @relation(fields: [professorId], references: [id])
+  turma         Turma      @relation(fields: [turmaId], references: [id])
+
+  @@map("horario_aulas")
 }
 
 model AdminUtilizador {
