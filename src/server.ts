@@ -1,10 +1,7 @@
 import { config } from "dotenv";
 config();
 
-import app from "./app.js";
-import { env } from "./config/env.js";
+import { consoleLogger as ConsoleLogger } from "@/shared/providers/Logger/infraestructure/ConsoleLogger";
+import { ApplicationProvider } from "@/main/providers/ApplicationProvider";
 
-app.listen(env.PORT, () => {
-  console.log(`Meu servidor rodando em http://localhost:${env.PORT}`);
-  console.log(`Variaveis de ambiente: ${env.NODE_ENV}`);
-});
+ApplicationProvider(ConsoleLogger)();

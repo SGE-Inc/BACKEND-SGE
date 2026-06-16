@@ -862,8 +862,1402 @@ const options: swaggerJsdoc.Options = {
         },
       },
     },
+    paths: {
+      "/health": {
+        get: {
+          tags: ["Health"],
+          summary: "Verificação de saúde da API",
+          responses: {
+            200: { description: "API saudável" },
+          },
+        },
+      },
+      "/admin/auth/register": {
+        post: {
+          tags: ["Admin Auth"],
+          summary: "Registar administrador",
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/AdminRegister" } } },
+          },
+          responses: {
+            201: { description: "Administrador registado com sucesso" },
+            400: { description: "Dados inválidos", content: { "application/json": { schema: { $ref: "#/components/schemas/ErrorResponse" } } } },
+          },
+        },
+      },
+      "/admin/auth/login": {
+        post: {
+          tags: ["Admin Auth"],
+          summary: "Login administrador",
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/AdminLogin" } } },
+          },
+          responses: {
+            200: { description: "Login bem-sucedido" },
+            401: { description: "Credenciais inválidas", content: { "application/json": { schema: { $ref: "#/components/schemas/ErrorResponse" } } } },
+          },
+        },
+      },
+      "/admin/auth/logout": {
+        post: {
+          tags: ["Admin Auth"],
+          summary: "Logout administrador",
+          security: [{ cookieAuth: [] }],
+          responses: {
+            200: { description: "Logout bem-sucedido" },
+          },
+        },
+      },
+      "/admin/auth/me": {
+        get: {
+          tags: ["Admin Auth"],
+          summary: "Obter perfil do administrador",
+          security: [{ cookieAuth: [] }],
+          responses: {
+            200: { description: "Perfil do administrador", content: { "application/json": { schema: { $ref: "#/components/schemas/AdminMeResponse" } } } },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+      },
+      "/admin/auth/reset-senha": {
+        put: {
+          tags: ["Admin Auth"],
+          summary: "Reset de senha do administrador",
+          security: [{ cookieAuth: [] }],
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/ResetSenha" } } },
+          },
+          responses: {
+            200: { description: "Senha alterada com sucesso" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+          },
+        },
+      },
+      "/aluno/auth/registar": {
+        post: {
+          tags: ["Aluno Auth"],
+          summary: "Registar aluno",
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/RegisterAluno" } } },
+          },
+          responses: {
+            201: { description: "Aluno registado com sucesso", content: { "application/json": { schema: { $ref: "#/components/schemas/AlunoRegisteredResponse" } } } },
+            400: { description: "Dados inválidos", content: { "application/json": { schema: { $ref: "#/components/schemas/ErrorResponse" } } } },
+          },
+        },
+      },
+      "/aluno/auth/login": {
+        post: {
+          tags: ["Aluno Auth"],
+          summary: "Login aluno",
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/AlunoLogin" } } },
+          },
+          responses: {
+            200: { description: "Login bem-sucedido", content: { "application/json": { schema: { $ref: "#/components/schemas/AlunoSession" } } } },
+            401: { description: "Credenciais inválidas", content: { "application/json": { schema: { $ref: "#/components/schemas/ErrorResponse" } } } },
+          },
+        },
+      },
+      "/aluno/auth/logout": {
+        post: {
+          tags: ["Aluno Auth"],
+          summary: "Logout aluno",
+          security: [{ cookieAuth: [] }],
+          responses: {
+            200: { description: "Logout bem-sucedido" },
+          },
+        },
+      },
+      "/aluno/auth/me": {
+        get: {
+          tags: ["Aluno Auth"],
+          summary: "Obter perfil do aluno",
+          security: [{ cookieAuth: [] }],
+          responses: {
+            200: { description: "Perfil do aluno", content: { "application/json": { schema: { $ref: "#/components/schemas/AlunoMeResponse" } } } },
+            401: { description: "Não autenticado" },
+          },
+        },
+      },
+      "/aluno/auth/reset-senha": {
+        put: {
+          tags: ["Aluno Auth"],
+          summary: "Reset de senha do aluno",
+          security: [{ cookieAuth: [] }],
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/ResetSenha" } } },
+          },
+          responses: {
+            200: { description: "Senha alterada com sucesso" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+          },
+        },
+      },
+      "/admin/utilizadores": {
+        get: {
+          tags: ["Admin Utilizadores"],
+          summary: "Listar utilizadores",
+          security: [{ cookieAuth: [] }],
+          responses: {
+            200: { description: "Lista de utilizadores", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/AdminUtilizadorResponse" } } } } },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+        post: {
+          tags: ["Admin Utilizadores"],
+          summary: "Criar utilizador",
+          security: [{ cookieAuth: [] }],
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/CreateAdminUtilizador" } } },
+          },
+          responses: {
+            201: { description: "Utilizador criado com sucesso" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+      },
+      "/admin/utilizadores/{id}": {
+        put: {
+          tags: ["Admin Utilizadores"],
+          summary: "Actualizar utilizador",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/AdminUtilizadorResponse" } } },
+          },
+          responses: {
+            200: { description: "Utilizador actualizado" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+        patch: {
+          tags: ["Admin Utilizadores"],
+          summary: "Alternar estado do utilizador",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/ToggleAdminUtilizadorStatus" } } },
+          },
+          responses: {
+            200: { description: "Estado alterado" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+        delete: {
+          tags: ["Admin Utilizadores"],
+          summary: "Eliminar utilizador",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          responses: {
+            200: { description: "Utilizador eliminado" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+      },
+      "/admin/cargos": {
+        get: {
+          tags: ["Cargos"],
+          summary: "Listar cargos",
+          security: [{ cookieAuth: [] }],
+          responses: {
+            200: { description: "Lista de cargos", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/CargoResponse" } } } } },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+        post: {
+          tags: ["Cargos"],
+          summary: "Criar cargo",
+          security: [{ cookieAuth: [] }],
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/CreateCargo" } } },
+          },
+          responses: {
+            201: { description: "Cargo criado com sucesso" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+      },
+      "/admin/cargos/{id}": {
+        get: {
+          tags: ["Cargos"],
+          summary: "Obter cargo por ID",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          responses: {
+            200: { description: "Dados do cargo", content: { "application/json": { schema: { $ref: "#/components/schemas/CargoResponse" } } } },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+        put: {
+          tags: ["Cargos"],
+          summary: "Actualizar cargo",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/CreateCargo" } } },
+          },
+          responses: {
+            200: { description: "Cargo actualizado" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+        delete: {
+          tags: ["Cargos"],
+          summary: "Eliminar cargo",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          responses: {
+            200: { description: "Cargo eliminado" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+      },
+      "/admin/permissoes": {
+        get: {
+          tags: ["Permissões"],
+          summary: "Listar permissões",
+          security: [{ cookieAuth: [] }],
+          responses: {
+            200: { description: "Lista de permissões", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/PermissaoResponse" } } } } },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+      },
+      "/admin/permissoes/meu-perfil": {
+        get: {
+          tags: ["Permissões"],
+          summary: "Obter permissões do utilizador autenticado",
+          security: [{ cookieAuth: [] }],
+          responses: {
+            200: { description: "Permissões do utilizador" },
+            401: { description: "Não autenticado" },
+          },
+        },
+      },
+      "/admin/permissoes/{id}": {
+        put: {
+          tags: ["Permissões"],
+          summary: "Actualizar permissão",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/UpdatePermissoes" } } },
+          },
+          responses: {
+            200: { description: "Permissão actualizada" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+      },
+      "/admin/configuracoes/instituicao": {
+        get: {
+          tags: ["Configurações"],
+          summary: "Obter informações da instituição",
+          security: [{ cookieAuth: [] }],
+          responses: {
+            200: { description: "Informações da instituição", content: { "application/json": { schema: { $ref: "#/components/schemas/InstituicaoResponse" } } } },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+        put: {
+          tags: ["Configurações"],
+          summary: "Actualizar informações da instituição",
+          security: [{ cookieAuth: [] }],
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/UpdateInstituicao" } } },
+          },
+          responses: {
+            200: { description: "Instituição actualizada" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+      },
+      "/admin/configuracoes/instituicao/logotipo": {
+        post: {
+          tags: ["Configurações"],
+          summary: "Upload de logotipo da instituição",
+          security: [{ cookieAuth: [] }],
+          requestBody: {
+            required: true,
+            content: { "multipart/form-data": { schema: { type: "object", properties: { logotipo: { type: "string", format: "binary" } } } } },
+          },
+          responses: {
+            200: { description: "Logotipo actualizado" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+      },
+      "/admin/configuracoes/anos-lectivos": {
+        get: {
+          tags: ["Configurações"],
+          summary: "Listar anos lectivos",
+          security: [{ cookieAuth: [] }],
+          responses: {
+            200: { description: "Lista de anos lectivos", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/AnoLectivoResponse" } } } } },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+        post: {
+          tags: ["Configurações"],
+          summary: "Criar ano lectivo",
+          security: [{ cookieAuth: [] }],
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/CreateAnoLectivo" } } },
+          },
+          responses: {
+            201: { description: "Ano lectivo criado" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+      },
+      "/admin/configuracoes/anos-lectivos/{id}/activar": {
+        patch: {
+          tags: ["Configurações"],
+          summary: "Activar ano lectivo",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          responses: {
+            200: { description: "Ano lectivo activado" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+      },
+      "/admin/configuracoes/anos-lectivos/{id}": {
+        put: {
+          tags: ["Configurações"],
+          summary: "Actualizar ano lectivo",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/UpdateAnoLectivo" } } },
+          },
+          responses: {
+            200: { description: "Ano lectivo actualizado" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+      },
+      "/admin/cursos": {
+        get: {
+          tags: ["Cursos"],
+          summary: "Listar cursos",
+          security: [{ cookieAuth: [] }],
+          responses: {
+            200: { description: "Lista de cursos", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/CursoResponse" } } } } },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+        post: {
+          tags: ["Cursos"],
+          summary: "Criar curso",
+          security: [{ cookieAuth: [] }],
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/CreateCurso" } } },
+          },
+          responses: {
+            201: { description: "Curso criado com sucesso" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+      },
+      "/admin/cursos/{id}": {
+        get: {
+          tags: ["Cursos"],
+          summary: "Obter curso por ID",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          responses: {
+            200: { description: "Dados do curso", content: { "application/json": { schema: { $ref: "#/components/schemas/CursoResponse" } } } },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+        put: {
+          tags: ["Cursos"],
+          summary: "Actualizar curso",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/UpdateCurso" } } },
+          },
+          responses: {
+            200: { description: "Curso actualizado" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+        delete: {
+          tags: ["Cursos"],
+          summary: "Eliminar curso",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          responses: {
+            200: { description: "Curso eliminado" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+      },
+      "/admin/disciplinas": {
+        get: {
+          tags: ["Disciplinas"],
+          summary: "Listar disciplinas",
+          security: [{ cookieAuth: [] }],
+          responses: {
+            200: { description: "Lista de disciplinas", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/DisciplinaResponse" } } } } },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+        post: {
+          tags: ["Disciplinas"],
+          summary: "Criar disciplina",
+          security: [{ cookieAuth: [] }],
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/CreateDisciplina" } } },
+          },
+          responses: {
+            201: { description: "Disciplina criada com sucesso" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+      },
+      "/admin/disciplinas/{id}": {
+        get: {
+          tags: ["Disciplinas"],
+          summary: "Obter disciplina por ID",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          responses: {
+            200: { description: "Dados da disciplina", content: { "application/json": { schema: { $ref: "#/components/schemas/DisciplinaResponse" } } } },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+        put: {
+          tags: ["Disciplinas"],
+          summary: "Actualizar disciplina",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/UpdateDisciplina" } } },
+          },
+          responses: {
+            200: { description: "Disciplina actualizada" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+        delete: {
+          tags: ["Disciplinas"],
+          summary: "Eliminar disciplina",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          responses: {
+            200: { description: "Disciplina eliminada" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+      },
+      "/admin/turmas": {
+        get: {
+          tags: ["Turmas"],
+          summary: "Listar turmas",
+          security: [{ cookieAuth: [] }],
+          responses: {
+            200: { description: "Lista de turmas", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/TurmaResponse" } } } } },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+        post: {
+          tags: ["Turmas"],
+          summary: "Criar turma",
+          security: [{ cookieAuth: [] }],
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/CreateTurma" } } },
+          },
+          responses: {
+            201: { description: "Turma criada com sucesso" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+      },
+      "/admin/turmas/{id}": {
+        get: {
+          tags: ["Turmas"],
+          summary: "Obter turma por ID",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          responses: {
+            200: { description: "Dados da turma", content: { "application/json": { schema: { $ref: "#/components/schemas/TurmaResponse" } } } },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+        put: {
+          tags: ["Turmas"],
+          summary: "Actualizar turma",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/UpdateTurma" } } },
+          },
+          responses: {
+            200: { description: "Turma actualizada" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+        delete: {
+          tags: ["Turmas"],
+          summary: "Eliminar turma",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          responses: {
+            200: { description: "Turma eliminada" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+      },
+      "/admin/turmas/{id}/estudantes": {
+        get: {
+          tags: ["Turmas"],
+          summary: "Listar estudantes da turma",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          responses: {
+            200: { description: "Lista de estudantes da turma" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Turma não encontrada" },
+          },
+        },
+      },
+      "/admin/professors": {
+        get: {
+          tags: ["Professores"],
+          summary: "Listar professores",
+          security: [{ cookieAuth: [] }],
+          responses: {
+            200: { description: "Lista de professores", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/ProfessorResponse" } } } } },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+        post: {
+          tags: ["Professores"],
+          summary: "Criar professor",
+          security: [{ cookieAuth: [] }],
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/CreateProfessor" } } },
+          },
+          responses: {
+            201: { description: "Professor criado com sucesso" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+      },
+      "/admin/professors/{id}": {
+        get: {
+          tags: ["Professores"],
+          summary: "Obter professor por ID",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          responses: {
+            200: { description: "Dados do professor", content: { "application/json": { schema: { $ref: "#/components/schemas/ProfessorResponse" } } } },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+        put: {
+          tags: ["Professores"],
+          summary: "Actualizar professor",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/UpdateProfessor" } } },
+          },
+          responses: {
+            200: { description: "Professor actualizado" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+        delete: {
+          tags: ["Professores"],
+          summary: "Eliminar professor",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          responses: {
+            200: { description: "Professor eliminado" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+      },
+      "/admin/professors/{id}/status": {
+        patch: {
+          tags: ["Professores"],
+          summary: "Alternar status do professor",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          responses: {
+            200: { description: "Status alterado" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+      },
+      "/admin/estudantes": {
+        get: {
+          tags: ["Estudantes"],
+          summary: "Listar estudantes",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "page", in: "query", schema: { type: "integer", default: 1 } },
+            { name: "limit", in: "query", schema: { type: "integer", default: 10 } },
+            { name: "search", in: "query", schema: { type: "string" } },
+            { name: "curso", in: "query", schema: { type: "string" } },
+            { name: "turma", in: "query", schema: { type: "string" } },
+            { name: "status", in: "query", schema: { type: "string" } },
+          ],
+          responses: {
+            200: { description: "Lista de estudantes", content: { "application/json": { schema: { $ref: "#/components/schemas/EstudanteListResponse" } } } },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+        post: {
+          tags: ["Estudantes"],
+          summary: "Criar estudante",
+          security: [{ cookieAuth: [] }],
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/CreateEstudante" } } },
+          },
+          responses: {
+            201: { description: "Estudante criado com sucesso" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+      },
+      "/admin/estudantes/{id}": {
+        get: {
+          tags: ["Estudantes"],
+          summary: "Obter estudante por ID",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          responses: {
+            200: { description: "Dados do estudante", content: { "application/json": { schema: { $ref: "#/components/schemas/EstudanteDetailResponse" } } } },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+        put: {
+          tags: ["Estudantes"],
+          summary: "Actualizar estudante",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/CreateEstudante" } } },
+          },
+          responses: {
+            200: { description: "Estudante actualizado" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+        delete: {
+          tags: ["Estudantes"],
+          summary: "Eliminar estudante",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          responses: {
+            200: { description: "Estudante eliminado" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+      },
+      "/admin/estudantes/processo/{numeroProcesso}": {
+        get: {
+          tags: ["Estudantes"],
+          summary: "Obter estudante por número de processo",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "numeroProcesso", in: "path", required: true, schema: { type: "string" } },
+          ],
+          responses: {
+            200: { description: "Dados do estudante", content: { "application/json": { schema: { $ref: "#/components/schemas/EstudanteDetailResponse" } } } },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+      },
+      "/admin/estudantes/{id}/estado": {
+        patch: {
+          tags: ["Estudantes"],
+          summary: "Alterar estado do estudante",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/ChangeEstudanteStatus" } } },
+          },
+          responses: {
+            200: { description: "Estado alterado" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+      },
+      "/admin/estudantes/{id}/transferir": {
+        post: {
+          tags: ["Estudantes"],
+          summary: "Transferir estudante de turma",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/TransferirEstudante" } } },
+          },
+          responses: {
+            200: { description: "Estudante transferido" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+      },
+      "/admin/estudantes/{id}/historico": {
+        get: {
+          tags: ["Estudantes"],
+          summary: "Obter histórico do estudante",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          responses: {
+            200: { description: "Histórico do estudante" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+      },
+      "/admin/exames": {
+        get: {
+          tags: ["Exames"],
+          summary: "Listar exames",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "page", in: "query", schema: { type: "integer", default: 1 } },
+            { name: "limit", in: "query", schema: { type: "integer", default: 10 } },
+            { name: "disciplinaId", in: "query", schema: { type: "string" } },
+            { name: "turmaId", in: "query", schema: { type: "string" } },
+            { name: "tipo", in: "query", schema: { type: "string" } },
+            { name: "trimestre", in: "query", schema: { type: "string" } },
+            { name: "estado", in: "query", schema: { type: "string" } },
+            { name: "curso", in: "query", schema: { type: "string" } },
+          ],
+          responses: {
+            200: { description: "Lista de exames" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+        post: {
+          tags: ["Exames"],
+          summary: "Criar exame",
+          security: [{ cookieAuth: [] }],
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/CreateExame" } } },
+          },
+          responses: {
+            201: { description: "Exame criado com sucesso" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+      },
+      "/admin/exames/{id}": {
+        get: {
+          tags: ["Exames"],
+          summary: "Obter exame por ID",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          responses: {
+            200: { description: "Dados do exame", content: { "application/json": { schema: { $ref: "#/components/schemas/ExameResponse" } } } },
+            401: { description: "Não autenticado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+        put: {
+          tags: ["Exames"],
+          summary: "Actualizar exame",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/CreateExame" } } },
+          },
+          responses: {
+            200: { description: "Exame actualizado" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+        delete: {
+          tags: ["Exames"],
+          summary: "Eliminar exame",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          responses: {
+            200: { description: "Exame eliminado" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+      },
+      "/admin/exames/{id}/estado": {
+        patch: {
+          tags: ["Exames"],
+          summary: "Alterar estado do exame",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/ChangeExameEstado" } } },
+          },
+          responses: {
+            200: { description: "Estado alterado" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+      },
+      "/admin/exames/{id}/resultados": {
+        post: {
+          tags: ["Exames"],
+          summary: "Lançar resultados do exame",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/LancarResultados" } } },
+          },
+          responses: {
+            200: { description: "Resultados lançados" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+        get: {
+          tags: ["Exames"],
+          summary: "Obter resultados do exame",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          responses: {
+            200: { description: "Resultados do exame" },
+            401: { description: "Não autenticado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+      },
+      "/admin/exames/{id}/historico": {
+        get: {
+          tags: ["Exames"],
+          summary: "Obter histórico do exame",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          responses: {
+            200: { description: "Histórico do exame" },
+            401: { description: "Não autenticado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+      },
+      "/admin/exames/calendario": {
+        get: {
+          tags: ["Exames"],
+          summary: "Obter calendário de exames",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "turmaId", in: "query", schema: { type: "string" } },
+            { name: "disciplinaId", in: "query", schema: { type: "string" } },
+            { name: "trimestre", in: "query", schema: { type: "string" } },
+          ],
+          responses: {
+            200: { description: "Calendário de exames" },
+            401: { description: "Não autenticado" },
+          },
+        },
+      },
+      "/admin/exames/epocas": {
+        get: {
+          tags: ["Exames"],
+          summary: "Listar épocas de exame",
+          security: [{ cookieAuth: [] }],
+          responses: {
+            200: { description: "Lista de épocas", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/EpocaExameResponse" } } } } },
+            401: { description: "Não autenticado" },
+          },
+        },
+        post: {
+          tags: ["Exames"],
+          summary: "Criar época de exame",
+          security: [{ cookieAuth: [] }],
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/CreateEpocaExame" } } },
+          },
+          responses: {
+            201: { description: "Época criada com sucesso" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+      },
+      "/admin/trimestres": {
+        get: {
+          tags: ["Trimestres"],
+          summary: "Listar trimestres",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "anoLectivo", in: "query", schema: { type: "string" } },
+          ],
+          responses: {
+            200: { description: "Lista de trimestres", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/TrimestreResponse" } } } } },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+      },
+      "/admin/trimestres/definir": {
+        post: {
+          tags: ["Trimestres"],
+          summary: "Definir trimestres para um ano lectivo",
+          security: [{ cookieAuth: [] }],
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/DefineTrimestres" } } },
+          },
+          responses: {
+            201: { description: "Trimestres definidos" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+      },
+      "/admin/parametros-avaliacao": {
+        get: {
+          tags: ["Parâmetros Avaliação"],
+          summary: "Listar parâmetros de avaliação",
+          security: [{ cookieAuth: [] }],
+          responses: {
+            200: { description: "Lista de parâmetros", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/ParametroAvaliacaoResponse" } } } } },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+        post: {
+          tags: ["Parâmetros Avaliação"],
+          summary: "Criar ou actualizar parâmetro de avaliação (upsert)",
+          security: [{ cookieAuth: [] }],
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/ParametroAvaliacaoResponse" } } },
+          },
+          responses: {
+            200: { description: "Parâmetro salvo" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+      },
+      "/admin/parametros-avaliacao/{id}": {
+        put: {
+          tags: ["Parâmetros Avaliação"],
+          summary: "Actualizar parâmetro de avaliação",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          requestBody: {
+            required: true,
+            content: { "application/json": { schema: { $ref: "#/components/schemas/UpdateParametrosAvaliacao" } } },
+          },
+          responses: {
+            200: { description: "Parâmetro actualizado" },
+            400: { description: "Dados inválidos" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+      },
+      "/admin/auditoria": {
+        get: {
+          tags: ["Auditoria"],
+          summary: "Listar logs de auditoria",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "page", in: "query", schema: { type: "integer", default: 1 } },
+            { name: "limit", in: "query", schema: { type: "integer", default: 10 } },
+            { name: "tipo", in: "query", schema: { type: "string" } },
+            { name: "role", in: "query", schema: { type: "string" } },
+            { name: "utilizador", in: "query", schema: { type: "string" } },
+            { name: "dataInicio", in: "query", schema: { type: "string", format: "date" } },
+            { name: "dataFim", in: "query", schema: { type: "string", format: "date" } },
+          ],
+          responses: {
+            200: { description: "Logs de auditoria", content: { "application/json": { schema: { $ref: "#/components/schemas/AuditoriaLogResponse" } } } },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+      },
+      "/admin/auditoria/{id}": {
+        get: {
+          tags: ["Auditoria"],
+          summary: "Obter log de auditoria por ID",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } },
+          ],
+          responses: {
+            200: { description: "Log de auditoria" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+            404: { description: "Não encontrado" },
+          },
+        },
+      },
+      "/admin/auditoria/estatisticas": {
+        get: {
+          tags: ["Auditoria"],
+          summary: "Obter estatísticas de auditoria",
+          security: [{ cookieAuth: [] }],
+          parameters: [
+            { name: "periodo", in: "query", schema: { type: "string" } },
+          ],
+          responses: {
+            200: { description: "Estatísticas de auditoria" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+      },
+      "/admin/dashboard/stats": {
+        get: {
+          tags: ["Dashboard"],
+          summary: "Obter estatísticas do dashboard",
+          security: [{ cookieAuth: [] }],
+          responses: {
+            200: { description: "Estatísticas do dashboard", content: { "application/json": { schema: { $ref: "#/components/schemas/DashboardStats" } } } },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+      },
+      "/admin/dashboard/distribuicao-cursos": {
+        get: {
+          tags: ["Dashboard"],
+          summary: "Obter distribuição de cursos",
+          security: [{ cookieAuth: [] }],
+          responses: {
+            200: { description: "Distribuição de cursos", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/CursoDistribuicao" } } } } },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+      },
+      "/admin/dashboard/evolucao-matriculas": {
+        get: {
+          tags: ["Dashboard"],
+          summary: "Obter evolução de matrículas",
+          security: [{ cookieAuth: [] }],
+          responses: {
+            200: { description: "Evolução de matrículas" },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+      },
+      "/admin/dashboard/media-disciplinas": {
+        get: {
+          tags: ["Dashboard"],
+          summary: "Obter média por disciplinas",
+          security: [{ cookieAuth: [] }],
+          responses: {
+            200: { description: "Média por disciplinas", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/MediaDisciplina" } } } } },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+      },
+      "/admin/dashboard/ultimos-logs": {
+        get: {
+          tags: ["Dashboard"],
+          summary: "Obter últimos logs de auditoria",
+          security: [{ cookieAuth: [] }],
+          responses: {
+            200: { description: "Últimos logs", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/AuditLog" } } } } },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+      },
+      "/admin/dashboard/proximos-eventos": {
+        get: {
+          tags: ["Dashboard"],
+          summary: "Obter próximos eventos académicos",
+          security: [{ cookieAuth: [] }],
+          responses: {
+            200: { description: "Próximos eventos", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/EventoAcademico" } } } } },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+      },
+      "/admin/relatorios/estudantes-por-curso": {
+        get: {
+          tags: ["Relatórios"],
+          summary: "Relatório de estudantes por curso",
+          security: [{ cookieAuth: [] }],
+          responses: {
+            200: { description: "Relatório de estudantes por curso", content: { "application/json": { schema: { $ref: "#/components/schemas/RelatorioCursoResponse" } } } },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+      },
+      "/admin/relatorios/aprovacao-por-turma": {
+        get: {
+          tags: ["Relatórios"],
+          summary: "Relatório de aprovação por turma",
+          security: [{ cookieAuth: [] }],
+          responses: {
+            200: { description: "Relatório de aprovação por turma", content: { "application/json": { schema: { $ref: "#/components/schemas/RelatorioAprovacaoResponse" } } } },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+      },
+      "/admin/relatorios/desempenho-disciplinas": {
+        get: {
+          tags: ["Relatórios"],
+          summary: "Relatório de desempenho por disciplina",
+          security: [{ cookieAuth: [] }],
+          responses: {
+            200: { description: "Relatório de desempenho", content: { "application/json": { schema: { $ref: "#/components/schemas/RelatorioDesempenhoResponse" } } } },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+      },
+      "/admin/relatorios/professores-carga-horaria": {
+        get: {
+          tags: ["Relatórios"],
+          summary: "Relatório de carga horária dos professores",
+          security: [{ cookieAuth: [] }],
+          responses: {
+            200: { description: "Relatório de carga horária", content: { "application/json": { schema: { $ref: "#/components/schemas/RelatorioCargaHorariaResponse" } } } },
+            401: { description: "Não autenticado" },
+            403: { description: "Acesso negado" },
+          },
+        },
+      },
+    },
   },
-  apis: ["./src/routes/*.ts"],
+  apis: [],
 };
 
 export const swaggerSpec = swaggerJsdoc(options);
