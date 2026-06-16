@@ -438,6 +438,428 @@ const options: swaggerJsdoc.Options = {
             novaSenha: { type: "string", format: "password", minLength: 6, description: "Nova senha (mín. 6 caracteres)" },
           },
         },
+        AdminMeResponse: {
+          type: "object",
+          properties: {
+            id: { type: "string", format: "uuid" },
+            nome: { type: "string" },
+            email: { type: "string" },
+            role: { type: "string", example: "admin" },
+          },
+        },
+        DashboardStats: {
+          type: "object",
+          properties: {
+            totalEstudantes: { type: "integer", example: 1248 },
+            estudantesActivos: { type: "integer", example: 1190 },
+            estudantesInactivos: { type: "integer", example: 58 },
+            totalProfessores: { type: "integer", example: 64 },
+            professoresActivos: { type: "integer", example: 60 },
+            professoresLicenca: { type: "integer", example: 4 },
+            totalTurmas: { type: "integer", example: 38 },
+            taxaAprovacao: { type: "integer", example: 78 },
+            anoLectivo: { type: "string", example: "2025-2026" },
+          },
+        },
+        CursoDistribuicao: {
+          type: "object",
+          properties: {
+            curso: { type: "string" },
+            abrev: { type: "string" },
+            total: { type: "integer" },
+          },
+        },
+        MediaDisciplina: {
+          type: "object",
+          properties: {
+            disciplina: { type: "string" },
+            abrev: { type: "string" },
+            media: { type: "number" },
+            positivas: { type: "integer" },
+          },
+        },
+        AuditLog: {
+          type: "object",
+          properties: {
+            id: { type: "string" },
+            tipo: { type: "string" },
+            descricao: { type: "string" },
+            utilizador: { type: "string" },
+            role: { type: "string" },
+            data: { type: "string" },
+            hora: { type: "string" },
+          },
+        },
+        EventoAcademico: {
+          type: "object",
+          properties: {
+            id: { type: "string" },
+            titulo: { type: "string" },
+            data: { type: "string", format: "date" },
+            tipo: { type: "string" },
+          },
+        },
+        CreateEstudante: {
+          type: "object",
+          required: ["nome", "dataNascimento", "tipoIdentificacao", "numeroIdentificacao", "numeroProcesso", "curso"],
+          properties: {
+            nome: { type: "string", description: "Nome completo do aluno" },
+            dataNascimento: { type: "string", format: "date" },
+            tipoIdentificacao: { type: "string", enum: ["BI", "PASSAPORTE"] },
+            numeroIdentificacao: { type: "string" },
+            numeroProcesso: { type: "string", description: "Nº de processo único" },
+            turmaId: { type: "string", format: "uuid" },
+            curso: { type: "string" },
+            classe: { type: "string" },
+            genero: { type: "string", enum: ["Masculino", "Feminino"] },
+            turno: { type: "string" },
+            telefone: { type: "string" },
+            email: { type: "string", format: "email" },
+            encarregadoNome: { type: "string" },
+            encarregadoParentesco: { type: "string" },
+            encarregadoTelefone: { type: "string" },
+            nomePai: { type: "string" },
+            nomeMae: { type: "string" },
+          },
+        },
+        EstudanteDetailResponse: {
+          type: "object",
+          properties: {
+            id: { type: "string", format: "uuid" },
+            userId: { type: "string", format: "uuid" },
+            nome: { type: "string" },
+            email: { type: "string", nullable: true },
+            telefone: { type: "string", nullable: true },
+            numeroProcesso: { type: "string" },
+            turma: { type: "string", nullable: true },
+            turmaId: { type: "string", nullable: true },
+            curso: { type: "string", nullable: true },
+            classe: { type: "string", nullable: true },
+            dataNascimento: { type: "string", format: "date-time" },
+            tipoIdentificacao: { type: "string" },
+            numeroIdentificacao: { type: "string" },
+            genero: { type: "string", nullable: true },
+            turno: { type: "string", nullable: true },
+            estadoCivil: { type: "string", nullable: true },
+            nomePai: { type: "string", nullable: true },
+            nomeMae: { type: "string", nullable: true },
+            encarregadoNome: { type: "string", nullable: true },
+            encarregadoParentesco: { type: "string", nullable: true },
+            encarregadoTelefone: { type: "string", nullable: true },
+            status: { type: "string" },
+          },
+        },
+        EstudanteListResponse: {
+          type: "object",
+          properties: {
+            data: { type: "array", items: { $ref: "#/components/schemas/EstudanteDetailResponse" } },
+            pagination: {
+              type: "object",
+              properties: {
+                page: { type: "integer" },
+                limit: { type: "integer" },
+                total: { type: "integer" },
+                totalPages: { type: "integer" },
+              },
+            },
+          },
+        },
+        TransferirEstudante: {
+          type: "object",
+          required: ["novaTurmaId"],
+          properties: {
+            novaTurmaId: { type: "string", format: "uuid" },
+            motivo: { type: "string" },
+          },
+        },
+        ChangeEstudanteStatus: {
+          type: "object",
+          required: ["status"],
+          properties: {
+            status: { type: "string", enum: ["ATIVO", "INATIVO", "TRANSFERIDO"] },
+            motivo: { type: "string" },
+          },
+        },
+        CreateExame: {
+          type: "object",
+          required: ["disciplinaId", "turmaId", "data", "hora", "sala", "tipo", "trimestre", "curso"],
+          properties: {
+            disciplinaId: { type: "string", format: "uuid" },
+            turmaId: { type: "string", format: "uuid" },
+            data: { type: "string", format: "date", example: "2026-06-12" },
+            hora: { type: "string", example: "08:00" },
+            sala: { type: "string", example: "Sala 101" },
+            tipo: { type: "string", enum: ["1ª PROVA", "2ª PROVA", "EXAME FINAL", "RECURSO", "EXAME DE ADMISSÃO"] },
+            trimestre: { type: "string", enum: ["I TRIMESTRE", "II TRIMESTRE", "III TRIMESTRE"] },
+            curso: { type: "string" },
+            observacoes: { type: "string" },
+          },
+        },
+        ExameResponse: {
+          type: "object",
+          properties: {
+            id: { type: "string", format: "uuid" },
+            disciplina: { type: "string" },
+            disciplinaId: { type: "string" },
+            turma: { type: "string" },
+            turmaId: { type: "string" },
+            data: { type: "string", format: "date" },
+            hora: { type: "string" },
+            sala: { type: "string" },
+            tipo: { type: "string" },
+            trimestre: { type: "string" },
+            estado: { type: "string" },
+            curso: { type: "string" },
+            observacoes: { type: "string", nullable: true },
+            resultados: {
+              type: "array",
+              items: {
+                type: "object",
+                properties: {
+                  id: { type: "string" },
+                  alunoId: { type: "string" },
+                  alunoNome: { type: "string" },
+                  nota: { type: "number" },
+                },
+              },
+            },
+          },
+        },
+        ChangeExameEstado: {
+          type: "object",
+          required: ["estado"],
+          properties: {
+            estado: { type: "string", enum: ["AGENDADO", "REALIZADO", "CANCELADO"] },
+          },
+        },
+        LancarResultados: {
+          type: "object",
+          required: ["resultados"],
+          properties: {
+            resultados: {
+              type: "array",
+              items: {
+                type: "object",
+                properties: {
+                  alunoId: { type: "string", format: "uuid" },
+                  nota: { type: "number", minimum: 0, maximum: 20 },
+                },
+              },
+            },
+          },
+        },
+        CreateEpocaExame: {
+          type: "object",
+          required: ["label", "trimestre", "dataInicio", "dataFim", "tipo"],
+          properties: {
+            label: { type: "string", example: "1ª Prova dos Professores" },
+            trimestre: { type: "string" },
+            dataInicio: { type: "string", format: "date" },
+            dataFim: { type: "string", format: "date" },
+            tipo: { type: "string" },
+          },
+        },
+        EpocaExameResponse: {
+          type: "object",
+          properties: {
+            id: { type: "string", format: "uuid" },
+            label: { type: "string" },
+            trimestre: { type: "string" },
+            dataInicio: { type: "string", format: "date-time" },
+            dataFim: { type: "string", format: "date-time" },
+            tipo: { type: "string" },
+          },
+        },
+        AuditoriaLogResponse: {
+          type: "object",
+          properties: {
+            data: { type: "array", items: { $ref: "#/components/schemas/AuditLog" } },
+            pagination: {
+              type: "object",
+              properties: {
+                page: { type: "integer" },
+                limit: { type: "integer" },
+                total: { type: "integer" },
+                totalPages: { type: "integer" },
+              },
+            },
+          },
+        },
+        CreateCargo: {
+          type: "object",
+          required: ["nome", "tipo"],
+          properties: {
+            nome: { type: "string" },
+            descricao: { type: "string" },
+            tipo: { type: "string", enum: ["academico", "administrativo", "suporte"] },
+          },
+        },
+        CargoResponse: {
+          type: "object",
+          properties: {
+            id: { type: "string", format: "uuid" },
+            nome: { type: "string" },
+            descricao: { type: "string", nullable: true },
+            tipo: { type: "string" },
+            membros: { type: "integer", example: 0 },
+          },
+        },
+        PermissaoResponse: {
+          type: "object",
+          properties: {
+            id: { type: "string", format: "uuid" },
+            modulo: { type: "string" },
+            descricao: { type: "string", nullable: true },
+            admin: { type: "boolean" },
+            professor: { type: "boolean" },
+            aluno: { type: "boolean" },
+          },
+        },
+        UpdatePermissoes: {
+          type: "object",
+          required: ["permissoes"],
+          properties: {
+            permissoes: {
+              type: "array",
+              items: {
+                type: "object",
+                properties: {
+                  modulo: { type: "string" },
+                  admin: { type: "boolean" },
+                  professor: { type: "boolean" },
+                  aluno: { type: "boolean" },
+                },
+              },
+            },
+          },
+        },
+        TrimestreResponse: {
+          type: "object",
+          properties: {
+            id: { type: "string", format: "uuid" },
+            nome: { type: "string" },
+            anoLectivo: { type: "string" },
+            dataInicio: { type: "string", format: "date" },
+            dataFim: { type: "string", format: "date" },
+          },
+        },
+        DefineTrimestres: {
+          type: "object",
+          required: ["anoLectivo", "trimestres"],
+          properties: {
+            anoLectivo: { type: "string" },
+            trimestres: {
+              type: "array",
+              items: {
+                type: "object",
+                properties: {
+                  nome: { type: "string" },
+                  dataInicio: { type: "string", format: "date" },
+                  dataFim: { type: "string", format: "date" },
+                },
+              },
+              minItems: 3,
+              maxItems: 3,
+            },
+          },
+        },
+        ParametroAvaliacaoResponse: {
+          type: "object",
+          properties: {
+            id: { type: "string", format: "uuid" },
+            nome: { type: "string" },
+            sigla: { type: "string" },
+            descricao: { type: "string", nullable: true },
+            peso: { type: "integer" },
+            ordem: { type: "integer" },
+          },
+        },
+        UpdateParametrosAvaliacao: {
+          type: "object",
+          required: ["parametros"],
+          properties: {
+            parametros: {
+              type: "array",
+              items: {
+                type: "object",
+                properties: {
+                  id: { type: "string", format: "uuid" },
+                  nome: { type: "string" },
+                  sigla: { type: "string" },
+                  descricao: { type: "string" },
+                  peso: { type: "integer", minimum: 0, maximum: 100 },
+                  ordem: { type: "integer" },
+                },
+              },
+            },
+          },
+        },
+        CreateAdminUtilizador: {
+          type: "object",
+          required: ["nome", "email", "username", "senha"],
+          properties: {
+            nome: { type: "string" },
+            email: { type: "string", format: "email" },
+            username: { type: "string" },
+            cargo: { type: "string" },
+            role: { type: "string", enum: ["admin", "superadmin"], default: "admin" },
+            senha: { type: "string", format: "password", minLength: 6 },
+          },
+        },
+        AdminUtilizadorResponse: {
+          type: "object",
+          properties: {
+            id: { type: "string", format: "uuid" },
+            nome: { type: "string" },
+            email: { type: "string" },
+            username: { type: "string" },
+            cargo: { type: "string", nullable: true },
+            role: { type: "string" },
+            ativo: { type: "boolean" },
+            ultimoAcesso: { type: "string", nullable: true },
+          },
+        },
+        ToggleAdminUtilizadorStatus: {
+          type: "object",
+          required: ["ativo"],
+          properties: {
+            ativo: { type: "boolean" },
+          },
+        },
+        RelatorioCursoResponse: {
+          type: "object",
+          properties: {
+            curso: { type: "string" },
+            total: { type: "integer" },
+          },
+        },
+        RelatorioAprovacaoResponse: {
+          type: "object",
+          properties: {
+            turma: { type: "string" },
+            totalEstudantes: { type: "integer" },
+            aprovados: { type: "integer" },
+            taxaAprovacao: { type: "integer" },
+          },
+        },
+        RelatorioDesempenhoResponse: {
+          type: "object",
+          properties: {
+            disciplina: { type: "string" },
+            sigla: { type: "string" },
+            media: { type: "number" },
+            positivas: { type: "integer" },
+          },
+        },
+        RelatorioCargaHorariaResponse: {
+          type: "object",
+          properties: {
+            nome: { type: "string" },
+            cargo: { type: "string" },
+            disciplinas: { type: "integer" },
+            cargaHorariaTotal: { type: "integer" },
+          },
+        },
       },
     },
   },

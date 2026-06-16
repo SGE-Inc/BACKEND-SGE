@@ -48,4 +48,15 @@ export class AdminAuthController {
     });
     res.json({ message: "Sessão terminada com sucesso" });
   };
+
+  me = async (req: Request, res: Response, _next: NextFunction): Promise<void> => {
+    const result = await adminAuthService.me(req.user!.sub);
+    res.json(result);
+  };
+
+  resetSenha = async (req: Request, res: Response, _next: NextFunction): Promise<void> => {
+    const { senhaActual, novaSenha } = req.body;
+    const result = await adminAuthService.resetSenha(req.user!.sub, senhaActual, novaSenha);
+    res.json(result);
+  };
 }

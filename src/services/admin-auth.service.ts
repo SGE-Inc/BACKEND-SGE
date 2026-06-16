@@ -52,4 +52,37 @@ export class AdminAuthService {
 
     return user;
   }
+
+  async me(userId: string) {
+    const admin = await prisma.admin.findUnique({
+      where: { userId },
+      include: {
+        user: { select: { id: true, nome: true, email: true, role: true } },
+      },
+    });
+    if (!admin) throw createError(404, "Administrador não encontrado");
+
+    return {
+      id: admin.user.id,
+      nome: admin.user.nome,
+      email: admin.user.email,
+      role: admin.user.role.toLowerCase(),
+    };
+  }
+
+  async resetSenha(userId: string, senhaActual: string, novaSenha: string) {
+    const user = await prisma.user.findUnique({ where: { id: userId } });
+    if (!user) throw createError(404, "Utilizador não encontrado");
+
+    const valid = await bcrypt.compare(senhaActual, user.senhaHash);
+    if (!valid) throw createError(401, "Senha actual incorrecta");
+
+    const novaSenhaHash = await bcrypt.hash(novaSenha, 10);
+    await prisma.user.update({
+      where: { id: userId },
+      data: { senhaHash: novaSenhaHash },
+    });
+
+    return { message: "Senha alterada com sucesso" };
+  }
 }

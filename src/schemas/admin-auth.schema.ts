@@ -10,3 +10,8 @@ export const adminLoginSchema = z.object({
   email: z.string().email("Email inválido"),
   senha: z.string().min(1, "Senha é obrigatória"),
 });
+
+export const adminResetSenhaSchema = z.object({
+  senhaActual: z.string().min(1, "Senha actual é obrigatória"),
+  novaSenha: z.string().min(6, "Nova senha deve ter no mínimo 6 caracteres"),
+});

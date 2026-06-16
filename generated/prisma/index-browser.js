@@ -177,7 +177,9 @@ exports.Prisma.AlunoScalarFieldEnum = {
 exports.Prisma.CursoScalarFieldEnum = {
   id: 'id',
   nome: 'nome',
-  sigla: 'sigla'
+  sigla: 'sigla',
+  descricao: 'descricao',
+  ativo: 'ativo'
 };
 
 exports.Prisma.TurmaScalarFieldEnum = {
@@ -244,6 +246,109 @@ exports.Prisma.ConfiguracaoScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.TrimestreScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  anoLectivo: 'anoLectivo',
+  dataInicio: 'dataInicio',
+  dataFim: 'dataFim',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ParametroAvaliacaoScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  sigla: 'sigla',
+  descricao: 'descricao',
+  peso: 'peso',
+  ordem: 'ordem',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ExameScalarFieldEnum = {
+  id: 'id',
+  disciplinaId: 'disciplinaId',
+  turmaId: 'turmaId',
+  data: 'data',
+  hora: 'hora',
+  sala: 'sala',
+  tipo: 'tipo',
+  trimestre: 'trimestre',
+  estado: 'estado',
+  observacoes: 'observacoes',
+  curso: 'curso',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ResultadoScalarFieldEnum = {
+  id: 'id',
+  exameId: 'exameId',
+  alunoId: 'alunoId',
+  nota: 'nota',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.EpocaExameScalarFieldEnum = {
+  id: 'id',
+  label: 'label',
+  trimestre: 'trimestre',
+  dataInicio: 'dataInicio',
+  dataFim: 'dataFim',
+  tipo: 'tipo',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AuditoriaLogScalarFieldEnum = {
+  id: 'id',
+  tipo: 'tipo',
+  descricao: 'descricao',
+  utilizador: 'utilizador',
+  utilizadorId: 'utilizadorId',
+  role: 'role',
+  entidade: 'entidade',
+  entidadeId: 'entidadeId',
+  data: 'data'
+};
+
+exports.Prisma.CargoScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  descricao: 'descricao',
+  tipo: 'tipo',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PermissaoScalarFieldEnum = {
+  id: 'id',
+  modulo: 'modulo',
+  descricao: 'descricao',
+  admin: 'admin',
+  professor: 'professor',
+  aluno: 'aluno',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AdminUtilizadorScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  email: 'email',
+  username: 'username',
+  cargo: 'cargo',
+  role: 'role',
+  ativo: 'ativo',
+  senhaHash: 'senhaHash',
+  ultimoAcesso: 'ultimoAcesso',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -271,6 +376,25 @@ exports.UserStatus = exports.$Enums.UserStatus = {
   TRANSFERIDO: 'TRANSFERIDO'
 };
 
+exports.ExameEstado = exports.$Enums.ExameEstado = {
+  AGENDADO: 'AGENDADO',
+  REALIZADO: 'REALIZADO',
+  CANCELADO: 'CANCELADO'
+};
+
+exports.LogTipo = exports.$Enums.LogTipo = {
+  LOGIN: 'LOGIN',
+  LOGOUT: 'LOGOUT',
+  CRIAR: 'CRIAR',
+  ACTUALIZAR: 'ACTUALIZAR',
+  REMOVER: 'REMOVER',
+  TRANSFERIR: 'TRANSFERIR',
+  NOTA: 'NOTA',
+  CONFIG: 'CONFIG',
+  EXAME: 'EXAME',
+  AVISO: 'AVISO'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   Admin: 'Admin',
@@ -282,7 +406,16 @@ exports.Prisma.ModelName = {
   ProfessorDisciplina: 'ProfessorDisciplina',
   Instituicao: 'Instituicao',
   AnoLectivo: 'AnoLectivo',
-  Configuracao: 'Configuracao'
+  Configuracao: 'Configuracao',
+  Trimestre: 'Trimestre',
+  ParametroAvaliacao: 'ParametroAvaliacao',
+  Exame: 'Exame',
+  Resultado: 'Resultado',
+  EpocaExame: 'EpocaExame',
+  AuditoriaLog: 'AuditoriaLog',
+  Cargo: 'Cargo',
+  Permissao: 'Permissao',
+  AdminUtilizador: 'AdminUtilizador'
 };
 
 /**

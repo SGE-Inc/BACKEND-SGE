@@ -93,13 +93,17 @@ model Aluno {
   encarregadoTelefone String?
   encarregadoEmail String?
 
+  resultados     Resultado[]
+
   @@map("alunos")
 }
 
 model Curso {
-  id    String @id @default(uuid())
-  nome  String
-  sigla String
+  id        String  @id @default(uuid())
+  nome      String
+  sigla     String
+  descricao String?
+  ativo     Boolean @default(true)
 
   turmas       Turma[]
   disciplinas  Disciplina[]
@@ -121,6 +125,7 @@ model Turma {
   curso        Curso                    @relation(fields: [cursoId], references: [id])
   alunos       Aluno[]
   professores  ProfessorDisciplina[]
+  exames       Exame[]
 
   @@unique([nome, cursoId])
   @@map("turmas")
@@ -139,6 +144,7 @@ model Disciplina {
 
   curso       Curso                    @relation(fields: [cursoId], references: [id])
   professores ProfessorDisciplina[]
+  exames      Exame[]
 
   @@unique([nome, cursoId, classe])
   @@map("disciplinas")
@@ -198,4 +204,153 @@ model Configuracao {
   updatedAt DateTime @updatedAt
 
   @@map("configuracoes")
+}
+
+model Trimestre {
+  id         String   @id @default(uuid())
+  nome       String
+  anoLectivo String
+  dataInicio DateTime
+  dataFim    DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([nome, anoLectivo])
+  @@map("trimestres")
+}
+
+model ParametroAvaliacao {
+  id          String @id @default(uuid())
+  nome        String
+  sigla       String  @unique
+  descricao   String?
+  peso        Int
+  ordem       Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("parametros_avaliacao")
+}
+
+enum ExameEstado {
+  AGENDADO
+  REALIZADO
+  CANCELADO
+}
+
+model Exame {
+  id          String     @id @default(uuid())
+  disciplinaId String
+  turmaId     String
+  data        DateTime
+  hora        String
+  sala        String
+  tipo        String
+  trimestre   String
+  estado      ExameEstado @default(AGENDADO)
+  observacoes String?
+  curso       String
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  disciplina  Disciplina @relation(fields: [disciplinaId], references: [id])
+  turma       Turma      @relation(fields: [turmaId], references: [id])
+  resultados  Resultado[]
+
+  @@map("exames")
+}
+
+model Resultado {
+  id          String @id @default(uuid())
+  exameId     String
+  alunoId     String
+  nota        Float
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  exame Exame @relation(fields: [exameId], references: [id])
+  aluno Aluno @relation(fields: [alunoId], references: [id])
+
+  @@unique([exameId, alunoId])
+  @@map("resultados")
+}
+
+model EpocaExame {
+  id         String   @id @default(uuid())
+  label      String
+  trimestre  String
+  dataInicio DateTime
+  dataFim    DateTime
+  tipo       String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("epocas_exame")
+}
+
+enum LogTipo {
+  LOGIN
+  LOGOUT
+  CRIAR
+  ACTUALIZAR
+  REMOVER
+  TRANSFERIR
+  NOTA
+  CONFIG
+  EXAME
+  AVISO
+}
+
+model AuditoriaLog {
+  id         String   @id @default(uuid())
+  tipo       LogTipo
+  descricao  String
+  utilizador String
+  utilizadorId String?
+  role       String
+  entidade   String?
+  entidadeId String?
+  data       DateTime @default(now())
+
+  @@map("auditoria_logs")
+}
+
+model Cargo {
+  id        String   @id @default(uuid())
+  nome      String   @unique
+  descricao String?
+  tipo      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("cargos")
+}
+
+model Permissao {
+  id         String @id @default(uuid())
+  modulo     String @unique
+  descricao  String?
+  admin      Boolean @default(true)
+  professor  Boolean @default(false)
+  aluno      Boolean @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("permissoes")
+}
+
+model AdminUtilizador {
+  id        String   @id @default(uuid())
+  nome      String
+  email     String   @unique
+  username  String   @unique
+  cargo     String?
+  role      String   @default("admin")
+  ativo     Boolean  @default(true)
+  senhaHash String
+  ultimoAcesso DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("admin_utilizadores")
 }
