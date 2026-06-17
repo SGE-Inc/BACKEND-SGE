@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "tsc",
-    "start": "node dist/server.js",
+    "build": "tsc && tsc-alias",
+    "start": "node dist/src/server.js",
     "lint": "eslint src/",
     "db:migrate": "prisma migrate dev",
     "db:push": "prisma db push",
@@ -51,6 +51,7 @@
     "@types/swagger-ui-express": "^4.1.8",
     "@types/uuid": "^10.0.0",
     "prisma": "^7.8.0",
+    "tsc-alias": "^1.8.17",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3"
   }

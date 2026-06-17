@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import morgan from "morgan";
 
 const allowedOrigins = [
+  "http://localhost:2000",
   "http://localhost:3000",
   "http://localhost:3001",
   "http://127.0.0.1:3000",
