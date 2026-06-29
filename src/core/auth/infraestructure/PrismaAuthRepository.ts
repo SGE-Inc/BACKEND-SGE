@@ -1,16 +1,23 @@
 import { PrismaClient } from "@generated/prisma/index.js";
-import { IAdminAuthRepository, IAdminUserBase } from "../domain/IAdminAuth";
+import { IAuthRepository, IUserBase } from "../domain/IAuth";
 
-export const PrismaAdminAuthRepository = (client: PrismaClient): IAdminAuthRepository => ({
-  async findByEmail(email) {
-    const user = await client.user.findFirst({ where: { email, role: "ADMIN" } });
+export const PrismaAuthRepository = (client: PrismaClient): IAuthRepository => ({
+  async findByIdentifier(identifier) {
+    const user = await client.user.findFirst({
+      where: {
+        OR: [
+          { email: identifier },
+          { numeroUtilizador: identifier },
+        ],
+      },
+    });
     if (!user) return null;
-    return mapToAdminBase(user);
+    return mapToUserBase(user);
   },
   async findById(id) {
-    const user = await client.user.findFirst({ where: { id, role: "ADMIN" } });
+    const user = await client.user.findUnique({ where: { id } });
     if (!user) return null;
-    return mapToAdminBase(user);
+    return mapToUserBase(user);
   },
   async save(user) {
     const created = await client.user.create({
@@ -18,25 +25,29 @@ export const PrismaAdminAuthRepository = (client: PrismaClient): IAdminAuthRepos
         id: user.id,
         nome: user.nome,
         email: user.email,
+        telefone: user.telefone,
+        numeroUtilizador: user.numeroUtilizador,
         senhaHash: user.senhaHash,
-        role: "ADMIN",
-        status: "ATIVO",
+        role: user.role as any,
+        status: user.status as any,
         createdAt: user.createdAt,
         updatedAt: user.updatedAt,
       },
     });
-    return mapToAdminBase(created);
+    return mapToUserBase(created);
   },
   async updateSenha(id, senhaHash) {
     await client.user.update({ where: { id }, data: { senhaHash, updatedAt: new Date() } });
   },
 });
 
-function mapToAdminBase(user: any): IAdminUserBase {
+function mapToUserBase(user: any): IUserBase {
   return {
     id: user.id,
     nome: user.nome,
     email: user.email,
+    telefone: user.telefone,
+    numeroUtilizador: user.numeroUtilizador,
     senhaHash: user.senhaHash,
     role: user.role,
     status: user.status,

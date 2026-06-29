@@ -24,73 +24,52 @@ const options: swaggerJsdoc.Options = {
         },
       },
       schemas: {
-        AdminRegister: {
+        RegisterDto: {
           type: "object",
-          required: ["nome", "email", "senha"],
+          required: ["nome", "senha", "role"],
           properties: {
-            nome: {
-              type: "string",
-              description: "Nome completo do administrador",
-              example: "João Admin",
-            },
-            email: {
-              type: "string",
-              format: "email",
-              description: "Email do administrador (usado para login)",
-              example: "admin@escola.com",
-            },
-            senha: {
-              type: "string",
-              format: "password",
-              minLength: 6,
-              description: "Senha do administrador",
-              example: "123456",
+            nome: { type: "string", description: "Nome completo", example: "João Silva" },
+            email: { type: "string", format: "email", description: "Email (opcional, usado para login)", example: "utilizador@escola.com" },
+            senha: { type: "string", format: "password", minLength: 6, description: "Senha (mín. 6 caracteres)", example: "123456" },
+            role: { type: "string", enum: ["ADMIN", "PROFESSOR", "ALUNO"], description: "Tipo de utilizador", example: "ADMIN" },
+            telefone: { type: "string", description: "Telefone (opcional)", example: "912345678" },
+          },
+        },
+        LoginDto: {
+          type: "object",
+          required: ["identificador", "senha"],
+          properties: {
+            identificador: { type: "string", description: "Email ou número de utilizador", example: "utilizador@escola.com" },
+            senha: { type: "string", format: "password", description: "Senha", example: "123456" },
+          },
+        },
+        AuthResponse: {
+          type: "object",
+          properties: {
+            token: { type: "string", description: "Token JWT", example: "eyJhbGciOiJIUzI1NiIs..." },
+            user: {
+              type: "object",
+              properties: {
+                id: { type: "string", format: "uuid" },
+                nome: { type: "string" },
+                email: { type: "string", nullable: true },
+                role: { type: "string" },
+              },
             },
           },
         },
-        AdminLogin: {
-          type: "object",
-          required: ["email", "senha"],
-          properties: {
-            email: {
-              type: "string",
-              format: "email",
-              description: "Email do administrador",
-              example: "admin@escola.com",
-            },
-            senha: {
-              type: "string",
-              format: "password",
-              description: "Senha do administrador",
-              example: "123456",
-            },
-          },
-        },
-        AuthUserResponse: {
+        MeResponse: {
           type: "object",
           properties: {
-            id: {
-              type: "string",
-              format: "uuid",
-              description: "ID do utilizador",
-              example: "550e8400-e29b-41d4-a716-446655440000",
-            },
-            nome: {
-              type: "string",
-              description: "Nome do utilizador",
-              example: "João Admin",
-            },
-            email: {
-              type: "string",
-              format: "email",
-              description: "Email do utilizador",
-              example: "admin@escola.com",
-            },
-            role: {
-              type: "string",
-              description: "Role do utilizador",
-              example: "admin",
-            },
+            id: { type: "string", format: "uuid" },
+            nome: { type: "string" },
+            email: { type: "string", nullable: true },
+            telefone: { type: "string", nullable: true },
+            numeroUtilizador: { type: "string", nullable: true },
+            role: { type: "string" },
+            status: { type: "string" },
+            avatar: { type: "string", nullable: true },
+            createdAt: { type: "string", format: "date-time" },
           },
         },
         ErrorResponse: {
@@ -368,83 +347,12 @@ const options: swaggerJsdoc.Options = {
             activo: { type: "boolean", example: true },
           },
         },
-        RegisterAluno: {
-          type: "object",
-          required: ["nome", "dataNascimento", "tipoIdentificacao", "numeroIdentificacao", "numeroProcesso", "ultimaClasseFrequentada", "classe", "curso", "telefone"],
-          properties: {
-            nome: { type: "string", description: "Nome completo do aluno", example: "João Silva" },
-            dataNascimento: { type: "string", format: "date", description: "Data de nascimento", example: "2008-05-15" },
-            tipoIdentificacao: { type: "string", enum: ["BI", "PASSAPORTE"], description: "Tipo de identificação" },
-            numeroIdentificacao: { type: "string", description: "Nº do documento", example: "021528943LA053" },
-            numeroProcesso: { type: "string", description: "Nº de processo do aluno", example: "80727" },
-            ultimaClasseFrequentada: { type: "string", description: "Última classe frequentada", example: "9ª Classe" },
-            classe: { type: "string", description: "Classe a frequentar", example: "10ª Classe" },
-            curso: { type: "string", description: "Nome ou sigla do curso", example: "Informática" },
-            telefone: { type: "string", description: "Telefone para contacto", example: "912345678" },
-            email: { type: "string", format: "email", description: "Email (opcional)", example: "aluno@email.com" },
-          },
-        },
-        AlunoRegisteredResponse: {
-          type: "object",
-          properties: {
-            id: { type: "string", format: "uuid" },
-            nome: { type: "string" },
-            utilizador: { type: "string", example: "80727-021528943LA053" },
-            senha: { type: "string", example: "A3F2C8D1" },
-            message: { type: "string" },
-          },
-        },
-        AlunoLogin: {
-          type: "object",
-          required: ["utilizador", "senha"],
-          properties: {
-            utilizador: { type: "string", description: "Nome de utilizador", example: "80727-021528943LA053" },
-            senha: { type: "string", format: "password", description: "Senha", example: "A3F2C8D1" },
-          },
-        },
-        AlunoSession: {
-          type: "object",
-          properties: {
-            id: { type: "string", format: "uuid" },
-            nome: { type: "string" },
-            utilizador: { type: "string" },
-            role: { type: "string", example: "aluno" },
-          },
-        },
-        AlunoMeResponse: {
-          type: "object",
-          properties: {
-            id: { type: "string", format: "uuid" },
-            userId: { type: "string", format: "uuid" },
-            nome: { type: "string" },
-            email: { type: "string", nullable: true },
-            telefone: { type: "string" },
-            utilizador: { type: "string" },
-            dataNascimento: { type: "string", format: "date-time" },
-            tipoIdentificacao: { type: "string" },
-            numeroIdentificacao: { type: "string" },
-            numeroProcesso: { type: "string" },
-            ultimaClasseFrequentada: { type: "string" },
-            classe: { type: "string", nullable: true },
-            curso: { type: "string", nullable: true },
-            turmaId: { type: "string", nullable: true },
-          },
-        },
         ResetSenha: {
           type: "object",
           required: ["senhaActual", "novaSenha"],
           properties: {
             senhaActual: { type: "string", format: "password", description: "Senha actual" },
             novaSenha: { type: "string", format: "password", minLength: 6, description: "Nova senha (mín. 6 caracteres)" },
-          },
-        },
-        AdminMeResponse: {
-          type: "object",
-          properties: {
-            id: { type: "string", format: "uuid" },
-            nome: { type: "string" },
-            email: { type: "string" },
-            role: { type: "string", example: "admin" },
           },
         },
         DashboardStats: {
@@ -860,36 +768,7 @@ const options: swaggerJsdoc.Options = {
             cargaHorariaTotal: { type: "integer" },
           },
         },
-        ProfessorLogin: {
-          type: "object",
-          required: ["utilizador", "senha"],
-          properties: {
-            utilizador: { type: "string", description: "Número de utilizador do professor", example: "prof2024" },
-            senha: { type: "string", format: "password", description: "Senha", example: "123456" },
-          },
-        },
-        ProfessorSession: {
-          type: "object",
-          properties: {
-            id: { type: "string", format: "uuid" },
-            nome: { type: "string" },
-            cargo: { type: "string" },
-            role: { type: "string", example: "professor" },
-          },
-        },
-        ProfessorMeResponse: {
-          type: "object",
-          properties: {
-            id: { type: "string", format: "uuid" },
-            professorId: { type: "string", format: "uuid" },
-            nome: { type: "string" },
-            email: { type: "string", nullable: true },
-            numeroUtilizador: { type: "string", nullable: true },
-            cargo: { type: "string" },
-            contacto: { type: "string", nullable: true },
-            status: { type: "string" },
-          },
-        },
+
         ProfessorStatsResponse: {
           type: "object",
           properties: {
@@ -1175,137 +1054,8 @@ const options: swaggerJsdoc.Options = {
           },
         },
       },
-      "/admin/auth/register": {
-        post: {
-          tags: ["Admin Auth"],
-          summary: "Registar administrador",
-          requestBody: {
-            required: true,
-            content: { "application/json": { schema: { $ref: "#/components/schemas/AdminRegister" } } },
-          },
-          responses: {
-            201: { description: "Administrador registado com sucesso" },
-            400: { description: "Dados inválidos", content: { "application/json": { schema: { $ref: "#/components/schemas/ErrorResponse" } } } },
-          },
-        },
-      },
-      "/admin/auth/login": {
-        post: {
-          tags: ["Admin Auth"],
-          summary: "Login administrador",
-          requestBody: {
-            required: true,
-            content: { "application/json": { schema: { $ref: "#/components/schemas/AdminLogin" } } },
-          },
-          responses: {
-            200: { description: "Login bem-sucedido" },
-            401: { description: "Credenciais inválidas", content: { "application/json": { schema: { $ref: "#/components/schemas/ErrorResponse" } } } },
-          },
-        },
-      },
-      "/admin/auth/logout": {
-        post: {
-          tags: ["Admin Auth"],
-          summary: "Logout administrador",
-          security: [{ cookieAuth: [] }],
-          responses: {
-            200: { description: "Logout bem-sucedido" },
-          },
-        },
-      },
-      "/admin/auth/me": {
-        get: {
-          tags: ["Admin Auth"],
-          summary: "Obter perfil do administrador",
-          security: [{ cookieAuth: [] }],
-          responses: {
-            200: { description: "Perfil do administrador", content: { "application/json": { schema: { $ref: "#/components/schemas/AdminMeResponse" } } } },
-            401: { description: "Não autenticado" },
-            403: { description: "Acesso negado" },
-          },
-        },
-      },
-      "/admin/auth/reset-senha": {
-        put: {
-          tags: ["Admin Auth"],
-          summary: "Reset de senha do administrador",
-          security: [{ cookieAuth: [] }],
-          requestBody: {
-            required: true,
-            content: { "application/json": { schema: { $ref: "#/components/schemas/ResetSenha" } } },
-          },
-          responses: {
-            200: { description: "Senha alterada com sucesso" },
-            400: { description: "Dados inválidos" },
-            401: { description: "Não autenticado" },
-          },
-        },
-      },
-      "/aluno/auth/registar": {
-        post: {
-          tags: ["Aluno Auth"],
-          summary: "Registar aluno",
-          requestBody: {
-            required: true,
-            content: { "application/json": { schema: { $ref: "#/components/schemas/RegisterAluno" } } },
-          },
-          responses: {
-            201: { description: "Aluno registado com sucesso", content: { "application/json": { schema: { $ref: "#/components/schemas/AlunoRegisteredResponse" } } } },
-            400: { description: "Dados inválidos", content: { "application/json": { schema: { $ref: "#/components/schemas/ErrorResponse" } } } },
-          },
-        },
-      },
-      "/aluno/auth/login": {
-        post: {
-          tags: ["Aluno Auth"],
-          summary: "Login aluno",
-          requestBody: {
-            required: true,
-            content: { "application/json": { schema: { $ref: "#/components/schemas/AlunoLogin" } } },
-          },
-          responses: {
-            200: { description: "Login bem-sucedido", content: { "application/json": { schema: { $ref: "#/components/schemas/AlunoSession" } } } },
-            401: { description: "Credenciais inválidas", content: { "application/json": { schema: { $ref: "#/components/schemas/ErrorResponse" } } } },
-          },
-        },
-      },
-      "/aluno/auth/logout": {
-        post: {
-          tags: ["Aluno Auth"],
-          summary: "Logout aluno",
-          security: [{ cookieAuth: [] }],
-          responses: {
-            200: { description: "Logout bem-sucedido" },
-          },
-        },
-      },
-      "/aluno/auth/me": {
-        get: {
-          tags: ["Aluno Auth"],
-          summary: "Obter perfil do aluno",
-          security: [{ cookieAuth: [] }],
-          responses: {
-            200: { description: "Perfil do aluno", content: { "application/json": { schema: { $ref: "#/components/schemas/AlunoMeResponse" } } } },
-            401: { description: "Não autenticado" },
-          },
-        },
-      },
-      "/aluno/auth/reset-senha": {
-        put: {
-          tags: ["Aluno Auth"],
-          summary: "Reset de senha do aluno",
-          security: [{ cookieAuth: [] }],
-          requestBody: {
-            required: true,
-            content: { "application/json": { schema: { $ref: "#/components/schemas/ResetSenha" } } },
-          },
-          responses: {
-            200: { description: "Senha alterada com sucesso" },
-            400: { description: "Dados inválidos" },
-            401: { description: "Não autenticado" },
-          },
-        },
-      },
+
+
       "/admin/utilizadores": {
         get: {
           tags: ["Admin Utilizadores"],
@@ -2558,52 +2308,68 @@ const options: swaggerJsdoc.Options = {
            },
          },
        },
-       "/professor/auth/login": {
-         post: {
-           tags: ["Professor Auth"],
-           summary: "Login professor",
-           requestBody: {
-             required: true,
-             content: { "application/json": { schema: { $ref: "#/components/schemas/ProfessorLogin" } } },
-           },
-           responses: {
-             200: { description: "Login bem-sucedido", content: { "application/json": { schema: { $ref: "#/components/schemas/ProfessorSession" } } } },
-             401: { description: "Credenciais inválidas", content: { "application/json": { schema: { $ref: "#/components/schemas/ErrorResponse" } } } },
-           },
-         },
-       },
-       "/professor/auth/logout": {
-         post: {
-           tags: ["Professor Auth"],
-           summary: "Logout professor",
-           security: [{ cookieAuth: [] }],
-           responses: { 200: { description: "Logout bem-sucedido" } },
-         },
-       },
-       "/professor/auth/me": {
-         get: {
-           tags: ["Professor Auth"],
-           summary: "Obter perfil do professor",
-           security: [{ cookieAuth: [] }],
-           responses: {
-             200: { description: "Perfil do professor", content: { "application/json": { schema: { $ref: "#/components/schemas/ProfessorMeResponse" } } } },
-             401: { description: "Não autenticado" },
-           },
-         },
-       },
-       "/professor/auth/reset-senha": {
-         put: {
-           tags: ["Professor Auth"],
-           summary: "Reset de senha do professor",
-           security: [{ cookieAuth: [] }],
-           requestBody: { required: true, content: { "application/json": { schema: { $ref: "#/components/schemas/ResetSenha" } } } },
-           responses: {
-             200: { description: "Senha alterada com sucesso" },
-             400: { description: "Dados inválidos" },
-             401: { description: "Não autenticado" },
-           },
-         },
-       },
+        "/auth/register": {
+          post: {
+            tags: ["Auth"],
+            summary: "Registar novo utilizador",
+            requestBody: {
+              required: true,
+              content: { "application/json": { schema: { $ref: "#/components/schemas/RegisterDto" } } },
+            },
+            responses: {
+              201: { description: "Utilizador registado com sucesso" },
+              400: { description: "Dados inválidos", content: { "application/json": { schema: { $ref: "#/components/schemas/ErrorResponse" } } } },
+              409: { description: "Email já registado" },
+            },
+          },
+        },
+        "/auth/login": {
+          post: {
+            tags: ["Auth"],
+            summary: "Login (email ou número de utilizador)",
+            requestBody: {
+              required: true,
+              content: { "application/json": { schema: { $ref: "#/components/schemas/LoginDto" } } },
+            },
+            responses: {
+              200: { description: "Login bem-sucedido", content: { "application/json": { schema: { $ref: "#/components/schemas/AuthResponse" } } } },
+              401: { description: "Credenciais inválidas", content: { "application/json": { schema: { $ref: "#/components/schemas/ErrorResponse" } } } },
+              403: { description: "Conta desactivada" },
+            },
+          },
+        },
+        "/auth/logout": {
+          post: {
+            tags: ["Auth"],
+            summary: "Logout",
+            security: [{ cookieAuth: [] }],
+            responses: { 200: { description: "Logout bem-sucedido" } },
+          },
+        },
+        "/auth/me": {
+          get: {
+            tags: ["Auth"],
+            summary: "Obter perfil do utilizador autenticado",
+            security: [{ cookieAuth: [] }],
+            responses: {
+              200: { description: "Perfil do utilizador", content: { "application/json": { schema: { $ref: "#/components/schemas/MeResponse" } } } },
+              401: { description: "Não autenticado" },
+            },
+          },
+        },
+        "/auth/reset-senha": {
+          put: {
+            tags: ["Auth"],
+            summary: "Alterar senha",
+            security: [{ cookieAuth: [] }],
+            requestBody: { required: true, content: { "application/json": { schema: { $ref: "#/components/schemas/ResetSenha" } } } },
+            responses: {
+              200: { description: "Senha alterada com sucesso" },
+              400: { description: "Dados inválidos" },
+              401: { description: "Não autenticado" },
+            },
+          },
+        },
        "/professor/dashboard/stats": {
          get: {
            tags: ["Professor Dashboard"],
